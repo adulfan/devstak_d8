@@ -1,0 +1,5 @@
+# Ignore Mac OS system files
+.DS_Store
+
+# Ignore Vagrant files
+.vagrant

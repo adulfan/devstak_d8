@@ -1,0 +1,29 @@
+---
+# apt-get update and some basics
+- include: common.yml
+
+# Include your private SSH key in the VM
+#- include: ssh.yml
+
+# Required tools
+#- include: git.yml
+
+# Base LAMP Stack
+#- include: web.yml
+#- include: database.yml
+#- include: composer.yml
+
+# Base MEAN Stack
+
+# Cacheing Layers
+#- include: memcache.yml
+#- include: varnish.yml
+
+# Drupal Tools
+#- include: drush.yml
+#- include: acquia_insight.yml
+
+# Wordpress Tools
+
+# Theming/UI Tools
+#- include: nodejs.yml

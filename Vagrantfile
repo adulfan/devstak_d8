@@ -99,15 +99,14 @@ Vagrant.configure(2) do |config|
   # SHELL
 
   # Setup provisioning with an ansible playbook
-  # config.vm.provision "ansible" do |ansible|
-  #   ansible.playbook = "provisioning/site.yml"
-  #   ansible.groups = {
-  #     "web" => [project_name],
-  #     "database" => [project_name],
-  #     "memcache" => [project_name]
-  #   }
-  #   ansible.extra_vars = {
-  #     "project_name" => project_name
-  #   }
-  # end
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "provisioning/playbook.yml"
+    # ansible.verbose = "vvvv"
+    ansible.extra_vars = {
+      "project_name" => project_name
+    }
+    ansible.groups = {
+      "devstack" => [project_name]
+    }
+  end
 end

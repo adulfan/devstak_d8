@@ -1,0 +1,25 @@
+---
+- name: Update APT cache
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: Upgrade all base packages
+  apt: upgrade=dist
+
+- name: Clean out old packages if any
+  command: apt-get -y autoremove
+
+- name: Install wget
+  apt: name={{ item }} state=present
+  with_items:
+    - wget
+
+- name: Install curl
+  apt: name={{ item }} state=present
+  with_items:
+    - curl
+
+- name: Install unzip
+  sudo: yes
+  apt: name={{ item }} state=present
+  with_items:
+    - unzip

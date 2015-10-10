@@ -1,0 +1,310 @@
+#!/usr/bin/env bash
+
+VBOX_VERSION_REQUIRED='5.0.0'
+VAGRANT_VERSION_REQUIRED='1.7.4'
+
+###########################
+### USAGE AND VERSION INFO
+###########################
+function HELP {
+  echo '
+USAGE
+
+1. Run the script
+2. Restart your shell
+3. ???
+4. Profit
+
+Sets up a complete development environment using rbenv, pyenv, and ndenv.
+'
+  exit 1
+}
+
+function VERSION {
+  echo "$(cat .devstack-version)"
+}
+
+
+###########################
+### INSTALLATION FUNCTIONS
+###########################
+function install_command_line_tools {
+  loud "Checking Apple CLI Tools"
+
+  if pkgutil --pkg-info=com.apple.pkg.CLTools_Executables &> /dev/null; then
+    return
+  fi
+
+  loud "Installing OS X Command Line Tools"
+
+  # OS X Command Line Tools
+  quiet "To install the OS X Command Line Tools, click on the install button on the dialogue that appears."
+  echo -en "\tPress enter to continue... "
+  read
+
+  xcode-select --install
+
+  echo -en "\tPress enter when the installation is complete. "
+  read
+
+  if pkgutil --pkg-info=com.apple.pkg.CLTools_Executables &> /dev/null; then
+    quiet "Done installing OS X Command Line Tools."
+  else
+    loud "ERROR: Command line tools not found."
+  fi
+}
+
+function install_virtual_box {
+  loud "Checking VirtualBox"
+  if hash vboxmanage &> /dev/null; then
+    VBOX_VERSION_LONG=$( cd ~; vboxmanage --version)
+    VBOX_VERSION=${VBOX_VERSION_LONG:0:5}
+  fi
+
+  if hash vboxmanage &> /dev/null && (( $(vercomp $VBOX_VERSION $VBOX_VERSION_REQUIRED) < 2 )); then
+    return
+  fi
+
+  if hash vboxmanage &> /dev/null; then
+    loud "ERROR: VIRTUALBOX IS OUT OF DATE."
+  else
+    loud "ERROR: VIRTUALBOX IS NOT INSTALLED."
+  fi
+  echo -en "\tInstall VirtualBox version $VBOX_VERSION_REQUIRED or greater\n\tPress enter to open the download page in your browser... "
+  read
+
+  open "https://encrypted.google.com/search?hl=en&q=virtualbox+version+$VBOX_VERSION_REQUIRED#hl=en&q=virtualbox+download+version&btnI=745"
+
+  echo -en "\tOnce installed press enter to continue... "
+  read
+
+  if hash vboxmanage &> /dev/null && (( $(vercomp $VBOX_VERSION $VBOX_VERSION_REQUIRED) < 2 )); then
+    quiet "Done installing Virtual Box"
+  else
+    loud "ERROR: Virtual Box version $VBOX_VERSION_REQUIRED or greater not installed."
+    exit 1
+  fi
+}
+
+function install_vagrant {
+  loud "Checking Vagrant"
+  VAGRANT_VERSION=$( cd ~; vagrant --version 2> /dev/null | awk '{ print $2 }')
+  if hash vagrant &> /dev/null && (( $(vercomp $VAGRANT_VERSION $VAGRANT_VERSION_REQUIRED) < 2 )); then
+    return
+  fi
+
+  local vagrant_url="https://dl.bintray.com/mitchellh/vagrant/vagrant_$VAGRANT_VERSION_REQUIRED.dmg"
+  local vagrant_dmg=$( strip_url "${vagrant_url}" )
+  local vagrant_pkg="Vagrant.pkg"
+
+  loud "Installing Vagrant"
+
+  quiet "Downloading Vagrant"
+  curl -sOL "$vagrant_url"
+
+  local vagrant_path=''
+
+  attach_volume "${vagrant_dmg}" vagrant_path
+
+  if hash vagrant &> /dev/null; then
+    quiet "Uninstalling previous Vagrant"
+    echo -e "Yes\n\n" | "${vagrant_path}/uninstall.tool" >> /dev/null
+  fi
+  rm -rf "${HOME}/.vagrant.d"
+
+  install_pkg "${vagrant_path}" "${vagrant_pkg}"
+  detach_volume "${vagrant_path}"
+
+  rm -f "${vagrant_dmg}"
+
+  quiet "Done installing Vagrant"
+}
+
+function install_vagrant_hostmanager {
+  loud "Checking Vagrant Hostmanager"
+  if vagrant plugin list | grep "vagrant-hostmanager" &> /dev/null; then
+    return
+  fi
+
+  loud "Installing Vagrant Hostmanager"
+
+  vagrant plugin install vagrant-hostmanager &> /dev/null
+  quiet "Done installing Vagrant Hostmanager"
+}
+
+function install_homebrew {
+  loud "Checking Homebrew"
+  if ! hash brew &> /dev/null; then
+    quiet "Installing Homebrew"
+    (cd ~; echo -e "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null)
+    quiet "Done installing Homebrew"
+  fi
+
+  quiet "Updating Homebrew packages"
+  brew update &> /dev/null
+}
+
+function install_ansible {
+  loud "Checking Ansible Environment"
+
+  # Ensure ansible is installed
+  if ! hash ansible &> /dev/null; then
+    quiet "Installing ansible"
+    brew install ansible &> /dev/null
+  fi
+}
+
+# function run_custom {
+#   loud "Running any custom bootstrap scripts"
+#   export -f run_script
+#   find scripts/bootstrap.d/*.sh -exec bash -c 'run_script "$0"' {} \; 2> /dev/null
+# }
+
+#####################
+### HELPER FUNCTIONS
+#####################
+function loud {
+  echo -e "\n#### ${1}"
+}
+
+function quiet {
+  echo -e "\t${1}"
+}
+
+function PROJECT_NAME {
+  # Grab project Name from Vagrantfile
+  project_name_regex='project_name = "([^"]*)"'
+  [[ $(cat Vagrantfile) =~ $project_name_regex ]]
+  echo "${BASH_REMATCH[1]}"
+}
+
+# Params:
+#   url ending in dmg name
+function strip_url {
+  echo $( sed "s/^.*\///" <(echo "${1}"))
+}
+
+# Params:
+#   dmg file path
+#   varaible for return volume path
+function attach_volume {
+  quiet "Attaching ${1}"
+  volume="$(sudo hdiutil attach "${1}" | grep "Volumes" | cut -f 3- )"
+  eval "${2}=\"${volume}\""
+  quiet "\tAttached to ${volume}"
+}
+
+# Params:
+#   volume path
+function detach_volume {
+  quiet "Detaching ${1}"
+  sudo hdiutil detach "${1}" >> /dev/null
+  quiet "\tDetached"
+}
+# Params:
+#   volume path
+#   pkg file name
+function install_pkg {
+  quiet "Installing '${1}/${2}'. Do not run the .pkg file that may pop up."
+  sudo installer -pkg "${volume}/${2}" -target / >> /dev/null
+  quiet "\tInstalled ${2}"
+}
+
+# Params:
+#   dmg file path
+#   pkg file name
+function install_dmg {
+  volume_path=''
+
+  attach_volume "${1}" volume_path
+  install_pkg "${volume_path}" ${2}
+  detach_volume "${volume_path}"
+}
+
+function vercomp () {
+    if [[ $1 == $2 ]]
+    then
+        echo 0
+        return
+    fi
+    local IFS=.
+    local i ver1=($1) ver2=($2)
+    # fill empty fields in ver1 with zeros
+    for ((i=${#ver1[@]}; i<${#ver2[@]}; i++))
+    do
+        ver1[i]=0
+    done
+    for ((i=0; i<${#ver1[@]}; i++))
+    do
+        if [[ -z ${ver2[i]} ]]
+        then
+            # fill empty fields in ver2 with zeros
+            ver2[i]=0
+        fi
+        if ((10#${ver1[i]} > 10#${ver2[i]}))
+        then
+            echo 1
+            return
+        fi
+        if ((10#${ver1[i]} < 10#${ver2[i]}))
+        then
+            echo 2
+            return
+        fi
+    done
+    echo 0
+}
+
+function run_script () {
+  local path=$1
+  echo -e "\tRunning $(basename $path)"
+  source $path
+}
+
+
+#####################
+### MAIN FUNCTION
+#####################
+function main {
+  install_command_line_tools
+  install_virtual_box
+  install_vagrant
+  install_vagrant_hostmanager
+  install_homebrew
+  install_ansible
+  # run_custom
+
+  loud 'Bootstrap Complete!'
+  quiet 'Make sure you restart your shell. Now!\n'
+}
+
+################
+### Parse Opts
+################
+while getopts ":hv" opt
+do
+  case $opt in
+    h)
+      echo -e "\nDevStack Bootstrap Script v$(VERSION)
+      $(HELP)
+      "
+      exit 0
+      ;;
+    v)
+      echo "$(VERSION)"
+      exit 0
+      ;;
+    \?)
+      echo ""
+      echo "Invalid option: -${OPTARG}" >&2
+      HELP
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+   esac
+done
+
+main

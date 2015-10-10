@@ -3,7 +3,7 @@
 - include: common.yml
 
 # Include your private SSH key in the VM
-#- include: ssh.yml
+- include: ssh.yml
 
 # Required tools
 #- include: git.yml

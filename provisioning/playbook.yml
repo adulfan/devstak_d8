@@ -6,7 +6,7 @@
 - include: ssh.yml
 
 # Required tools
-#- include: git.yml
+- include: git.yml
 
 # Base LAMP Stack
 #- include: web.yml

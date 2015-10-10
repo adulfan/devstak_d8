@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+VBOX_VERSION_REQUIRED='5.0.0'
+VAGRANT_VERSION_REQUIRED='1.7.4'
+
 ###########################
 ### USAGE AND VERSION INFO
 ###########################
@@ -57,7 +60,6 @@ function install_virtual_box {
     VBOX_VERSION_LONG=$( cd ~; vboxmanage --version)
     VBOX_VERSION=${VBOX_VERSION_LONG:0:5}
   fi
-  VBOX_VERSION_REQUIRED=$(cat .virtualbox-version)
 
   if hash vboxmanage &> /dev/null && (( $(vercomp $VBOX_VERSION $VBOX_VERSION_REQUIRED) < 2 )); then
     return
@@ -87,7 +89,6 @@ function install_virtual_box {
 function install_vagrant {
   loud "Checking Vagrant"
   VAGRANT_VERSION=$( cd ~; vagrant --version 2> /dev/null | awk '{ print $2 }')
-  VAGRANT_VERSION_REQUIRED=$(cat .vagrant-version)
   if hash vagrant &> /dev/null && (( $(vercomp $VAGRANT_VERSION $VAGRANT_VERSION_REQUIRED) < 2 )); then
     return
   fi
@@ -153,11 +154,11 @@ function install_ansible {
   fi
 }
 
-function run_custom {
-  loud "Running any custom bootstrap scripts"
-  export -f run_script
-  find scripts/bootstrap.d/*.sh -exec bash -c 'run_script "$0"' {} \; 2> /dev/null
-}
+# function run_custom {
+#   loud "Running any custom bootstrap scripts"
+#   export -f run_script
+#   find scripts/bootstrap.d/*.sh -exec bash -c 'run_script "$0"' {} \; 2> /dev/null
+# }
 
 #####################
 ### HELPER FUNCTIONS
@@ -271,7 +272,7 @@ function main {
   install_vagrant_hostmanager
   install_homebrew
   install_ansible
-  run_custom
+  # run_custom
 
   loud 'Bootstrap Complete!'
   quiet 'Make sure you restart your shell. Now!\n'

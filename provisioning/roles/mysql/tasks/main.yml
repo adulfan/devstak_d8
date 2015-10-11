@@ -1,0 +1,20 @@
+---
+- name: Install MySQL Server
+  apt: name={{ item }} state=present
+  with_items:
+    - mysql-server
+    - mysql-client
+    - python-mysqldb
+
+- name: Install DB
+  command: mysql_install_db
+
+- name: Configure MySQL
+  template: src=../templates/my.cnf.j2 dest=/etc/mysql/my.cnf
+  notify: Restart MySQL
+
+- name: Setup MySQL User
+  mysql_user: name=vagrant password=vagrant priv=*.*:ALL host=% state=present
+
+- name: Create {{ project_name }} database
+  action: mysql_db db={{ project_name }} state=present

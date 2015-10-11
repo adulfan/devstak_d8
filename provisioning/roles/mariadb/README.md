@@ -1,14 +1,14 @@
-# MySQL
+# MariaDB
 
-A role to install and configure MySQL inside the host VM according to your project standards and needs.
+MariaDB is a drop in replacement for MySQL. This is a role to install and configure MariaDB inside the host VM according to your project standards and needs.
 
-* Install mysql-server (5.5)
-* Install mysql-client (5.5)
+* Install mariadb-server (5.5)
+* Install mariadb-client (5.5)
 * Install python-mysql for ansible mysql actions
 
 ## Instructions
 
-Enable this role in the main playbook.yml to install and configure MySQL Server and Client inside your host VM.
+Enable this role in the main playbook.yml to install and configure MariaDB Server and Client inside your host VM.
 
 ## Author Information
 

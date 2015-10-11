@@ -1,5 +1,5 @@
 ---
-- name: Install MySQL Server
+- name: Install MySQL Server and Client
   apt: name={{ item }} state=present
   with_items:
     - mysql-server
@@ -16,5 +16,5 @@
 - name: Setup MySQL User
   mysql_user: name=vagrant password=vagrant priv=*.*:ALL host=% state=present
 
-- name: Create {{ project_name }} database
+- name: Create project database
   action: mysql_db db={{ project_name }} state=present

@@ -1,7 +1,1 @@
 ---
-# Users home directory
-user_home: "{{ lookup('env', 'HOME') }}"
-
-# Location of SSH private key to which the public key is uploaded to a service
-# such as Acquia or Bitbucket or GitHub
-user_private_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"

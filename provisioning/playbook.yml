@@ -8,7 +8,14 @@
 # Required tools
 - include: git.yml
 
+# Database
+- include: mysql.yml
+#- include: mariadb.yml
+#- include: percona.yml
+#- include: mongodb.yml
+
 # Base LAMP Stack
+#- include: apache.yml
 #- include: web.yml
 #- include: database.yml
 #- include: composer.yml

@@ -23,3 +23,11 @@
   apt: name={{ item }} state=present
   with_items:
     - unzip
+
+# Useful if your application needs to check the environment it's running on
+- name: Export APPLICATION_ENV in .profile
+  sudo: yes
+  sudo_user: vagrant
+  lineinfile: >
+    dest="~/.profile"
+    line="export APPLICATION_ENV=local"

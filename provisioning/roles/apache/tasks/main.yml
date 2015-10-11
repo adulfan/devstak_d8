@@ -1,0 +1,44 @@
+---
+- name: Install Apache2
+  apt: name=apache2 state=present
+
+- name: Enable mod_rewrite
+  command: a2enmod rewrite
+
+- name: Enable mod_headers
+  command: a2enmod headers
+
+# SSL Requirment
+- name: Enable socache_shmcb
+  command: a2enmod socache_shmcb
+
+- name: Enable mod_ssl
+  command: a2enmod ssl
+
+- name: Disable Default Site VirtualHost
+  command: a2dissite 000-default
+
+- name: Disable Default HTTPS Site VirtualHost
+  command: a2dissite default-ssl
+
+- name: Configure Project VirtualHost
+  template: src=../templates/vhost.conf.j2 dest=/etc/apache2/sites-available/{{ project_name }}.conf
+
+- name: Configure Project HTTPS VirtualHost
+  template: src=../templates/vhost-ssl.conf.j2 dest=/etc/apache2/sites-available/{{ project_name }}-ssl.conf
+
+- name: Enable Project VirtualHost
+  command: a2ensite {{ project_name }}
+
+- name: Enable Project HTTPS VirtualHost
+  command: a2ensite {{ project_name }}-ssl
+
+# Useful if your application needs to check the environment it's running on
+- name: Add APPLICATION_ENV to Apache envars
+  lineinfile: >
+    dest="/etc/apache2/envvars"
+    line="export APPLICATION_ENV=local"
+  tags: apache
+
+- name: Restart Apache
+  service: name=apache2 state=restarted

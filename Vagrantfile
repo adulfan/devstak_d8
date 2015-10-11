@@ -4,6 +4,8 @@
 # PROJECT VARIABLES
 project_name = "devstack"
 ip_address = "172.22.22.20"
+project_root    = "/var/www/" + project_name + "/"
+project_docroot = project_root + "docroot"
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
@@ -31,6 +33,7 @@ Vagrant.configure(2) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
+  # TODO: Add forwarded ports
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -103,7 +106,10 @@ Vagrant.configure(2) do |config|
     ansible.playbook = "provisioning/playbook.yml"
     # ansible.verbose = "vvvv"
     ansible.extra_vars = {
-      "project_name" => project_name
+      "ip_address"      => ip_address,
+      "project_name"    => project_name,
+      "project_root"    => project_root,
+      "project_docroot" => project_docroot
     }
     ansible.groups = {
       "devstack" => [project_name]

@@ -14,10 +14,19 @@
 # - include: percona.yml
 # - include: mongodb.yml
 
+# Web Server
+- include: apache.yml
+# - include: nginx.yml TODO
+
+# Project Language (PHP)
+- include: php.yml
+# - include: php-fpm.yml TODO
+# - include: composer.yml
+
+# Project Site Configuration
+
 # Base LAMP Stack
-# - include: apache.yml
 # - include: web.yml
-# - include: database.yml
 # - include: composer.yml
 
 # Base MEAN Stack

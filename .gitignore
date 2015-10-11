@@ -3,3 +3,9 @@
 
 # Ignore Vagrant files
 .vagrant
+
+# Ignore opcache web viewer
+opcache.php
+
+# Ignore memcache web viewer
+memcache.php

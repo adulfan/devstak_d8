@@ -1,0 +1,20 @@
+---
+- name: Install MariaDB Server and Client
+  apt: name={{ item }} state=present
+  with_items:
+    - mariadb-server
+    - mariadb-client
+    - python-mysqldb
+
+# - name: Install DB
+#   command: mysql_install_db
+
+- name: Configure MariaDB
+  template: src=../templates/my.cnf.j2 dest=/etc/mysql/my.cnf
+  notify: Restart MariaDB
+
+- name: Setup MariaDB User
+  mysql_user: name=vagrant password=vagrant priv=*.*:ALL host=% state=present
+
+- name: Create project database
+  action: mysql_db db={{ project_name }} state=present

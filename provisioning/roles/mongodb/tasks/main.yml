@@ -7,7 +7,9 @@
 
 - name: Configure MongoDB
   template: src=../templates/mongodb.conf.j2 dest=/etc/mongodb.conf
-  notify: Restart MongoDB
+
+- name: Restart MongoDB
+  service: name=mongodb state=restarted
 
 - name: Create MongoDB project database and user
   mongodb_user: database={{ project_name }} name=vagrant password=vagrant state=present

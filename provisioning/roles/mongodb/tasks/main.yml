@@ -1,0 +1,13 @@
+---
+- name: Install MongoDB
+  apt: name={{ item }} state=present
+  with_items:
+    - mongodb
+    - python-pymongo
+
+- name: Configure MongoDB
+  template: src=../templates/mongodb.conf.j2 dest=/etc/mongodb.conf
+  notify: Restart MongoDB
+
+- name: Create MongoDB project database and user
+  mongodb_user: database={{ project_name }} name=vagrant password=vagrant state=present

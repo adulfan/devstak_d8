@@ -10,27 +10,27 @@
 
 # Database
 - include: mysql.yml
-#- include: mariadb.yml
-#- include: percona.yml
-#- include: mongodb.yml
+# - include: mariadb.yml
+# - include: percona.yml
+# - include: mongodb.yml
 
 # Base LAMP Stack
-#- include: apache.yml
-#- include: web.yml
-#- include: database.yml
-#- include: composer.yml
+# - include: apache.yml
+# - include: web.yml
+# - include: database.yml
+# - include: composer.yml
 
 # Base MEAN Stack
 
 # Cacheing Layers
-#- include: memcache.yml
-#- include: varnish.yml
+# - include: memcache.yml
+# - include: varnish.yml
 
 # Drupal Tools
-#- include: drush.yml
-#- include: acquia_insight.yml
+# - include: drush.yml
+# - include: acquia_insight.yml
 
 # Wordpress Tools
 
 # Theming/UI Tools
-#- include: nodejs.yml
+# - include: nodejs.yml

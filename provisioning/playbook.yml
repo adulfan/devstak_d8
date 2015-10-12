@@ -1,11 +1,17 @@
 ---
+# To install a base LAMP stack enable "mysql, apache, php"
+# From there, enable any other tools your project requires.
+
+# To install a base MEAN stack enable "mongodb, express, angular, nodejs"
+# From there, enable any other tools your project requires.
+
 # apt-get update and some basics
 - include: common.yml
 
 # Include your private SSH key in the VM
 - include: ssh.yml
 
-# Required tools
+# Git and your private .gitconfig in the VM
 - include: git.yml
 
 # Database
@@ -16,23 +22,16 @@
 
 # Web Server
 - include: apache.yml
-# - include: nginx.yml TODO
+# - include: nginx.yml
 
 # Project Language (PHP)
 - include: php.yml
-# - include: php-fpm.yml TODO
+# - include: php-fpm.yml
 # - include: composer.yml
-
-# Project Site Configuration
-
-# Base LAMP Stack
-# - include: web.yml
-# - include: composer.yml
-
-# Base MEAN Stack
 
 # Cacheing Layers
 # - include: memcache.yml
+# - include: redis.yml
 # - include: varnish.yml
 
 # Drupal Tools
@@ -43,3 +42,6 @@
 
 # Theming/UI Tools
 # - include: nodejs.yml
+
+# Project Site Configuration (any special configs)
+- include: project.yml

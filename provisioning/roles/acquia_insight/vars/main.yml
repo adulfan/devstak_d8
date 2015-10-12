@@ -1,0 +1,3 @@
+---
+# Acquia Insight Cloud API location.
+acquia_insight_capi: "{{ lookup('env', 'HOME') }}"

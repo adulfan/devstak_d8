@@ -1,0 +1,31 @@
+---
+- name: Install Drush
+  shell:
+    composer global require drush/drush:dev-master
+  environment:
+    COMPOSER_HOME: "{{ composer_home }}"
+    COMPOSER_BIN_DIR: "/usr/local/bin"
+    COMPOSER_VENDOR_DIR: "{{ composer_home }}/vendor"
+  register: drush
+
+- name: Create a ~/.drush directory
+  sudo: yes
+  sudo_user: vagrant
+  file: path=/home/vagrant/.drush/ state=directory
+
+- name: Ensure /etc/drush directory exists
+  file:
+    path: /etc/drush
+    state: directory
+
+- name: Configure project default local Drush aliases
+  template:
+    src: project.aliases.drushrc.php.j2
+    dest: /etc/drush/{{ project_name }}.aliases.drushrc.php
+
+# - name: Enable drush autocomplete
+#   lineinfile:
+#     line: "source {{ composer_home }}/vendor/drush/drush/examples/example.bashrc"
+#     dest: "{{ ansible_env.HOME }}/.bashrc"
+#     state: present
+#     insertafter: EOF

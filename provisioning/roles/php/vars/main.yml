@@ -3,6 +3,12 @@
 php_upload_max_filesize: 256M
 php_memory_limit: 512M
 php_variables_order: GPCSE
+php_display_startup_errors: on
+php_display_errors: on
+php_html_errors: on
+php_log_errors: on
+php_error_log: /var/log/apache2/{{ project_name }}-phperrors.log
+
 
 # xdebug.ini
 php_xdebug_remote_enable: 1

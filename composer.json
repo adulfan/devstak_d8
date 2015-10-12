@@ -1,0 +1,12 @@
+{
+    "name": "northpointdigital/devstack",
+    "description": "Project development stack isolated in a VM for portability and flexibility.",
+    "license": "Private, do not distribute",
+    "authors": [
+        {
+            "name": "NorthPoint Digital",
+            "email": "projectoffice@northpointdigital.com"
+        }
+    ],
+    "require": {}
+}

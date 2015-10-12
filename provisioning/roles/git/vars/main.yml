@@ -1,1 +1,6 @@
 ---
+# Users home directory
+user_home: "{{ lookup('env', 'HOME') }}"
+
+# Location of your .gitconfig file
+user_gitconfig: "{{ lookup('env', 'HOME') }}/.gitconfig"

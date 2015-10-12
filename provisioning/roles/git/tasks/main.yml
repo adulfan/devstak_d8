@@ -4,3 +4,13 @@
   with_items:
     - git-core
     - git
+
+- name: Copy .gitconfig
+  copy:
+    src: "{{ user_gitconfig }}"
+    dest: /home/vagrant/.gitconfig
+    mode: 0644
+    force: yes
+
+- name: Validate .gitconfig permissions
+  command: chmod 644 /home/vagrant/.gitconfig

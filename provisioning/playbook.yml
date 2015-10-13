@@ -22,26 +22,34 @@
 
 # Web Server
 - include: apache.yml
-# - include: nginx.yml
+# - include: nginx.yml # TODO
 
 # Project Language (PHP)
 - include: php.yml
-# - include: php-fpm.yml
+# - include: php-fpm.yml # TODO
 # - include: composer.yml
 
 # Cacheing Layers
-# - include: memcache.yml
+# - include: memcached.yml
 # - include: redis.yml
 # - include: varnish.yml
 
-# Drupal Tools
+# Drupal and Tools
 # - include: drush.yml
 # - include: acquia_insight.yml
+# - include: drupal.yml # TODO
 
-# Wordpress Tools
+# Wordpress and Tools
+# - include: wordpress.yml # TODO
+
+# Laravel and Tools
+# - include: laravel.yml # TODO
+
+# Symfony and Tools
+# - include: symfony.yml # TODO
 
 # Theming/UI Tools
-# - include: nodejs.yml
+# - include: nodejs.yml # TODO
 
 # Project Site Configuration (any special configs)
 - include: project.yml

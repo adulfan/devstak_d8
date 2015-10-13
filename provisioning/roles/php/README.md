@@ -21,6 +21,7 @@ This is a role to install and configure the PHP inside the host VM according to 
 * php5-mysqlnd
 * php5-pspell
 * php5-recode
+* php5-redis
 * php5-xdebug
 * php5-xmlrpc
 * php5-xsl

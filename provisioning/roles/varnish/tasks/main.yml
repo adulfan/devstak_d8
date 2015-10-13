@@ -1,0 +1,11 @@
+---
+- name: Install Varnish
+  apt: name={{ item }} state=present
+  with_items:
+    - varnish
+
+- name: Configure Varnish
+  template: src=../templates/default.vcl.j2 dest=/etc/varnish/default.vcl
+
+- name: Restart Varnish
+  service: name=varnish state=restarted

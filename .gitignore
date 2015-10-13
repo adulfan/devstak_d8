@@ -8,4 +8,4 @@
 opcache.php
 
 # Ignore memcache web viewer
-memcache.php
+memcached.php

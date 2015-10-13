@@ -1,0 +1,15 @@
+---
+- name: Install Memcached
+  apt: name={{ item }} state=present
+  with_items:
+    - memcached
+    - libmemcached-tools
+
+- name: Configure memcached
+  template: src=../templates/memcached.conf.j2 dest=/etc/memcached.conf
+
+- name: Restart memcached
+  service: name=memcached state=restarted
+
+- name: Get memcache web viewer
+  get_url: url=https://raw.githubusercontent.com/bainternet/Memchaced-Dashboard/master/index.php dest={{ project_docroot }}/memcached.php

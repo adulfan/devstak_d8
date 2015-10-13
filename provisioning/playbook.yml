@@ -30,7 +30,7 @@
 # - include: composer.yml
 
 # Cacheing Layers
-# - include: memcache.yml
+# - include: memcached.yml
 # - include: redis.yml
 # - include: varnish.yml
 

@@ -14,6 +14,9 @@
 # Git and your private .gitconfig in the VM
 - include: git.yml
 
+# Additional Tools
+# - include: nodejs.yml
+
 # Database
 - include: mysql.yml
 # - include: mariadb.yml
@@ -47,9 +50,6 @@
 
 # Symfony and Tools
 # - include: symfony.yml # TODO
-
-# Theming/UI Tools
-# - include: nodejs.yml # TODO
 
 # Project Site Configuration (any special configs)
 - include: project.yml

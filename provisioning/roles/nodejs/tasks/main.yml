@@ -1,0 +1,19 @@
+---
+- name: NodeJS - Get APT repository setup script
+  get_url: url=https://deb.nodesource.com/setup dest=/tmp/nodejs_setup mode=0755
+  tags:
+    - nodejs
+
+- name: NodeJS - Run repository setup script
+  sudo: yes
+  command: sudo bash nodejs_setup chdir=/tmp
+  tags:
+    - nodejs
+
+- name: Install NodeJS
+  sudo: yes
+  apt: name={{ item }} state=present
+  with_items:
+    - nodejs
+  tags:
+    - nodejs

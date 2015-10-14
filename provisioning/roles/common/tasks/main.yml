@@ -8,6 +8,13 @@
 - name: Clean out old packages if any
   command: apt-get -y autoremove
 
+# Some npm (and other tools) install's can need this at times
+# No harm in just installing it
+- name: Install build-essential
+  apt: name={{ item }} state=present
+  with_items:
+    - build-essential
+
 - name: Install wget
   apt: name={{ item }} state=present
   with_items:

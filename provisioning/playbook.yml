@@ -15,7 +15,7 @@
 - include: git.yml
 
 # Additional Tools
-# - include: nodejs.yml
+- include: nodejs.yml
 
 # Database
 - include: mysql.yml
@@ -30,17 +30,17 @@
 # Project Language (PHP)
 - include: php.yml
 # - include: php-fpm.yml # TODO
-# - include: composer.yml
+- include: composer.yml
 
 # Cacheing Layers
-# - include: memcached.yml
-# - include: redis.yml
-# - include: varnish.yml
+- include: memcached.yml
+- include: redis.yml
+- include: varnish.yml
 
 # Drupal and Tools
-# - include: drush.yml
-# - include: acquia_insight.yml
-# - include: drupal.yml # TODO
+- include: drush.yml
+- include: acquia_insight.yml
+- include: drupal.yml
 
 # Wordpress and Tools
 # - include: wordpress.yml # TODO

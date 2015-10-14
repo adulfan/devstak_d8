@@ -1,0 +1,8 @@
+---
+- name: Get Drupal 8 RC1
+  get_url: url=http://ftp.drupal.org/files/projects/drupal-8.0.0-rc1.tar.gz dest=/tmp
+
+- name: Install D8 RC1 to project docroot
+  command: tar zxvf /tmp/drupal-8.0.0-rc1.tar.gz -C {{ project_docroot }}
+
+# Install Coding Standards tools here or perhaps on the host via bootstrap?

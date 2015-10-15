@@ -11,10 +11,12 @@
     DocumentRoot {{ project_docroot }}
 
     <Directory "{{ project_docroot }}/">
-        Options All
-        AllowOverride All
-        Order allow,deny
-        Allow from all
+      Options All
+      AllowOverride All
+      Order allow,deny
+      Allow from all
+
+      DirectoryIndex index.php index.html
     </Directory>
 
     # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,

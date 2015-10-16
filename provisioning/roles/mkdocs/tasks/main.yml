@@ -1,0 +1,20 @@
+---
+- name: Install MkDocs
+  command: pip install mkdocs
+  tags:
+    - mkdocs
+
+# Disable after first provision to not overwrite docs.
+# This has been run the first time for convenience
+# - name: Initialize base project documentation
+#   command: mkdocs new /vagrant/documentation
+#   tags:
+#     - mkdocs
+
+# This can be run as a part of the gulp/build process if desired
+# - name: Inital mkdocs static docs site build
+#   command: mkdocs build
+#   args:
+#     chdir: /vagrant/documentation
+#   tags:
+#     - mkdocs

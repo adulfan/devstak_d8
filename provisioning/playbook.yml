@@ -43,7 +43,7 @@
 # Drupal and Tools
 - include: drush.yml
 - include: acquia_insight.yml
-- include: drupal.yml
+# - include: drupal.yml # Disable after first provision to not overwrite
 
 # Wordpress and Tools
 # - include: wordpress.yml # TODO
@@ -57,6 +57,9 @@
 # Front End UI Theming Tools
 - include: sass.yml
 - include: gulp.yml
+
+# Project Documentation Tools
+- include: mkdocs.yml
 
 # Project Site Configuration (any special configs)
 - include: project.yml

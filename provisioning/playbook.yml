@@ -8,7 +8,7 @@
 # To install a starter site and the dependant stack, simply enable your
 # desired tool such as "drupal", "wordpress", "laravel", "symfony", etc...
 
-# apt-get update and some basics
+# apt-get update and some basic tools required elsewhere
 - include: common.yml
 
 # Include your private SSH key in the VM
@@ -18,7 +18,7 @@
 - include: git.yml
 
 # Additional Tools
-- include: nodejs.yml
+# - include: nodejs.yml
 
 # Database
 - include: mysql.yml
@@ -33,16 +33,16 @@
 # Project Language (PHP)
 - include: php.yml
 # - include: php-fpm.yml # TODO
-- include: composer.yml
+# - include: composer.yml
 
 # Cacheing Layers
-- include: memcached.yml
-- include: redis.yml
-- include: varnish.yml
+# - include: memcached.yml
+# - include: redis.yml
+# - include: varnish.yml
 
 # Drupal and Tools
-- include: drush.yml
-- include: acquia_insight.yml
+# - include: drush.yml
+# - include: acquia_insight.yml
 # - include: drupal.yml # Disable after first provision to not overwrite
 
 # Wordpress and Tools
@@ -55,11 +55,11 @@
 # - include: symfony.yml # TODO
 
 # Front End UI Theming Tools
-- include: sass.yml
-- include: gulp.yml
+# - include: sass.yml
+# - include: gulp.yml
 
 # Project Documentation Tools
-- include: mkdocs.yml
+# - include: mkdocs.yml
 
 # Project Site Configuration (any special configs)
-- include: project.yml
+# - include: project.yml

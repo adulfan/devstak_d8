@@ -38,16 +38,29 @@
     - common
 
 - name: Install unzip
-  sudo: yes
   apt: name={{ item }} state=present
   with_items:
     - unzip
   tags:
     - common
 
+- name: Install python pip
+  apt: name={{ item }} state=present
+  with_items:
+    - python-pip
+  tags:
+    - common
+
+# Some pip's can use this at times
+- name: Install python-dev
+  apt: name={{ item }} state=present
+  with_items:
+    - python-dev
+  tags:
+    - common
+
 # Useful if your application needs to check the environment it's running on
 - name: Export APPLICATION_ENV in .profile
-  sudo: yes
   sudo_user: vagrant
   lineinfile: >
     dest="~/.profile"

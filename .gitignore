@@ -9,3 +9,6 @@ opcache.php
 
 # Ignore memcache web viewer
 memcached.php
+
+# Ignore mkdocs build built docs artifacts
+documentation/site

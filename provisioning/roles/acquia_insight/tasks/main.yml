@@ -13,10 +13,10 @@
   tags:
     - acquia_insight
 
-# - name: Update drush commands
-#   command: drush cc drush
-#   tags:
-#     - acquia_insight
+- name: Update drush commands
+  command: drush cc drush
+  tags:
+    - acquia_insight
 
 # - name: Update Drush aliases for all accessible Acquia Cloud sites
 #   command: drush acquia-update

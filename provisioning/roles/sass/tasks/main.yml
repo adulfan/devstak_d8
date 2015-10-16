@@ -1,0 +1,6 @@
+---
+# This is to install the regular Sass compiler which is for utility.
+# Other playbooks such as gulp will install plugins to this or install
+# their own native Sass compiler.
+- name: Install Sass gem
+  command: gem install sass

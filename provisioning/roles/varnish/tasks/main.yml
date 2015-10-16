@@ -3,9 +3,15 @@
   apt: name={{ item }} state=present
   with_items:
     - varnish
+  tags:
+    - varnish
 
 - name: Configure Varnish
   template: src=../templates/default.vcl.j2 dest=/etc/varnish/default.vcl
+  tags:
+    - varnish
 
 - name: Restart Varnish
   service: name=varnish state=restarted
+  tags:
+    - varnish

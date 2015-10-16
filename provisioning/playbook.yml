@@ -5,7 +5,10 @@
 # To install a base MEAN stack enable "mongodb, express, angular, nodejs"
 # From there, enable any other tools your project requires.
 
-# apt-get update and some basics
+# To install a starter site and the dependant stack, simply enable your
+# desired tool such as "drupal", "wordpress", "laravel", "symfony", etc...
+
+# apt-get update and some basic tools required elsewhere
 - include: common.yml
 
 # Include your private SSH key in the VM
@@ -40,7 +43,7 @@
 # Drupal and Tools
 # - include: drush.yml
 # - include: acquia_insight.yml
-# - include: drupal.yml # TODO
+# - include: drupal.yml # Disable after first provision to not overwrite
 
 # Wordpress and Tools
 # - include: wordpress.yml # TODO
@@ -51,5 +54,12 @@
 # Symfony and Tools
 # - include: symfony.yml # TODO
 
+# Front End UI Theming Tools
+# - include: sass.yml
+# - include: gulp.yml
+
+# Project Documentation Tools
+# - include: mkdocs.yml
+
 # Project Site Configuration (any special configs)
-- include: project.yml
+# - include: project.yml

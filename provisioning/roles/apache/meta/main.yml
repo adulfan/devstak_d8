@@ -1,3 +1,4 @@
 ---
-dependencies:
- - { role: common }
+allow_duplicates: no
+# dependencies:
+#  - { role: common }

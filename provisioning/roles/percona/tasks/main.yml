@@ -1,12 +1,18 @@
 ---
 - name: Add Percona APT Repository Key
   apt_key: id=1C4CBDCDCD2EFD2A keyserver=keys.gnupg.net validate_certs=no
+  tags:
+    - percona
 
 - name: Add Percona APT Repository
   apt_repository: repo='deb http://repo.percona.com/apt trusty main' state=present update_cache=yes validate_certs=no
+  tags:
+    - percona
 
 - name: Add Percona src APT Repository
   apt_repository: repo='deb-src http://repo.percona.com/apt trusty main' state=present update_cache=yes validate_certs=no
+  tags:
+    - percona
 
 - name: Install Percona MySQL
   apt: name={{ item }} state=present
@@ -14,18 +20,28 @@
     - percona-server-server-5.6
     - percona-server-client-5.6
     - python-mysqldb
+  tags:
+    - percona
 
 # - name: Install DB
 #   command: mysql_install_db
 
 - name: Configure MySQL
   template: src=../templates/my.cnf.j2 dest=/etc/mysql/my.cnf
+  tags:
+    - percona
 
 - name: Restart Percona MySQL
   service: name=mysql state=restarted
+  tags:
+    - percona
 
 - name: Setup MySQL User
   mysql_user: name=vagrant password=vagrant priv=*.*:ALL host=% state=present
+  tags:
+    - percona
 
 - name: Create project database
   action: mysql_db db={{ project_name }} state=present
+  tags:
+    - percona

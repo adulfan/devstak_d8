@@ -7,21 +7,29 @@
     COMPOSER_BIN_DIR: "/usr/local/bin"
     COMPOSER_VENDOR_DIR: "{{ composer_home }}/vendor"
   register: drush
+  tags:
+    - drush
 
 - name: Create a ~/.drush directory
   sudo: yes
   sudo_user: vagrant
   file: path=/home/vagrant/.drush/ state=directory
+  tags:
+    - drush
 
 - name: Ensure /etc/drush directory exists
   file:
     path: /etc/drush
     state: directory
+  tags:
+    - drush
 
 - name: Configure project default local Drush aliases
   template:
     src: project.aliases.drushrc.php.j2
     dest: /etc/drush/{{ project_name }}.aliases.drushrc.php
+  tags:
+    - drush
 
 # - name: Enable drush autocomplete
 #   lineinfile:

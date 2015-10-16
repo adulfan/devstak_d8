@@ -1,0 +1,5 @@
+---
+- name: Install GulpJS globally
+  command: npm install --global gulp
+  tags:
+    - gulp

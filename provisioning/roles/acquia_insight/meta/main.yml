@@ -1,4 +1,5 @@
 ---
-dependencies:
-  - { role: ssh }
-  - { role: drush }
+allow_duplicates: no
+# dependencies:
+#   - { role: ssh }
+#   - { role: drush }

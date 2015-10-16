@@ -1,3 +1,5 @@
 ---
 - name: Restart Varnish
   service: name=varnish state=restarted
+  tags:
+    - varnish

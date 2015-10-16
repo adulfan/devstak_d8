@@ -1,3 +1,4 @@
 ---
-dependencies:
- - { role: php }
+allow_duplicates: no
+# dependencies:
+#  - { role: php }

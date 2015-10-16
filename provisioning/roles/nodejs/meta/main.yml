@@ -1,5 +1,5 @@
 ---
 allow_duplicates: no
-dependencies:
-  - { role: common }
-  - { role: git }
+# dependencies:
+#   - { role: common }
+#   - { role: git }

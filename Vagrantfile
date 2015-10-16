@@ -104,7 +104,7 @@ Vagrant.configure(2) do |config|
   # Setup provisioning with an ansible playbook
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "provisioning/playbook.yml"
-    # ansible.tags = "drupal"
+    # ansible.tags = "common"
     # ansible.verbose = "vvvv"
     ansible.extra_vars = {
       "ip_address"      => ip_address,

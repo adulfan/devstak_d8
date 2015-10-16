@@ -54,7 +54,7 @@
 # Symfony and Tools
 # - include: symfony.yml # TODO
 
-# Front End Theming Tools
+# Front End UI Theming Tools
 - include: sass.yml
 - include: gulp.yml
 

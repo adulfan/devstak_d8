@@ -24,24 +24,40 @@
     - php5-xdebug
     - php5-xmlrpc
     - php5-xsl
+  tags:
+    - php
 
 - name: Enable Apache mod_php
   command: a2enmod php5
+  tags:
+    - php
 
 - name: Configure Apache mod_php php.ini
   template: src=../templates/apache2-php.ini.j2 dest=/etc/php5/apache2/php.ini
+  tags:
+    - php
 
 - name: Configure CLI php.ini
   template: src=../templates/cli-php.ini.j2 dest=/etc/php5/cli/php.ini
+  tags:
+    - php
 
 - name: Configure PHP Xdebug
   template: src=../templates/20-xdebug.ini.j2 dest=/etc/php5/apache2/conf.d/20-xdebug.ini
+  tags:
+    - php
 
 - name: Configure PHP Opcache
   template: src=../templates/05-opcache.ini.j2 dest=/etc/php5/apache2/conf.d/05-opcache.ini
+  tags:
+    - php
 
 - name: Get Opcache web viewer
   get_url: url=https://raw.github.com/rlerdorf/opcache-status/master/opcache.php dest={{ project_docroot }}
+  tags:
+    - php
 
 - name: Restart Apache
   service: name=apache2 state=restarted
+  tags:
+    - php

@@ -47,6 +47,12 @@ Vagrant.configure(2) do |config|
   config.vm.define project_name do |node|
     node.vm.hostname = project_name + ".local"
     node.vm.network :private_network, ip: ip_address
+    # forward default MySQL port to vm
+    node.vm.network "forwarded_port", guest: 3306, host: 3306
+    # forward default varnish port to vm
+    node.vm.network "forwarded_port", guest: 6082, host: 6082
+    # forward default browsersync port to vm
+    node.vm.network "forwarded_port", guest: 8080, host: 8080
     node.hostmanager.aliases = [ "www." + project_name + ".local" ]
   end
   config.vm.provision :hostmanager

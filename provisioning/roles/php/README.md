@@ -2,6 +2,8 @@
 
 This is a role to install and configure the PHP inside the host VM according to your project standards and needs.
 
+* http://php.net
+
 * Install php5
 * libapache2-mod-php5
 * php-pear

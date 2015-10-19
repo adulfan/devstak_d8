@@ -2,6 +2,8 @@
 
 This is a role to install and configure the memcached inside the host VM according to your project standards and needs.
 
+* http://www.memcached.org
+
 * memcached
 
 ## Instructions

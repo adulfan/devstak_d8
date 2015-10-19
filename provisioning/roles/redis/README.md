@@ -2,6 +2,8 @@
 
 This is a role to install and configure the redis inside the host VM according to your project standards and needs.
 
+* http://redis.io
+
 * redis-server
 * redis-tools
 * python-redis

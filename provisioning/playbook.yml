@@ -18,7 +18,7 @@
 - include: git.yml
 
 # Additional Tools
-# - include: nodejs.yml
+- include: nodejs.yml
 
 # Database
 - include: mysql.yml
@@ -33,7 +33,7 @@
 # Project Language (PHP)
 - include: php.yml
 # - include: php-fpm.yml # TODO
-# - include: composer.yml
+- include: composer.yml
 
 # Cacheing Layers
 # - include: memcached.yml
@@ -41,9 +41,9 @@
 # - include: varnish.yml
 
 # Drupal and Tools
-# - include: drush.yml
+- include: drush.yml
 # - include: acquia_insight.yml
-# - include: drupal.yml # Disable after first provision to not overwrite
+- include: drupal.yml # Disable after first run to not overwrite everytime
 
 # Wordpress and Tools
 # - include: wordpress.yml # TODO
@@ -52,11 +52,18 @@
 # - include: laravel.yml # TODO
 
 # Symfony and Tools
-# - include: symfony.yml # TODO
+# - include: symfony.yml
 
 # Front End UI Theming Tools
-# - include: sass.yml
-# - include: gulp.yml
+- include: sass.yml
+- include: gulp.yml
+- include: browsersync.yml
+# - include: bower.yml
+# - include: yeoman.yml
+
+# QA Tools
+# - include: wraith.yml
+# - include: phpqa.yml
 
 # Project Documentation Tools
 # - include: mkdocs.yml

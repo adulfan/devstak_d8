@@ -20,4 +20,21 @@
   tags:
     - drupal
 
+- name: Unlock file permissions before-install
+  ignore_errors: yes
+  shell: chmod 777 {{ item }}
+  with_items:
+    -  "{{ project_docroot }}/sites/default"
+  tags:
+    - drupal
+
+- name: Install D8 RC1 Standard Site
+  command: drush -y si standard --db-url=mysql://root:@localhost/{{ project_name }} --site-name={{ project_name }} --account-name=admin --account-pass=admin --account-mail='vagrant@localhost' --notify=global
+  run_once: true
+  ignore_errors: yes
+  args:
+    chdir: "{{ project_docroot }}"
+  tags:
+    - drupal
+
 # Install Coding Standards tools here or perhaps on the host via bootstrap?

@@ -2,6 +2,8 @@
 
 This is a role to install and configure the Composer inside the host VM according to your project standards and needs.
 
+* https://getcomposer.org
+
 * Install composer
 
 ## Instructions

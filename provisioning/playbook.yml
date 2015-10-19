@@ -36,14 +36,14 @@
 - include: composer.yml
 
 # Cacheing Layers
-- include: memcached.yml
-- include: redis.yml
-- include: varnish.yml
+# - include: memcached.yml
+# - include: redis.yml
+# - include: varnish.yml
 
 # Drupal and Tools
 - include: drush.yml
-- include: acquia_insight.yml
-# - include: drupal.yml # Disable after first run to not overwrite everytim
+# - include: acquia_insight.yml
+- include: drupal.yml # Disable after first run to not overwrite everytime
 
 # Wordpress and Tools
 # - include: wordpress.yml # TODO
@@ -52,16 +52,21 @@
 # - include: laravel.yml # TODO
 
 # Symfony and Tools
-- include: symfony.yml
+# - include: symfony.yml
 
 # Front End UI Theming Tools
 - include: sass.yml
 - include: gulp.yml
-- include: bower.yml
-- include: yeoman.yml
+- include: browsersync.yml
+# - include: bower.yml
+# - include: yeoman.yml
+
+# QA Tools
+# - include: wraith.yml
+# - include: phpqa.yml
 
 # Project Documentation Tools
-- include: mkdocs.yml
+# - include: mkdocs.yml
 
 # Project Site Configuration (any special configs)
-- include: project.yml
+# - include: project.yml

@@ -1,0 +1,5 @@
+---
+- name: Install Bower globally
+  command: npm install --global bower
+  tags:
+    - bower

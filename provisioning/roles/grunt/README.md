@@ -2,7 +2,7 @@
 
 This is a role to install and configure Grunt inside the host VM according to your project standards and needs.
 
-* http://gulpjs.com
+* http://gruntjs.com/
 
 ## Instructions
 

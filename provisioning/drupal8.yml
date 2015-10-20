@@ -2,4 +2,4 @@
 - hosts: devstack
   sudo: yes
   roles:
-    - drupal
+    - drupal8

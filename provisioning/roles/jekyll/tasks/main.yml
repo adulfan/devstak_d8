@@ -1,0 +1,10 @@
+---
+- name: Install Jekyll gem
+  command: gem install jekyll
+  tags:
+    - jekyll
+
+- name: Install rouge gem
+  command: gem install rouge
+  tags:
+    - jekyll

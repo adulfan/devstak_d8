@@ -36,12 +36,12 @@
 - include: composer.yml
 
 # Project Language (Ruby)
-- include: bundler.yml
+# - include: bundler.yml
 
 # Cacheing Layers
-- include: memcached.yml
-- include: redis.yml
-- include: varnish.yml
+# - include: memcached.yml
+# - include: redis.yml
+# - include: varnish.yml
 
 # Background Job Queue
 # -include: resque.yaml # TODO
@@ -51,7 +51,7 @@
 
 # Drupal and Tools
 - include: drush.yml
-- include: acquia_insight.yml
+# - include: acquia_insight.yml
 # - include: drupal7.yml # Disable after first run to not overwrite everytime
 - include: drupal8.yml # Disable after first run to not overwrite everytime
 
@@ -68,22 +68,25 @@
 - include: sass.yml
 - include: gulp.yml
 # - include: grunt.yml
-- include: bower.yml
-- include: yeoman.yml
+# - include: bower.yml
+# - include: yeoman.yml
 - include: browsersync.yml
 
 # QA Tools
 # - include: wraith.yml # TODO
 # - include: phpqa.yml # TODO
+# - include: jasmine.yml # TODO
 
 # Project Documentation Tools
-- include: mkdocs.yml
+# - include: mkdocs.yml
+# - include: phpdocumentor.yml # TODO
 # - include: jekyll.yml
 
 # TODO: Local admin tools? # Put these in an admin dir that is gitignored?
 # - include: phpmyadmin.yml # TODO
 # - include: memcachedadmin.yml # TODO
 # - include: redis-commander.yml # TODO
+# - include: phing.yml # TODO
 
 # Project Site Configuration (any special configs)
-- include: project.yml
+# - include: project.yml

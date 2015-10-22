@@ -4,7 +4,7 @@
 # PROJECT VARIABLES
 project_name = "devstack"
 ip_address = "172.22.22.20"
-project_root    = "/var/www/" + project_name + "/"
+project_root = "/var/www/" + project_name + "/"
 project_docroot = project_root + "docroot"
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure

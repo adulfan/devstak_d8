@@ -3,6 +3,8 @@
 
 # PROJECT VARIABLES
 project_name = "devstack"
+# OS X uses .local for Bonjour and can cause slowness in some tools
+project_hostname = "devstack.vm"
 ip_address = "172.22.22.20"
 project_root = "/var/www/" + project_name + "/"
 project_docroot = project_root + "docroot"
@@ -45,7 +47,7 @@ Vagrant.configure(2) do |config|
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
   config.vm.define project_name do |node|
-    node.vm.hostname = project_name + ".local"
+    node.vm.hostname = project_hostname
     node.vm.network :private_network, ip: ip_address
     # Forward default Web port to vm
     node.vm.network "forwarded_port", guest: 80, host: 80
@@ -58,7 +60,7 @@ Vagrant.configure(2) do |config|
     node.vm.network "forwarded_port", guest: 6082, host: 6082
     # Forward default browsersync port to vm
     node.vm.network "forwarded_port", guest: 8080, host: 8080
-    node.hostmanager.aliases = [ "www." + project_name + ".local" ]
+    node.hostmanager.aliases = [ "www." + project_hostname ]
   end
   config.vm.provision :hostmanager
 

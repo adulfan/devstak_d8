@@ -50,11 +50,11 @@ To download a specific database snapshot:
 
 To import a specific database snapshot directly into your local database
 
-    drush @project.local sqlc < drush @project.dev ac-database-instance-backup-download project [backupid]
+    drush @project.vm sqlc < drush @project.dev ac-database-instance-backup-download project [backupid]
 
 To use the regular SQL Sync drush command:
 
-    drush sql-sync @project.dev @project.local
+    drush sql-sync @project.dev @project.vm
 
 ## Role Variables
 

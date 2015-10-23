@@ -122,10 +122,11 @@ Vagrant.configure(2) do |config|
     # ansible.tags = "common"
     # ansible.verbose = "vvvv"
     ansible.extra_vars = {
-      "ip_address"      => ip_address,
-      "project_name"    => project_name,
-      "project_root"    => project_root,
-      "project_docroot" => project_docroot
+      "ip_address"       => ip_address,
+      "project_name"     => project_name,
+      "project_hostname" => project_hostname,
+      "project_root"     => project_root,
+      "project_docroot"  => project_docroot
     }
     ansible.groups = {
       "devstack" => [project_name]

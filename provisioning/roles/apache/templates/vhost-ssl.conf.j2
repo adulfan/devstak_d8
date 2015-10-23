@@ -1,8 +1,8 @@
 <IfModule mod_ssl.c>
 	<VirtualHost _default_:443>
-    ServerName {{ project_name }}
-    ServerAlias {{ project_name }}.local
-    ServerAlias www.{{ project_name }}.local
+    ServerName {{ project_hostname }}
+    ServerAlias {{ project_hostname }}
+    ServerAlias www.{{ project_hostname }}
 
     SetEnv APPLICATION_ENV 'local'
 

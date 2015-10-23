@@ -2,7 +2,8 @@
 
 This is a role to install and configure the any special project needs inside the host VM according to your project standards and needs. It's a blank template by default.
 
-* http://devstack.local
+* http://devstack.vm
+* https://devstack.vm
 
 ## Instructions
 

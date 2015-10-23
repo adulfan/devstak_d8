@@ -2,12 +2,12 @@
 # vi: set ft=ruby :
 
 # PROJECT VARIABLES
-project_name = "devstack"
+project_name     = "devstack"
 # OS X uses .local for Bonjour and can cause slowness in some tools
 project_hostname = "devstack.vm"
-ip_address = "172.22.22.20"
-project_root = "/var/www/" + project_name + "/"
-project_docroot = project_root + "docroot"
+ip_address       = "172.22.22.20"
+project_root     = "/var/www/" + project_name + "/"
+project_docroot  = project_root + "docroot"
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
@@ -122,10 +122,11 @@ Vagrant.configure(2) do |config|
     # ansible.tags = "common"
     # ansible.verbose = "vvvv"
     ansible.extra_vars = {
-      "ip_address"      => ip_address,
-      "project_name"    => project_name,
-      "project_root"    => project_root,
-      "project_docroot" => project_docroot
+      "ip_address"       => ip_address,
+      "project_name"     => project_name,
+      "project_hostname" => project_hostname,
+      "project_root"     => project_root,
+      "project_docroot"  => project_docroot
     }
     ansible.groups = {
       "devstack" => [project_name]

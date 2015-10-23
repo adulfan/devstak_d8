@@ -2,23 +2,23 @@
 - name: Download Drupal 8 RC1
   get_url: url=http://ftp.drupal.org/files/projects/drupal-8.0.0-rc1.tar.gz dest=/tmp
   tags:
-    - drupal
+    - drupal8
 
 - name: Decompress D8 RC1 tarball
   shell: tar zxvf /tmp/drupal-8.0.0-rc1.tar.gz -C /tmp
   tags:
-    - drupal
+    - drupal8
 
 - name: Move D8 RC1 to project docroot
   shell: "mv /tmp/drupal-8.0.0-rc1/* {{ project_docroot }}; mv /tmp/drupal-8.0.0-rc1/.* {{ project_docroot }}"
   ignore_errors: yes
   tags:
-    - drupal
+    - drupal8
 
 - name: Clean up - Delete D8 tarball
   shell: "rm -f /tmp/drupal-8.0.0-rc1.tar.gz; rm -rf /tmp/drupal-8.0.0-rc1"
   tags:
-    - drupal
+    - drupal8
 
 - name: Unlock file permissions before-install
   ignore_errors: yes
@@ -26,7 +26,7 @@
   with_items:
     -  "{{ project_docroot }}/sites/default"
   tags:
-    - drupal
+    - drupal8
 
 - name: Install D8 RC1 Standard Site
   command: drush -y si standard --db-url=mysql://root:@localhost/{{ project_name }} --site-name={{ project_name }} --account-name=admin --account-pass=admin --account-mail='vagrant@localhost' --notify=global
@@ -35,6 +35,6 @@
   args:
     chdir: "{{ project_docroot }}"
   tags:
-    - drupal
+    - drupal8
 
 # Install Coding Standards tools here or perhaps on the host via bootstrap?

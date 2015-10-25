@@ -1,0 +1,46 @@
+---
+# http://joeferner.github.io/redis-commander/
+- name: Install redis-commander UI
+  command: npm install -g redis-commander
+  tags:
+    - redis-commander
+
+- name: Configure redis-commander service init
+  template: src=../templates/redis-commander.init.j2 dest=/etc/init.d/redis-commander mode=0755
+  tags:
+    - redis-commander
+
+- name: Creates nodejs home directory
+  file: path=/home/nodejs state=directory
+  tags:
+    - redis-commander
+
+- name: Create nodejs group
+  group: name=nodejs state=present
+  tags:
+    - redis-commander
+
+- name: Add nodejs user
+  user: name=nodejs comment="NodeJS" group=nodejs shell=/bin/false system=yes
+  tags:
+    - redis-commander
+
+- name: Add redis-commander user
+  user: name=redis-commander comment="redis-commander" group=nodejs shell=/bin/false home=/home/nodejs system=yes
+  tags:
+    - redis-commander
+
+- name: Set nodejs home directory permissions
+  command: chmod g+w /home/nodejs/
+  tags:
+    - redis-commander
+
+- name: Set redis-commander to start by default
+  command: update-rc.d redis-commander defaults
+  tags:
+    - redis-commander
+
+- name: Start redis-commander
+  service: name=redis-commander state=restarted
+  tags:
+    - redis-commander

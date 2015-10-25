@@ -50,16 +50,16 @@ Vagrant.configure(2) do |config|
     node.vm.hostname = project_hostname
     node.vm.network :private_network, ip: ip_address
     # Forward default Web port to vm
-    node.vm.network "forwarded_port", guest: 80, host: 80
+    # node.vm.network "forwarded_port", guest: 80, host: 80
     # Forward default BrowserSync ports to vm
-    node.vm.network "forwarded_port", guest: 3000, host: 3000
-    node.vm.network "forwarded_port", guest: 3001, host: 3001
+    # node.vm.network "forwarded_port", guest: 3000, host: 3000
+    # node.vm.network "forwarded_port", guest: 3001, host: 3001
     # Forward default MySQL port to vm
-    node.vm.network "forwarded_port", guest: 3306, host: 3306
+    # node.vm.network "forwarded_port", guest: 3306, host: 3306
     # Forward default varnish port to vm
-    node.vm.network "forwarded_port", guest: 6082, host: 6082
+    # node.vm.network "forwarded_port", guest: 6082, host: 6082
     # Forward default browsersync port to vm
-    node.vm.network "forwarded_port", guest: 8080, host: 8080
+    # node.vm.network "forwarded_port", guest: 8080, host: 8080
     node.hostmanager.aliases = [ "www." + project_hostname ]
   end
   config.vm.provision :hostmanager
@@ -97,8 +97,8 @@ Vagrant.configure(2) do |config|
     v.customize ["modifyvm", :id, "--cpuexecutioncap", "85"]
     v.customize ['modifyvm', :id, '--ioapic', 'on']
     v.customize ["modifyvm", :id, "--memory", "2048"]
-    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    # v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    # v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
   end
 
   # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies

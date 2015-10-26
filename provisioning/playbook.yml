@@ -88,6 +88,7 @@
 # - include: memcachedadmin.yml # TODO
 # - include: redis-commander.yml
 # - include: redis-stat.yml # TODO
+# - include: webgrind.yml # TODO
 # - include: phing.yml # TODO
 
 # Project Site Configuration (any special configs)

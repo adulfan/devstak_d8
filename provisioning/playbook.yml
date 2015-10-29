@@ -33,7 +33,7 @@
 # Project Language (PHP)
 - include: php.yml
 # - include: php-fpm.yml # TODO
-# - include: composer.yml
+- include: composer.yml
 
 # Project Language (Ruby)
 # - include: bundler.yml
@@ -50,9 +50,9 @@
 # - include: solr.yml # TODO
 
 # Drupal and Tools
-# - include: drush.yml
+- include: drush.yml
 # - include: acquia_insight.yml
-# - include: drupal7.yml # Disable after first run to not overwrite everytime
+- include: drupal7.yml # Disable after first run to not overwrite everytime
 # - include: drupal8.yml # Disable after first run to not overwrite everytime
 
 # Wordpress and Tools

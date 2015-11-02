@@ -20,11 +20,16 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "trusty64"
+  # For Virtualbox
+  # config.vm.box = "trusty64"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system. VirtualBox Provider.
-  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+  # For VirtualBox
+  # config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+
+  # For Parallels
+  config.vm.box = "parallels/ubuntu-14.04"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -99,6 +104,13 @@ Vagrant.configure(2) do |config|
     v.customize ["modifyvm", :id, "--memory", "2048"]
     # v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     # v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+  end
+
+  # http://parallels.github.io/vagrant-parallels/docs/configuration.html
+  config.vm.provider "parallels" do |prl|
+    prl.name = project_name
+    prl.memory = 2048
+    prl.cpus = 2
   end
 
   # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies

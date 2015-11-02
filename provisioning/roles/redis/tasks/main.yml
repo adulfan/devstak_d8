@@ -1,4 +1,5 @@
 ---
+# http://redis.io
 - name: Install redis
   apt: name={{ item }} state=present
   with_items:
@@ -22,3 +23,10 @@
   service: name=redis-server state=restarted
   tags:
     - redis
+
+# https://github.com/junegunn/redis-stat
+- name: Install redis-stat
+  command: gem install redis-stat
+  tags:
+    - redis
+    - redis-stat

@@ -132,6 +132,18 @@ function install_vagrant_hostmanager {
   quiet "Done installing Vagrant Hostmanager"
 }
 
+function install_vagrant_parallels_provider {
+  loud "Checking Vagrant Parallels Provider"
+  if vagrant plugin list | grep "vagrant-parallels" &> /dev/null; then
+    return
+  fi
+
+  loud "Installing Vagrant Parallels Provider"
+
+  vagrant plugin install vagrant-parallels &> /dev/null
+  quiet "Done installing Vagrant Parallels Provider"
+}
+
 function install_homebrew {
   loud "Checking Homebrew"
   if ! hash brew &> /dev/null; then
@@ -151,6 +163,66 @@ function install_ansible {
   if ! hash ansible &> /dev/null; then
     quiet "Installing ansible"
     brew install ansible &> /dev/null
+  fi
+}
+
+function install_sassc {
+  loud "Checking Sass Environment"
+
+  # Ensure sassc is installed
+  if ! hash sassc &> /dev/null; then
+    quiet "Installing sassc"
+    brew install sassc &> /dev/null
+  fi
+}
+
+function install_node {
+  loud "Checking NodeJS Environment"
+
+  # Ensure node is installed
+  if ! hash node &> /dev/null; then
+    quiet "Installing node"
+    brew install node &> /dev/null
+  fi
+}
+
+function install_bower {
+  loud "Checking for bower"
+
+  # Ensure bower is installed
+  if ! hash bower &> /dev/null; then
+    quiet "Installing bower"
+    npm install -g bower &> /dev/null
+  fi
+}
+
+function install_gulp {
+  loud "Checking for gulp"
+
+  # Ensure gulp is installed
+  if ! hash gulp &> /dev/null; then
+    quiet "Installing gulp"
+    npm install -g gulp &> /dev/null
+  fi
+}
+
+function install_grunt {
+  loud "Checking for grunt"
+
+  # Ensure grunt is installed
+  if ! hash grunt &> /dev/null; then
+    quiet "Installing grunt"
+    npm install -g grunt-cli &> /dev/null
+  fi
+}
+
+function install_browsersync {
+  loud "Checking for browser-sync"
+
+  # Ensure browser-sync is installed
+  if ! hash browser-sync &> /dev/null; then
+    quiet "Installing browser-sync"
+    npm install -g browser-sync &> /dev/null
   fi
 }
 
@@ -266,15 +338,27 @@ function run_script () {
 ### MAIN FUNCTION
 #####################
 function main {
+  # Install host VM tools
   install_command_line_tools
-  install_virtual_box
+  # install_virtual_box
+  # install_parallels
   install_vagrant
   install_vagrant_hostmanager
+  install_vagrant_parallels_provider
   install_homebrew
   install_ansible
+
+  # Install host FE tools
+  install_sassc
+  install_node
+  install_bower
+  # install_yeoman?
+  install_gulp
+  install_grunt
+  install_browsersync
+
+  # Run any custom scripts for your project
   # run_custom
-  # install_host_sass?
-  # install_host_gulp?
 
   loud 'Bootstrap Complete!'
   quiet 'Make sure you restart your shell. Now!\n'

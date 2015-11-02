@@ -15,11 +15,33 @@
     - common
 
 # Some npm (and other tools) install's can need this at times
-# No harm in just installing it
 - name: Install build-essential
   apt: name={{ item }} state=present
   with_items:
     - build-essential
+  tags:
+    - common
+
+# Some pip's can use this at times
+- name: Install python-dev
+  apt: name={{ item }} state=present
+  with_items:
+    - python-dev
+  tags:
+    - common
+
+- name: Install python pip
+  apt: name={{ item }} state=present
+  with_items:
+    - python-pip
+  tags:
+    - common
+
+# Some gems can use this at times
+- name: Install ruby-dev
+  apt: name={{ item }} state=present
+  with_items:
+    - ruby-dev
   tags:
     - common
 
@@ -44,18 +66,17 @@
   tags:
     - common
 
-- name: Install python pip
+- name: Install imagemagick
   apt: name={{ item }} state=present
   with_items:
-    - python-pip
+    - imagemagick
   tags:
     - common
 
-# Some pip's can use this at times
-- name: Install python-dev
+- name: Install graphviz
   apt: name={{ item }} state=present
   with_items:
-    - python-dev
+    - graphviz
   tags:
     - common
 

@@ -18,7 +18,7 @@
 - include: git.yml
 
 # Additional Tools
-# - include: nodejs.yml
+- include: nodejs.yml # Includes npm
 
 # Database
 - include: mysql.yml
@@ -82,11 +82,14 @@
 # - include: phpdocumentor.yml # TODO
 # - include: jekyll.yml
 
-# TODO: Local admin tools? # Put these in an admin dir that is gitignored?
+# TODO: Local admin tools to provide admin and analytics in vm
+# TODO: Put these in an admin dir that is gitignored?
 # - include: phpmyadmin.yml # TODO
 # - include: memcachedadmin.yml # TODO
-# - include: redis-commander.yml # TODO
+# - include: redis-commander.yml
+# - include: redis-stat.yml # TODO
+# - include: webgrind.yml # TODO
 # - include: phing.yml # TODO
 
 # Project Site Configuration (any special configs)
-# - include: project.yml
+- include: project.yml

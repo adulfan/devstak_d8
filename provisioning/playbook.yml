@@ -18,7 +18,7 @@
 - include: git.yml
 
 # Additional Tools
-- include: nodejs.yml
+- include: nodejs.yml # Includes npm
 
 # Database
 - include: mysql.yml
@@ -33,7 +33,7 @@
 # Project Language (PHP)
 - include: php.yml
 # - include: php-fpm.yml # TODO
-- include: composer.yml
+# - include: composer.yml
 
 # Project Language (Ruby)
 # - include: bundler.yml
@@ -50,9 +50,9 @@
 # - include: solr.yml # TODO
 
 # Drupal and Tools
-- include: drush.yml
+# - include: drush.yml
 # - include: acquia_insight.yml
-- include: drupal7.yml # Disable after first run to not overwrite everytime
+# - include: drupal7.yml # Disable after first run to not overwrite everytime
 # - include: drupal8.yml # Disable after first run to not overwrite everytime
 
 # Wordpress and Tools
@@ -92,4 +92,4 @@
 # - include: phing.yml # TODO
 
 # Project Site Configuration (any special configs)
-# - include: project.yml
+- include: project.yml

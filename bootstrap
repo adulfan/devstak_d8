@@ -360,8 +360,8 @@ function main {
   # Run any custom scripts for your project
   # run_custom
 
-  loud 'Bootstrap Complete!'
-  quiet 'Make sure you restart your shell. Now!\n'
+  # loud 'Bootstrap Complete!'
+  # quiet 'Make sure you restart your shell. Now!\n'
 }
 
 ################

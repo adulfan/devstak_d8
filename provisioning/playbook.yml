@@ -53,6 +53,7 @@
 # - include: drush.yml
 # - include: acquia_insight.yml
 # - include: drupal7.yml # Disable after first run to not overwrite everytime
+# - include: drupal_console.yml
 # - include: drupal8.yml # Disable after first run to not overwrite everytime
 
 # Wordpress and Tools

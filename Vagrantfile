@@ -111,6 +111,9 @@ Vagrant.configure(2) do |config|
     prl.name = project_name
     prl.memory = 2048
     prl.cpus = 2
+    # Make sure Parallels tools is installed in VM since it's not always
+    prl.check_guest_tools = true
+    prl.update_guest_tools = true
   end
 
   # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies

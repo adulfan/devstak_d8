@@ -12,7 +12,7 @@
     - drupal_console
 
 - name: Enable console globally
-  shell: "mv /tmp/console.phar /usr/local/bin/console"
+  shell: "mv /tmp/console.phar /usr/local/bin/drupal"
   ignore_errors: yes
   tags:
     - drupal_console

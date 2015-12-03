@@ -1,0 +1,5 @@
+---
+- hosts: devstack
+  sudo: yes
+  roles:
+    - drupal_console

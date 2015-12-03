@@ -1,22 +1,22 @@
 ---
-- name: Download Drupal 8 RC1
-  get_url: url=http://ftp.drupal.org/files/projects/drupal-8.0.0-rc1.tar.gz dest=/tmp
+- name: Download Drupal 8
+  get_url: url=http://ftp.drupal.org/files/projects/drupal-8.0.1.tar.gz dest=/tmp
   tags:
     - drupal8
 
-- name: Decompress D8 RC1 tarball
-  shell: tar zxvf /tmp/drupal-8.0.0-rc1.tar.gz -C /tmp
+- name: Decompress D8 tarball
+  shell: tar zxvf /tmp/drupal-8.0.1.tar.gz -C /tmp
   tags:
     - drupal8
 
-- name: Move D8 RC1 to project docroot
-  shell: "mv /tmp/drupal-8.0.0-rc1/* {{ project_docroot }}; mv /tmp/drupal-8.0.0-rc1/.* {{ project_docroot }}"
+- name: Move D8 to project docroot
+  shell: "mv /tmp/drupal-8.0.1/* {{ project_docroot }}; mv /tmp/drupal-8.0.1/.* {{ project_docroot }}"
   ignore_errors: yes
   tags:
     - drupal8
 
 - name: Clean up - Delete D8 tarball
-  shell: "rm -f /tmp/drupal-8.0.0-rc1.tar.gz; rm -rf /tmp/drupal-8.0.0-rc1"
+  shell: "rm -f /tmp/drupal-8.0.1.tar.gz; rm -rf /tmp/drupal-8.0.1"
   tags:
     - drupal8
 
@@ -28,7 +28,7 @@
   tags:
     - drupal8
 
-- name: Install D8 RC1 Standard Site
+- name: Install D8 Standard Site
   command: drush -y si standard --db-url=mysql://root:@localhost/{{ project_name }} --site-name={{ project_name }} --account-name=admin --account-pass=admin --account-mail='vagrant@localhost' --notify=global
   run_once: true
   ignore_errors: yes

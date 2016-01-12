@@ -86,8 +86,9 @@ The steps below will install the tools needed to run the entire site for this pr
 * If on Acquia/Drupal, sync the files local from Acquia Cloud via drush: `drush -y rsync @project.dev:%files/ @project.vm:%files`
 * Visit the site via [http://devstack.vm](http://devstack.vm) or
   [https://devstack.vm](https://devstack.vm) for HTTPS.
-* (TODO) Alternatively, use [http://devstack.vm:6081](http://devstack.vm:6081)
-  to proxy through varnish cache.
+* Alternatively, use [http://devstack.vm:6081](http://devstack.vm:6081)
+  to proxy through varnish cache. This assumes that you have enabled varnish:
+  see [Customizing the VM](#customizing-the-vm) below.
 * When installing your site, these are the database connection parameters:
 
       * Name: `devstack.vm`

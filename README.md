@@ -5,7 +5,7 @@ A Base Vagrant Lamp Stack. A great README.md template for your projects as a gui
 ## System Summary
 
 * devstack.vm ([devstack.vm](http://devstack.vm))
-* VirtualBox VM for local development (Ansible provisioned, vagrant driven)
+* Parallels VM for local development (Ansible provisioned, vagrant driven)
 
 ## Project URLS
 
@@ -46,13 +46,13 @@ A Base Vagrant Lamp Stack. A great README.md template for your projects as a gui
 * XCode - In Apples AppStore (required; for CLI dev tools)
 * [Homebrew](http://brew.sh) (required)
 * [Ansible](http://www.ansible.com) (required)
-* [VirtualBox](https://www.virtualbox.org) (required)
+* [Parallels](http://www.parallels.com/) (required)
 * [Vagrant](https://www.vagrantup.com) (required)
 * ...
 
 ### Local Development Stack in guest Vagrant VM
 
-* **Vagrant VM with VirtualBox provider and Ansible provisioner**
+* **Vagrant VM with Parallels provider and Ansible provisioner**
 * [Ubuntu](http://www.ubuntu.com) 14.04LTS (trusty64)
 * ...
 
@@ -64,7 +64,8 @@ The steps below will install the tools needed to run the entire site for this pr
 
 * Install XCode from the AppStore
   * **NOTE:** and run it at least once. installs developer/cli tools; git, etc...
-* Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and the Extension Pack.
+* Install [Parallels](http://www.parallels.com/try/pd/).
+  * **NOTE**: you will need at least the Pro version to work with Vagrant.
   * **NOTE**: you will be promted by ./bootstrap for this if its not already installed later.
 * [Fork](https://github.com/northpoint/devstack#fork-destination-box) this repository.
 * Open the "Terminal" application.

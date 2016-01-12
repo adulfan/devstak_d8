@@ -9,7 +9,7 @@ A Base Vagrant Lamp Stack. A great README.md template for your projects as a gui
 
 ## Project URLS
 
-* DevStack [https://bitbucket.org/northps/devstack](https://bitbucket.org/northps/devstack)
+* DevStack [https://github.com/northpoint/devstack](https://github.com/northpoint/devstack)
 * Ticket Tracker
 * Continuous Integration
 * Local: [http://devstack.vm](http://devstack.vm)
@@ -66,12 +66,12 @@ The steps below will install the tools needed to run the entire site for this pr
   * **NOTE:** and run it at least once. installs developer/cli tools; git, etc...
 * Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and the Extension Pack.
   * **NOTE**: you will be promted by ./bootstrap for this if its not already installed later.
-* [Fork](https://bitbucket.org/northps/devstack/fork) this repository.
+* [Fork](https://github.com/northpoint/devstack#fork-destination-box) this repository.
 * Open the "Terminal" application.
-* `git clone git@bitbucket.org:<username>/devstack.git ~/Sites/devstack`
+* `git clone git@github.com:<username>/devstack.git ~/Sites/devstack`
   * **NOTE:** or use your favorite Git GUI
 * `cd ~/Sites/devstack`
-* `git remote add upstream git@bitbucket.org:northps/devstack.git` to add the "upstream" repository.
+* `git remote add upstream git@github.com:northpoint/devstack.git` to add the "upstream" repository.
   * **NOTE:** You will need an upstream remote in order to keep your `devstack` project fork up to date with changes done by other developers.
 * `./bootstrap` (runs boostrap script)
 * Restart the "Terminal" application.

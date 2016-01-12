@@ -105,6 +105,20 @@ The steps below will install the tools needed to run the entire site for this pr
       * `vagrant ssh`
 
 
+## Customizing the VM
+
+This project includes several components that are disabled by default:  memcache, varnish, drupal, wordpress, to name a few. To enable these, simply edit [provisioning/playbook.yml](provisioning/playbook.yml) and un-comment the appropriate lines. For example, to enable varnish, remove the `#` character from the line
+
+```
+# - include: varnish.yml
+```
+
+If you make any such changes after provisioning the VM, then run `vagrant up --provision` or (if the VM is already running) `vagrant provision`.
+
+If you need a standard component that is not already included, then work with one of the Ansible gurus and submit a pull request to the DevStack repository.
+
+For project-specific customization, edit the files under [provisioning/roles/project](provisioning/roles/project).
+
 ## Day to Day Development
 
 Once you have everything you need to do you work, here you can describe any day-to-day needs, process, etc. needed to work on this project.

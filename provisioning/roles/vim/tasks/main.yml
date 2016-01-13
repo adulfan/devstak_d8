@@ -1,0 +1,60 @@
+---
+- name: Install vim
+  apt: name={{ item }} state=present
+  with_items:
+    - vim-nox
+  sudo: yes
+  tags:
+    - vim
+
+- name: Install vimrc file
+  template:
+    src: vimrc.j2
+    dest: "{{ vimconfig }}"
+    force: no
+    owner: vagrant
+    group: vagrant
+    mode: 0644
+  tags:
+    - vim
+
+- name: Create vim configuration directories
+  file:
+    path: "{{ vimfiles }}/{{ item }}"
+    state: directory
+    owner: vagrant
+    group: vagrant
+    recurse: yes
+  with_items:
+    - autoload
+    - bundle
+  tags:
+    - vim
+
+# With ansible 2.0, we can combine download/extract using just the unarchive module.
+- name: Download tarballs
+  get_url:
+    url: "{{ item.url }}/v{{ item.version }}.tar.gz"
+    dest: "/tmp/{{ item.plugin }}.tar.gz"
+  with_items: vim_plugin_info
+  tags:
+    - vim
+
+- name: Extract tarballs
+  unarchive:
+    src: "/tmp/{{ item.plugin }}.tar.gz"
+    dest: "{{ vimfiles }}/bundle"
+    copy: no
+    owner: vagrant
+    group: vagrant
+  with_items: vim_plugin_info
+  tags:
+    - vim
+
+# With ansible 2.0, we can do this with the copy module.
+- name: Move pathogen to its final location.
+  command: mv {{ vimfiles }}/bundle/{{ item.plugin }}-{{ item.version }}/autoload/pathogen.vim {{ vimfiles }}/autoload/.
+  with_items: vim_plugin_info
+  when: item.plugin == 'vim-pathogen'
+  tags:
+    - vim

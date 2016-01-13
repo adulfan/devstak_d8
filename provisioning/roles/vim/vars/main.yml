@@ -1,0 +1,13 @@
+---
+# Location of vimrc file on the VM
+vimconfig: "/home/vagrant/.vimrc"
+
+# Location of vim plugins on the VM
+vimfiles: "/home/vagrant/.vim"
+
+# Plugin names, URL's, and versions
+# The full URL for download is  "{{ item.url }}/v{{ item.version }}.tar.gz"
+vim_plugin_info:
+  - { plugin: "vim-pathogen", url: "https://github.com/tpope/vim-pathogen/archive", version: "2.4" }
+  - { plugin: "vim-fugitive", url: "https://github.com/tpope/vim-fugitive/archive", version: "2.2" }
+  - { plugin: "vdebug", url: "https://github.com/joonty/vdebug/archive", version: "1.5.1" }

@@ -1,0 +1,5 @@
+---
+- hosts: devstack
+  sudo: no
+  roles:
+    - vim

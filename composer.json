@@ -8,5 +8,6 @@
             "email": "projectoffice@northpointdigital.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "require-dev": {}
 }

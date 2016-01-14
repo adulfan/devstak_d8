@@ -78,7 +78,7 @@
 
 # QA Tools
 # - include: wraith.yml # TODO
-# - include: phpqa.yml # TODO
+# - include: phpcqt.yml # TODO Various PHP Code Quality tools in VM
 # - include: jasmine.yml # TODO
 
 # Project Documentation Tools

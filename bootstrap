@@ -166,6 +166,17 @@ function install_ansible {
   fi
 }
 
+# Install PHP for use below with Linters for local IDE's
+function install_php {
+  loud "Checking PHP Environment"
+
+  # Ensure PHP is installed
+  if ! [ -f "/usr/local/bin/php" ] &> /dev/null; then
+    quiet "Installing PHP"
+    brew install homebrew/php/php55 --with-pear &> /dev/null
+  fi
+}
+
 function install_sassc {
   loud "Checking Sass Environment"
 
@@ -348,7 +359,14 @@ function main {
   install_homebrew
   install_ansible
 
-  # Install host FE tools
+  # Install some local PHP tools for in IDE code linting and QA
+  install_php
+  # install_composer # TODO
+  # install_phpcs # TODO for PHP_CodeSniffer linter
+  # install_coder # TODO for drupal coding standards linting
+
+  # Install host FE tools for running FE processes locally for those who want
+  # to. Running grunt/gulp on the host performs better than in VM.
   install_sassc
   install_node
   install_bower
@@ -357,11 +375,16 @@ function main {
   install_grunt
   install_browsersync
 
+  # Install tools for running automated QA on host machines.
+  # Especially useful for browser testing automation tools such as WebDriver
+  # based tests.
+  # TODO: install_webdriver...
+
   # Run any custom scripts for your project
   # run_custom
 
-  # loud 'Bootstrap Complete!'
-  # quiet 'Make sure you restart your shell. Now!\n'
+  loud 'Bootstrap Complete!'
+  quiet 'Make sure you restart your shell. Now!\n'
 }
 
 ################

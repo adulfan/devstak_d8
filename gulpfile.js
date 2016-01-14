@@ -9,7 +9,7 @@ var phpcs = require('gulp-phpcs');
 var phpcbf = require('gulp-phpcbf');
 
 // PHP Mess Detector
-gulp.task('phpmd', function () {
+gulp.task('phpcpd', function () {
   return gulp.src('docroot/**/*.php')
     .pipe(phpcpd());
 });

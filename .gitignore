@@ -12,3 +12,13 @@ memcached.php
 
 # Ignore mkdocs build built docs artifacts
 documentation/site
+
+# Ignore NodeJS modules files
+node_modules
+
+# Ignore npm-debug.log
+npm-debug.log
+
+# Ignore Composer vendor directory if needed
+vendor
+!docroot/vendor

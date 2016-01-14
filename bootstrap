@@ -188,6 +188,32 @@ function install_composer {
   fi
 }
 
+# Install PHP Code Quality Tools
+function install_php_cqt {
+  loud "Checking for PHP Code Quality Tools"
+
+  # Ensure phpmd is installed
+  # http://phpmd.org
+  if ! hash phpmd &> /dev/null; then
+    quiet "Installing phpmd (PHP Mess Detector)"
+    brew install homebrew/php/phpmd &> /dev/null
+  fi
+
+  # Ensure phpcs is installed
+  # http://pear.php.net/package/PHP_CodeSniffer
+  if ! hash phpcs &> /dev/null; then
+    quiet "Installing phpcs (PHP_CodeSniffer)"
+    brew install homebrew/php/php-code-sniffer &> /dev/null
+  fi
+
+  # Ensure php-cs-fixer is installed
+  # http://cs.sensiolabs.org
+  if ! hash php-cs-fixer &> /dev/null; then
+    quiet "Installing php-cs-fixer (PHP Coding Standards Fixer)"
+    brew install homebrew/php/php-cs-fixer &> /dev/null
+  fi
+}
+
 function install_sassc {
   loud "Checking Sass Environment"
 
@@ -373,7 +399,7 @@ function main {
   # Install some local PHP tools for in IDE code linting and QA
   install_php
   install_composer
-  # install_phpcs # TODO for PHP_CodeSniffer linter
+  install_php_cqt
   # install_coder # TODO for drupal coding standards linting
 
   # Install host FE tools for running FE processes locally for those who want

@@ -1,0 +1,32 @@
+" {{ ansible_managed }}
+
+source $VIMRUNTIME/vimrc_example.vim
+
+" Tim Pope's pathogen plugin for managing plugins etc.
+call pathogen#infect()
+syntax on
+filetype plugin indent on
+
+" Extended % matching
+runtime macros/matchit.vim
+
+" Configuration for the Vdebug interface to Xdebug (and DBGp) debugger.
+" See :help Vdebug and https://github.com/joonty/vdebug.
+
+if !exists('g:vdebug_features')
+  let g:vdebug_features = {}
+endif
+if !exists('g:vdebug_features.max_children')
+  let g:vdebug_features.max_children = 128
+endif
+if !exists('g:vdebug_options')
+  let g:vdebug_options = {}
+endif
+let g:vdebug_options.watch_window_style = 'compact'
+let g:vdebug_options.server = '127.0.0.1'
+let g:vdebug_options.port = '9000'
+" let g:vdebug_options.debug_file = '/tmp/vdebug.log'
+" let g:vdebug_options.debug_file_level = 2
+if !exists('g:vdebug_options.path_maps')
+  let g:vdebug_options.path_maps = {}
+endif

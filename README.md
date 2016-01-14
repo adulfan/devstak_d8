@@ -1,6 +1,6 @@
 # DevStack
 
-A Base Vagrant Lamp Stack. A great README.md template for your projects as a guide for your own readme's which assists in project on-boarding education. This document describes getting started on the project. Topics include intial setup, high level project requirements and development tool needs. See more on our use of this file: [http://techbytes.northpointdigital.com/writing-great-project-readme/](http://techbytes.northpointdigital.com/writing-great-project-readme/)
+A Base Vagrant Lamp Stack. A great `README.md` template for your projects as a guide for your own readme's, which assists in project on-boarding education. This document describes getting started on the project. Topics include initial setup, high level project requirements and development tool needs. See more on our use of this file: [http://techbytes.northpointdigital.com/writing-great-project-readme/](http://techbytes.northpointdigital.com/writing-great-project-readme/)
 
 ## System Summary
 
@@ -32,7 +32,7 @@ A Base Vagrant Lamp Stack. A great README.md template for your projects as a gui
 * Chrome (recent - 1)
 * Firefox (recent - 1)
 * iOS Safari (recent - 1)
-* Andriod Chrome (recent - 1)
+* Android Chrome (recent - 1)
 * ...
 
 ## Development Prerequisites
@@ -43,7 +43,7 @@ A Base Vagrant Lamp Stack. A great README.md template for your projects as a gui
 
 ### Local Development - Mac OS X Desktop
 
-* XCode - In Apples AppStore (required; for CLI dev tools)
+* XCode - In Apple's AppStore (required; for CLI dev tools)
 * [Homebrew](http://brew.sh) (required)
 * [Ansible](http://www.ansible.com) (required)
 * [Parallels](http://www.parallels.com/) (required)
@@ -66,7 +66,7 @@ The steps below will install the tools needed to run the entire site for this pr
   * **NOTE:** and run it at least once. installs developer/cli tools; git, etc...
 * Install [Parallels](http://www.parallels.com/try/pd/).
   * **NOTE**: you will need at least the Pro version to work with Vagrant.
-  * **NOTE**: you will be promted by ./bootstrap for this if its not already installed later.
+  * **NOTE**: you will be prompted by `./bootstrap` for this later if its not already installed.
 * [Fork](https://github.com/northpoint/devstack#fork-destination-box) this repository.
 * Open the "Terminal" application.
 * `git clone git@github.com:<username>/devstack.git ~/Sites/devstack`
@@ -74,7 +74,7 @@ The steps below will install the tools needed to run the entire site for this pr
 * `cd ~/Sites/devstack`
 * `git remote add upstream git@github.com:northpoint/devstack.git` to add the "upstream" repository.
   * **NOTE:** You will need an upstream remote in order to keep your `devstack` project fork up to date with changes done by other developers.
-* `./bootstrap` (runs boostrap script)
+* `./bootstrap` (runs bootstrap script)
 * If hosting on Acquia, download your drush aliases file and follow the instructions so that it extracts to ~/.acquia
   * **NOTE:** you might need to ask your team lead for access to insight and also upload your SSH key to your insight account.
 * `cd ~/Sites/devstack`
@@ -86,8 +86,9 @@ The steps below will install the tools needed to run the entire site for this pr
 * If on Acquia/Drupal, sync the files local from Acquia Cloud via drush: `drush -y rsync @project.dev:%files/ @project.vm:%files`
 * Visit the site via [http://devstack.vm](http://devstack.vm) or
   [https://devstack.vm](https://devstack.vm) for HTTPS.
-* (TODO) Alternatively, use [http://devstack.vm:6081](http://devstack.vm:6081)
-  to proxy through varnish cache.
+* Alternatively, use [http://devstack.vm:6081](http://devstack.vm:6081)
+  to proxy through varnish cache. This assumes that you have enabled varnish:
+  see [Customizing the VM](#customizing-the-vm) below.
 * When installing your site, these are the database connection parameters:
 
       * Name: `devstack.vm`
@@ -105,6 +106,20 @@ The steps below will install the tools needed to run the entire site for this pr
       * `vagrant ssh`
 
 
+## Customizing the VM
+
+This project includes several components that are disabled by default:  memcache, varnish, drupal, wordpress, to name a few. To enable these, simply edit [provisioning/playbook.yml](provisioning/playbook.yml) and un-comment the appropriate lines. For example, to enable varnish, remove the `#` character from the line
+
+```
+# - include: varnish.yml
+```
+
+If you make any such changes after provisioning the VM, then run `vagrant up --provision` or (if the VM is already running) `vagrant provision`.
+
+If you need a standard component that is not already included, then work with one of the Ansible gurus and submit a pull request to the DevStack repository.
+
+For project-specific customization, edit the files under [provisioning/roles/project](provisioning/roles/project).
+
 ## Day to Day Development
 
 Once you have everything you need to do you work, here you can describe any day-to-day needs, process, etc. needed to work on this project.
@@ -113,7 +128,7 @@ Any special needs to getting updates, building backend or frontend work?
 
 ## Migration
 
-Is there a migration? Does it need to be used localy for any reason? Describe any potential needs here.
+Is there a migration? Does it need to be used locally for any reason? Describe any potential needs here.
 
 ## Uninstalling - Offboarding
 

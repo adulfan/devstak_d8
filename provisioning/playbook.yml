@@ -17,6 +17,9 @@
 # Git and your private .gitconfig in the VM
 - include: git.yml
 
+# Vim and some standard plugins in the VM
+- include: vim.yml
+
 # Additional Tools
 - include: nodejs.yml # Includes npm
 

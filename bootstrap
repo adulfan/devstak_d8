@@ -177,6 +177,17 @@ function install_php {
   fi
 }
 
+# Install Composer, used for installing PHP project dependencies
+function install_composer {
+  loud "Checking for Composer"
+
+  # Ensure Composer is installed
+  if ! hash composer &> /dev/null; then
+    quiet "Installing Composer"
+    brew install homebrew/php/composer &> /dev/null
+  fi
+}
+
 function install_sassc {
   loud "Checking Sass Environment"
 
@@ -361,7 +372,7 @@ function main {
 
   # Install some local PHP tools for in IDE code linting and QA
   install_php
-  # install_composer # TODO
+  install_composer
   # install_phpcs # TODO for PHP_CodeSniffer linter
   # install_coder # TODO for drupal coding standards linting
 

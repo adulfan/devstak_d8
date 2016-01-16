@@ -188,6 +188,15 @@ function install_composer {
   fi
 }
 
+# Install WP-CLI on host machine
+function install_wp_cli {
+  if ! hash wp &> /dev/null; then
+    loud "Installing WordPress CLI tools"
+    brew install wp-cli &> /dev/null
+    quiet "Done Installing WordPress CLI tools"
+  fi
+}
+
 # Install PHP Code Quality Tools
 function install_php_cqt {
   loud "Checking for PHP Code Quality Tools"
@@ -400,6 +409,7 @@ function main {
   install_php
   install_composer
   install_php_cqt
+  install_wp_cli
   # install_coder # TODO for drupal coding standards linting
 
   # Install host FE tools for running FE processes locally for those who want

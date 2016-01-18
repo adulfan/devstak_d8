@@ -9,91 +9,91 @@
 # desired tool such as "drupal", "wordpress", "laravel", "symfony", etc...
 
 # apt-get update and some basic tools required elsewhere
-- include: common.yml
+- include: roles/common.yml
 
 # Include your private SSH key in the VM
-- include: ssh.yml
+- include: roles/ssh.yml
 
 # Git and your private .gitconfig in the VM
-- include: git.yml
+- include: roles/git.yml
 
 # Vim and some standard plugins in the VM
-- include: vim.yml
+- include: roles/vim.yml
 
 # Additional Tools
-- include: nodejs.yml # Includes npm
+- include: roles/nodejs.yml # Includes npm
 
 # Database
-- include: mysql.yml
-# - include: mariadb.yml
-# - include: percona.yml
-# - include: mongodb.yml
+- include: roles/mysql.yml
+# - include: roles/mariadb.yml
+# - include: roles/percona.yml
+# - include: roles/mongodb.yml
 
 # Web Server
-- include: apache.yml
-# - include: nginx.yml # TODO
+- include: roles/apache.yml
+# - include: roles/nginx.yml # TODO
 
 # Project Language (PHP)
-- include: php.yml
-# - include: php-fpm.yml # TODO
-# - include: composer.yml
+- include: roles/php.yml
+# - include: roles/php-fpm.yml # TODO
+# - include: roles/composer.yml
 
 # Project Language (Ruby)
-# - include: bundler.yml
+# - include: roles/bundler.yml
 
 # Cacheing Layers
-# - include: memcached.yml
-# - include: redis.yml
-# - include: varnish.yml
+# - include: roles/memcached.yml
+# - include: roles/redis.yml
+# - include: roles/varnish.yml
 
 # Background Job Queue
-# -include: resque.yaml # TODO
+# - include: roles/resque.yaml # TODO
 
 # Search Engine
-# - include: solr.yml # TODO
+# - include: roles/solr.yml # TODO
 
 # Drupal and Tools
-# - include: drush.yml
-# - include: acquia_insight.yml
-# - include: drupal7.yml # Disable after first run to not overwrite everytime
-# - include: drupal_console.yml
-# - include: drupal8.yml # Disable after first run to not overwrite everytime
+# - include: roles/drush.yml
+# - include: roles/acquia_insight.yml
+# - include: roles/drupal7.yml # Disable after first run to not overwrite everytime
+# - include: roles/drupal_console.yml
+# - include: roles/drupal8.yml # Disable after first run to not overwrite everytime
 
 # Wordpress and Tools
-# - include: wordpress.yml # TODO
+# - include: roles/wordpress.yml # TODO
 
 # Laravel and Tools
-# - include: laravel.yml # TODO
+# - include: roles/laravel.yml # TODO
 
 # Symfony and Tools
-# - include: symfony.yml
+# - include: roles/symfony.yml
 
 # Front End UI Theming Tools
-# - include: sass.yml
-# - include: gulp.yml
-# - include: grunt.yml
-# - include: bower.yml
-# - include: yeoman.yml
-# - include: browsersync.yml
+# - include: roles/sass.yml
+# - include: roles/gulp.yml
+# - include: roles/grunt.yml
+# - include: roles/bower.yml
+# - include: roles/yeoman.yml
+# - include: roles/browsersync.yml
 
 # QA Tools
-# - include: wraith.yml # TODO
+# - include: roles/wraith.yml # TODO
 # - include: phpcqt.yml # TODO Various PHP Code Quality tools in VM
-# - include: jasmine.yml # TODO
+# - include: roles/jasmine.yml # TODO
 
 # Project Documentation Tools
-# - include: mkdocs.yml
-# - include: phpdocumentor.yml # TODO
-# - include: jekyll.yml
+# - include: roles/mkdocs.yml
+# - include: roles/phpdocumentor.yml # TODO
+# - include: roles/jekyll.yml
 
 # TODO: Local admin tools to provide admin and analytics in vm
 # TODO: Put these in an admin dir that is gitignored?
-# - include: phpmyadmin.yml # TODO
-# - include: memcachedadmin.yml # TODO
-# - include: redis-commander.yml
-# - include: redis-stat.yml # TODO
-# - include: webgrind.yml # TODO
-# - include: phing.yml # TODO
+# - include: roles/phpmyadmin.yml # TODO
+# - include: roles/memcachedadmin.yml # TODO
+# - include: roles/redis-commander.yml
+# - include: roles/redis-stat.yml # TODO
+# - include: roles/webgrind.yml # TODO
+# - include: roles/phing.yml # TODO
 
 # Project Site Configuration (any special configs)
-- include: project.yml
+- include: roles/project.yml

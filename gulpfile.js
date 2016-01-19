@@ -8,7 +8,7 @@ var phpcs = require('gulp-phpcs');
 // https://www.npmjs.com/package/gulp-phpcbf
 var phpcbf = require('gulp-phpcbf');
 
-// PHP Mess Detector
+// PHP Copy/Paste Detector
 gulp.task('phpcpd', function () {
   return gulp.src('docroot/**/*.php')
     .pipe(phpcpd());

@@ -3,3 +3,5 @@
   sudo: yes
   roles:
     - yeoman
+  tags:
+    - yeoman

@@ -1,5 +1,3 @@
 ---
 - name: Install Yeoman globally
   command: npm install --global yo
-  tags:
-    - yeoman

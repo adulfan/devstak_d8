@@ -1,5 +1,3 @@
 ---
 - name: Install Grunt globally
   command: npm install --global grunt-cli
-  tags:
-    - grunt

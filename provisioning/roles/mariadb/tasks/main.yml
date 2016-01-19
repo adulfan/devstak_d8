@@ -5,28 +5,18 @@
     - mariadb-server
     - mariadb-client
     - python-mysqldb
-  tags:
-    - mariadb
 
 # - name: Install DB
 #   command: mysql_install_db
 
 - name: Configure MariaDB
   template: src=../templates/my.cnf.j2 dest=/etc/mysql/my.cnf
-  tags:
-    - mariadb
 
 - name: Restart MariaDB
   service: name=mysql state=restarted
-  tags:
-    - mariadb
 
 - name: Setup MariaDB User
   mysql_user: name=vagrant password=vagrant priv=*.*:ALL host=% state=present
-  tags:
-    - mariadb
 
 - name: Create project database
   action: mysql_db db={{ project_name }} state=present
-  tags:
-    - mariadb

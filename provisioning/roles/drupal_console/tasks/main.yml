@@ -1,18 +1,14 @@
 ---
 - name: Download Drupal console installer
-  get_url: url=http://drupalconsole.com/installer dest=/tmp
-  tags:
-    - drupal_console
-
-- name: Run console installer
-  shell: "php /tmp/installer"
-  args:
-    chdir: "/tmp"
+  get_url: url=http://drupalconsole.com/installer dest=/tmp/drupal.phar
   tags:
     - drupal_console
 
 - name: Enable console globally
-  shell: "mv /tmp/console.phar /usr/local/bin/drupal"
+  shell: "mv /tmp/drupal.phar /usr/local/bin/drupal"
   ignore_errors: yes
   tags:
     - drupal_console
+
+- name: Make drupal console executable
+  file: path=/usr/local/bin/drupal mode=0755

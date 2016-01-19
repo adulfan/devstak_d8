@@ -48,6 +48,7 @@ A Base Vagrant Lamp Stack. A great `README.md` template for your projects as a g
 * [Ansible](http://www.ansible.com) (required)
 * [Parallels](http://www.parallels.com/) (required)
 * [Vagrant](https://www.vagrantup.com) (required)
+* Various PHP QA and Code Quality Tools
 * ...
 
 ### Local Development Stack in guest Vagrant VM
@@ -75,6 +76,7 @@ The steps below will install the tools needed to run the entire site for this pr
 * `git remote add upstream git@github.com:northpoint/devstack.git` to add the "upstream" repository.
   * **NOTE:** You will need an upstream remote in order to keep your `devstack` project fork up to date with changes done by other developers.
 * `./bootstrap` (runs bootstrap script)
+* After bootstrap has completed, restart your shell to ensure things are set correctly.
 * If hosting on Acquia, download your drush aliases file and follow the instructions so that it extracts to ~/.acquia
   * **NOTE:** you might need to ask your team lead for access to insight and also upload your SSH key to your insight account.
 * `cd ~/Sites/devstack`
@@ -105,6 +107,12 @@ The steps below will install the tools needed to run the entire site for this pr
       * `cd ~/Sites/devstack`
       * `vagrant ssh`
 
+* After your VM is up and running, your project may or may not require addition local tool installs. You can install these tools in VM or on host with the commands:
+
+      * `cd ~/Sites/devstack` or `cd /var/www/devstack`
+      * `composer install`
+      * `npm install`
+      * `bower install`
 
 ## Customizing the VM
 
@@ -119,6 +127,34 @@ If you make any such changes after provisioning the VM, then run `vagrant up --p
 If you need a standard component that is not already included, then work with one of the Ansible gurus and submit a pull request to the DevStack repository.
 
 For project-specific customization, edit the files under [provisioning/roles/project](provisioning/roles/project).
+
+# Build and Test Automation
+
+Many tools can be combined in many ways to automate build and testing processes. Devstack provides some working examples that work on the command line, across projects, that you can customize to your needs. The top level gulpfile.js provides examples run from the project root that you can use as is or adjust as needed.
+
+In many cases, locally on your laptop you many want to make your IDE perform some of the tasks as your work. We provide some suggestions for these below.
+
+# IDE Configuration
+
+Different projects and teams use different IDE's and have different standards for various reason. This Devstack provides a great starting point installing tools you can use and providing working usage examples. Devstack, however, tries not to make to many assumptions and cannot handle every case. When it comes to your IDE for your project the sections below provide guidance. Adjust as needed for your case.
+
+## Atom
+
+ * https://atom.io
+
+Suggested plugins:
+
+ * https://atom.io/packages/linter-phpcs or https://atom.io/packages/atom-beautify
+ * https://atom.io/packages/php-cs-fixer
+ * https://atom.io/packages/linter-phpmd
+
+## Sublime Text
+
+## PHPStorm
+
+## vim
+
+## Add your teams here
 
 ## Day to Day Development
 

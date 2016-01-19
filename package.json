@@ -1,0 +1,20 @@
+{
+  "name": "devstack",
+  "version": "1.0.0",
+  "description": "A local development vm starting point for your projects.",
+  "main": "docroot/index.php",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-phpcbf": "^0.1.2",
+    "gulp-phpcpd": "^1.0.1",
+    "gulp-phpcs": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:northpoint/devstack.git"
+  },
+  "scripts": {},
+  "author": "NorthPoint Digital",
+  "license": "MIT"
+}

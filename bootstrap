@@ -189,6 +189,8 @@ function install_composer {
 }
 
 # Install PHP Code Quality Tools
+# These tools are installed with brew globally so any build tool or IDE on your
+# host machine can easily use them in a non-project specific way. Adjust as needed.
 function install_php_cqt {
   loud "Checking for PHP Code Quality Tools"
 
@@ -211,6 +213,13 @@ function install_php_cqt {
   if ! hash php-cs-fixer &> /dev/null; then
     quiet "Installing php-cs-fixer (PHP Coding Standards Fixer)"
     brew install homebrew/php/php-cs-fixer &> /dev/null
+  fi
+
+  # Ensure phpcpd is installed
+  # https://github.com/sebastianbergmann/phpcpd
+  if ! hash phpcpd &> /dev/null; then
+    quiet "Installing phpcpd (PHP Copy Paste Detector)"
+    brew install homebrew/php/phpcpd &> /dev/null
   fi
 }
 
@@ -419,6 +428,11 @@ function main {
 
   # Run any custom scripts for your project
   # run_custom
+
+  # Trigger other dependency installs?
+  # `composer install`
+  # `npm install`
+  # `bower install`
 
   loud 'Bootstrap Complete!'
   quiet 'Make sure you restart your shell. Now!\n'

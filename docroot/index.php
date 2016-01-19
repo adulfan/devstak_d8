@@ -6,7 +6,7 @@ $mysql_running = true;
 if (mysqli_connect_errno()) {
     $mysql_running = false;
 } else {
-  $mysql_version = $mysqli->server_info;
+    $mysql_version = $mysqli->server_info;
 }
 
 $mysqli->close();
@@ -15,9 +15,9 @@ $mysqli->close();
 $m = new Memcached();
 $memcached_running = false;
 if ($m->addServer('localhost', 11211)) {
-  $memcached_running = true;
-  $memcached_version = $m->getVersion();
-  $memcached_version = current($memcached_version);
+    $memcached_running = true;
+    $memcached_version = $m->getVersion();
+    $memcached_version = current($memcached_version);
 }
 ?>
 <!DOCTYPE html>

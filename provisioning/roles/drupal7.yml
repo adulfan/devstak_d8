@@ -3,3 +3,5 @@
   sudo: yes
   roles:
     - drupal7
+  tags:
+    - drupal7

@@ -4,8 +4,6 @@
   with_items:
     - git-core
     - git
-  tags:
-    - git
 
 - name: Copy .gitconfig
   copy:
@@ -13,10 +11,6 @@
     dest: /home/vagrant/.gitconfig
     mode: 0644
     force: yes
-  tags:
-    - git
 
 - name: Validate .gitconfig permissions
   command: chmod 644 /home/vagrant/.gitconfig
-  tags:
-    - git

@@ -10,12 +10,8 @@
     - python-pygresql
     - python-psycopg2
 
-
 - name: Configure PostgreSQL
   template: src=../templates/postgresql.conf dest=/etc/postgresql/9.3/main/postgresql.conf
-  tags:
-    - pgsql
-
 
 - name: Create databases
   sudo: yes

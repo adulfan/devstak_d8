@@ -28,6 +28,7 @@
 # - include: roles/mariadb.yml
 # - include: roles/percona.yml
 # - include: roles/mongodb.yml
+# - include: roles/pgsql.yml
 
 # Web Server
 - include: roles/apache.yml

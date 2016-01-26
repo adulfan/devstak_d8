@@ -3,3 +3,5 @@
   sudo: yes
   roles:
     - drupal_console
+  tags:
+    - drupal_console

@@ -4,20 +4,12 @@
   with_items:
     - mongodb
     - python-pymongo
-  tags:
-    - mongodb
 
 - name: Configure MongoDB
   template: src=../templates/mongodb.conf.j2 dest=/etc/mongodb.conf
-  tags:
-    - mongodb
 
 - name: Restart MongoDB
   service: name=mongodb state=restarted
-  tags:
-    - mongodb
 
 - name: Create MongoDB project database and user
   mongodb_user: database={{ project_name }} name=vagrant password=vagrant state=present
-  tags:
-    - mongodb

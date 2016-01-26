@@ -1,18 +1,12 @@
 ---
 - name: Install Composer
   get_url: url=https://getcomposer.org/composer.phar dest=/usr/local/bin/composer mode=0755
-  tags:
-    - composer
 
 - name: Create a COMPOSER_HOME directory
   file: path={{ composer_home }} state=directory
-  tags:
-    - composer
 
 - name: Create a COMPOSER_VENDOR_DIR directory
   file: path={{ composer_home }}/vendor state=directory
-  tags:
-    - composer
 
 - name: Set COMPOSER_HOME environment variable
   lineinfile:
@@ -20,8 +14,6 @@
     dest: /etc/environment
     state: present
     insertafter: EOF
-  tags:
-    - composer
 
 - name: Set COMPOSER_BIN_DIR environment variable
   lineinfile:
@@ -29,8 +21,6 @@
     dest: /etc/environment
     state: present
     insertafter: EOF
-  tags:
-    - composer
 
 - name: Set COMPOSER_VENDOR_DIR environment variable
   lineinfile:
@@ -38,5 +28,3 @@
     dest: /etc/environment
     state: present
     insertafter: EOF
-  tags:
-    - composer

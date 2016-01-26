@@ -3,3 +3,5 @@
   sudo: yes
   roles:
     - browsersync
+  tags:
+    - browsersync

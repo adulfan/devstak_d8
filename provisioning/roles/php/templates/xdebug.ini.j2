@@ -1,16 +1,16 @@
-# After making changes to this file, restart apache.
+; After making changes to this file, restart apache.
 
-# To run Xdebug from the host, set remote_connect_back to 1. Then remote_host
-# will be ignored.
-# To run Xdebug from the guest (VM), set remote_connect_back to 0. Either set
-# remote_host to 127.0.0.1 or localhost or leave it unset.
+; To run Xdebug from the host, set remote_connect_back to 1. Then remote_host
+; will be ignored.
+; To run Xdebug from the guest (VM), set remote_connect_back to 0. Either set
+; remote_host to 127.0.0.1 or localhost or leave it unset.
 
 xdebug.remote_connect_back={{ php_xdebug_remote_connect_back }}
-# xdebug.remote_host={{ php_xdebug_remote_host }}
+; xdebug.remote_host={{ php_xdebug_remote_host }}
 
-# To run Xdebug without setting XDEBUG_SESSION_START (GET or POST parameter) or
-# XDEBUG_SESSION cookie, set remote_autostart to 1.
-# xdebug.remote_autostart=1
+; To run Xdebug without setting XDEBUG_SESSION_START (GET or POST parameter) or
+; XDEBUG_SESSION cookie, set remote_autostart to 1.
+; xdebug.remote_autostart=1
 
 zend_extension=xdebug.so
 xdebug.remote_enable={{ php_xdebug_remote_enable }}

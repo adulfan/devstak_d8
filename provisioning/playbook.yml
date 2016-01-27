@@ -96,5 +96,8 @@
 # - include: roles/webgrind.yml # TODO
 # - include: roles/phing.yml # TODO
 
+# Managed hosting solution tools
+- include: roles/azure-cli.yml
+
 # Project Site Configuration (any special configs)
 - include: roles/project.yml

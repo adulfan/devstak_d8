@@ -292,6 +292,16 @@ function install_browsersync {
   fi
 }
 
+function install_azure_cli {
+  loud "Checking for azure cli tools"
+
+  # Ensure azure cli tools is installed
+  if ! hash azure &> /dev/null; then
+    quiet "Installing azure"
+    npm install -g azure-cli &> /dev/null
+  fi
+}
+
 # function run_custom {
 #   loud "Running any custom bootstrap scripts"
 #   export -f run_script
@@ -430,6 +440,9 @@ function main {
   install_gulp
   install_grunt
   install_browsersync
+
+  # Managed Hosting Service Tools to optionally enable
+  install_azure_cli
 
   # Install tools for running automated QA on host machines.
   # Especially useful for browser testing automation tools such as WebDriver

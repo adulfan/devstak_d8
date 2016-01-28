@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 VBOX_VERSION_REQUIRED='5.0.0'
-VAGRANT_VERSION_REQUIRED='1.7.4'
+VAGRANT_VERSION_REQUIRED='1.8.1'
 
 ###########################
 ### USAGE AND VERSION INFO
@@ -93,7 +93,7 @@ function install_vagrant {
     return
   fi
 
-  local vagrant_url="https://dl.bintray.com/mitchellh/vagrant/vagrant_$VAGRANT_VERSION_REQUIRED.dmg"
+  local vagrant_url="https://releases.hashicorp.com/vagrant/$VAGRANT_VERSION_REQUIRED/vagrant_$VAGRANT_VERSION_REQUIRED.dmg"
   local vagrant_dmg=$( strip_url "${vagrant_url}" )
   local vagrant_pkg="Vagrant.pkg"
 
@@ -198,8 +198,6 @@ function install_wp_cli {
 }
 
 # Install PHP Code Quality Tools
-# These tools are installed with brew globally so any build tool or IDE on your
-# host machine can easily use them in a non-project specific way. Adjust as needed.
 function install_php_cqt {
   loud "Checking for PHP Code Quality Tools"
 
@@ -222,13 +220,6 @@ function install_php_cqt {
   if ! hash php-cs-fixer &> /dev/null; then
     quiet "Installing php-cs-fixer (PHP Coding Standards Fixer)"
     brew install homebrew/php/php-cs-fixer &> /dev/null
-  fi
-
-  # Ensure phpcpd is installed
-  # https://github.com/sebastianbergmann/phpcpd
-  if ! hash phpcpd &> /dev/null; then
-    quiet "Installing phpcpd (PHP Copy Paste Detector)"
-    brew install homebrew/php/phpcpd &> /dev/null
   fi
 }
 
@@ -300,6 +291,61 @@ function install_azure_cli {
     quiet "Installing azure"
     npm install -g azure-cli &> /dev/null
   fi
+
+function install_vagrant_reload {
+  if vagrant plugin list | grep "vagrant-reload" &> /dev/null; then
+    return
+  fi
+
+  quiet "Installing Vagrant Reload"
+  vagrant plugin install vagrant-reload &> /dev/null
+}
+
+function setup_laravel {
+  loud "Setting up Laravel Environment"
+
+  #if ! hash laravel &> /dev/null; then
+    #Download Laravel using Composer
+    quiet "Installing Laravel"
+    composer global require "laravel/installer=~2.0" &> /dev/null
+  #fi
+  echo 'export PATH=~/.composer/vendor/bin:$PATH' >> ~/.bash_profile
+
+  # remove existing docroot before installing
+  if [ -d "docroot" ]; then
+    rm -rf docroot
+  fi
+
+  # install laravel into docroot
+  laravel new docroot &> /dev/null
+
+  quiet "Done setting up Laravel"
+}
+
+function setup_homestead {
+  loud "Setting up Homestead environment"
+
+  quiet "Setting up Vagrant Box for Homestead"
+
+  install_vagrant_reload
+
+  #vagrant box add alvassin/homestead-parallels &> /dev/null
+
+  quiet "Installing Homestead"
+  composer global require "laravel/homestead=~2.0" &> /dev/null
+
+  # copy our "hello, world" files
+  cp provisioning/roles/laravel/src/app/Http/routes.php docroot/app/Http/routes.php &> /dev/null
+  cp provisioning/roles/laravel/src/app/Http/Controllers/WelcomeController.php docroot/app/Http/Controllers/WelcomeController.php &> /dev/null
+  cp provisioning/roles/laravel/src/resources/views/arrived.blade.php docroot/resources/views/arrived.blade.php &> /dev/null
+
+  # turn things on
+  mv docroot/.env.example docroot/.env &> /dev/null
+
+  # Laravel 4?
+  #elif -d "htdocs/app/views/" &> /dev/null; then
+  #  cp src/homestead/hello.php htdocs/app/views/hello.php &> /dev/null
+  #fi
 }
 
 # function run_custom {
@@ -409,7 +455,6 @@ function run_script () {
   source $path
 }
 
-
 #####################
 ### MAIN FUNCTION
 #####################
@@ -428,7 +473,6 @@ function main {
   install_php
   install_composer
   install_php_cqt
-  install_wp_cli
   # install_coder # TODO for drupal coding standards linting
 
   # Install host FE tools for running FE processes locally for those who want
@@ -444,6 +488,9 @@ function main {
   # Managed Hosting Service Tools to optionally enable
   install_azure_cli
 
+  setup_laravel
+  setup_homestead
+
   # Install tools for running automated QA on host machines.
   # Especially useful for browser testing automation tools such as WebDriver
   # based tests.
@@ -451,11 +498,6 @@ function main {
 
   # Run any custom scripts for your project
   # run_custom
-
-  # Trigger other dependency installs?
-  # `composer install`
-  # `npm install`
-  # `bower install`
 
   loud 'Bootstrap Complete!'
   quiet 'Make sure you restart your shell. Now!\n'

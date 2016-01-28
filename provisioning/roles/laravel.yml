@@ -1,0 +1,10 @@
+---
+- hosts: all
+  sudo: yes
+  gather_facts: no
+  vars:
+    settler_apt_update: yes
+  pre_tasks:
+    - user: name=vagrant
+  roles:
+    - laravel

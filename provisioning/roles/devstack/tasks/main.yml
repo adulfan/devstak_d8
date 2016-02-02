@@ -1,0 +1,6 @@
+---
+- name: Copy files to the docroot.
+  copy: src="{{ item }}" dest="/var/www/devstack/docroot"
+  with_items:
+    - index.html
+    - index.php

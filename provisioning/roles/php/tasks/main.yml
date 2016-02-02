@@ -54,8 +54,11 @@
 - name: Enable PHP Opcache
   command: php5enmod opcache
 
+- name: Ensure that the document root exists.
+  file: path="{{ php_docroot }}" state="directory"
+
 - name: Get Opcache web viewer
-  get_url: url=https://raw.github.com/rlerdorf/opcache-status/master/opcache.php dest={{ project_docroot }}
+  get_url: url=https://raw.github.com/rlerdorf/opcache-status/master/opcache.php dest={{ php_docroot }}
 
 - name: Restart Apache
   service: name=apache2 state=restarted

@@ -1,6 +1,9 @@
 ---
-- name: Copy files to the docroot.
-  copy: src="{{ item }}" dest="/var/www/devstack/docroot"
+- name: Ensure that the document root exists.
+  file: path="{{ devstack_docroot }}" state="directory"
+
+- name: Copy files to the document root.
+  copy: src="{{ item }}" dest="{{ devstack_docroot }}"
   with_items:
     - index.html
     - index.php

@@ -127,6 +127,10 @@ This project includes several components that are disabled by default:  memcache
 # - include: varnish.yml
 ```
 
+Several roles include default variables in `defaults/main.yml`. You can override
+any of these by defining them in `provisioning/group_vars/all`. See
+[provisioning/group_vars](provisioning/group_vars) for details.
+
 If you make any such changes after provisioning the VM, then run `vagrant up --provision` or (if the VM is already running) `vagrant provision`.
 
 If you need a standard component that is not already included, then work with one of the Ansible gurus and submit a pull request to the DevStack repository.

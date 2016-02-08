@@ -20,5 +20,8 @@ node_modules
 npm-debug.log
 
 # Ignore Composer vendor directory if needed
-vendor
-!docroot/vendor
+#vendor
+#!docroot/vendor
+
+# Ignore docroot if your project uses a different hosted document root path
+# docroot

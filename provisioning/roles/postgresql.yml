@@ -2,6 +2,6 @@
 - hosts: devstack
   sudo: yes
   roles:
-    - pgsql
+    - postgresql
   tags:
-    - pgsql
+    - postgresql

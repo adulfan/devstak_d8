@@ -4,7 +4,7 @@
 # PROJECT VARIABLES
 project_name = "devstack"
 # OS X uses .local for Bonjour and can cause slowness in some tools
-project_hostname = "devstack.vm"
+project_hostname = project_name + ".vm"
 ip_address = "172.22.22.20"
 project_root = "/var/www/" + project_name + "/"
 project_docroot = project_root + "docroot"

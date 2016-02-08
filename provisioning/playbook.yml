@@ -29,6 +29,7 @@
 # - include: roles/percona.yml
 # - include: roles/mongodb.yml
 - include: roles/postgresql.yml
+# - include: roles/sqlite.yml # TODO
 
 # Web Server
 - include: roles/apache.yml
@@ -37,7 +38,7 @@
 # Project Language (PHP)
 - include: roles/php.yml
 # - include: roles/php-fpm.yml # TODO
-# - include: roles/composer.yml
+- include: roles/composer.yml
 
 # Project Language (Ruby)
 # - include: roles/bundler.yml

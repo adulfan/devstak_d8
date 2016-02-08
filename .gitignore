@@ -22,6 +22,3 @@ npm-debug.log
 # Ignore Composer vendor directory if needed
 vendor
 !docroot/vendor
-
-# docroot will likely be separate
-docroot

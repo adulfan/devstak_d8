@@ -13,6 +13,9 @@
 - name: Configure PostgreSQL
   template: src=../templates/postgresql.conf dest=/etc/postgresql/9.3/main/postgresql.conf
 
+- name: Restart PostgreSQL
+  service: name=postgresql state=restarted enabled=yes
+
 - name: Create databases
   sudo: yes
   sudo_user: postgres
@@ -22,6 +25,3 @@
   sudo: yes
   sudo_user: postgres
   postgresql_user: name=vagrant password=vagrant db={{ project_name }} priv=ALL state=present
-
-- name: Restart PostgreSQL
-  service: name=postgresql state=restarted enabled=yes

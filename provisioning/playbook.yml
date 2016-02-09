@@ -28,8 +28,8 @@
 # - include: roles/mariadb.yml
 # - include: roles/percona.yml
 # - include: roles/mongodb.yml
-- include: roles/postgresql.yml
-# - include: roles/sqlite.yml # TODO
+# - include: roles/postgresql.yml
+# - include: roles/sqlite.yml
 
 # Web Server
 - include: roles/apache.yml
@@ -83,6 +83,9 @@
 # - include: roles/wraith.yml # TODO
 # - include: phpcqt.yml # TODO Various PHP Code Quality tools in VM
 # - include: roles/jasmine.yml # TODO
+
+# Performance/Debugging Tools/Services
+# - include: roles/blackfire.yml # TODO
 
 # Project Documentation Tools
 # - include: roles/mkdocs.yml

@@ -35,10 +35,13 @@
   command: a2enmod php5
 
 # Make MCrypt Available
-- name: Enable mcrypt
-  #command: php5enmod mcrypt
-  file: src=/etc/php5/mods-available/mcrypt.ini dest=/etc/php5/cli/conf.d/20-mcrypt.ini state=link force=yes
+- name: Enable mcrypt in modphp
+  # command: php5enmod mcrypt
   file: src=/etc/php5/mods-available/mcrypt.ini dest=/etc/php5/apache2/conf.d/20-mcrypt.ini state=link force=yes
+
+- name: Enable mcrypt on php cli
+  # command: php5enmod mcrypt
+  file: src=/etc/php5/mods-available/mcrypt.ini dest=/etc/php5/cli/conf.d/20-mcrypt.ini state=link force=yes
 
 - name: Configure Apache mod_php php.ini
   template: src=../templates/apache2-php.ini.j2 dest=/etc/php5/apache2/php.ini

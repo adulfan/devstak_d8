@@ -50,7 +50,7 @@
 
 # Background Job Queue
 # - include: roles/resque.yaml # TODO
-# - include: roles/beanstalkd.yaml # TODO
+# - include: roles/beanstalkd.yaml
 
 # Search Engine
 # - include: roles/solr.yml # TODO

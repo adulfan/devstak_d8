@@ -95,16 +95,6 @@ Vagrant.configure(2) do |config|
   #
   # View the documentation for the provider you are using for more
   # information on available options.
-  config.vm.provider "virtualbox" do |v|
-    v.name = project_name
-    # v.customize ["modifyvm", :id, "--cpus", "1"]
-    v.customize ["modifyvm", :id, "--cpus", "2"]
-    v.customize ["modifyvm", :id, "--cpuexecutioncap", "85"]
-    v.customize ['modifyvm', :id, '--ioapic', 'on']
-    v.customize ["modifyvm", :id, "--memory", "2048"]
-    # v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    # v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
-  end
 
   # http://parallels.github.io/vagrant-parallels/docs/configuration.html
   config.vm.provider "parallels" do |prl|

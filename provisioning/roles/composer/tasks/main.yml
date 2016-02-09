@@ -5,29 +5,46 @@
 # Optionally set composer env vars; commented out because these are not always needed.
 # Here for reference.
 
-# - name: Create a COMPOSER_HOME directory
-#   file: path={{ composer_home }} state=directory
+- name: Create a COMPOSER_HOME directory
+  file: path={{ composer_home }} state=directory
 
 # - name: Create a COMPOSER_VENDOR_DIR directory
 #   file: path={{ composer_home }}/vendor state=directory
 
-# - name: Set COMPOSER_HOME environment variable
+- name: Set COMPOSER_HOME environment variable
+  lineinfile:
+    line: 'COMPOSER_HOME="{{ composer_home }}"'
+    dest: /etc/environment
+    state: present
+    insertafter: EOF
+
+- name: Set COMPOSER_VENDOR_DIR environment variable
+  lineinfile:
+    line: 'COMPOSER_VENDOR_DIR="{{ composer_home }}/vendor"'
+    dest: /etc/environment
+    state: present
+    insertafter: EOF
+
+- name: Set COMPOSER_BIN_DIR environment variable
+  lineinfile:
+    line: 'COMPOSER_BIN_DIR="{{ composer_home }}/vendor/bin"'
+    dest: /etc/environment
+    state: present
+    insertafter: EOF
+
+- name: Setting permissions on COMPOSER_HOME
+  command: chmod -R 775 {{ composer_home }}
+
+- name: Setting group permissions on COMPOSER_HOME
+  command: chgrp -R vagrant {{ composer_home }}
+
+# - name: Set PATH to include Composer Global bin
 #   lineinfile:
-#     line: 'COMPOSER_HOME="{{ composer_home }}"'
+#     line: 'PATH="{{ composer_home }}/vendor/bin:$PATH"'
 #     dest: /etc/environment
 #     state: present
 #     insertafter: EOF
 
-# - name: Set COMPOSER_BIN_DIR environment variable
-#   lineinfile:
-#     line: 'COMPOSER_BIN_DIR="/usr/local/bin"'
-#     dest: /etc/environment
-#     state: present
-#     insertafter: EOF
-
-# - name: Set COMPOSER_VENDOR_DIR environment variable
-#   lineinfile:
-#     line: 'COMPOSER_VENDOR_DIR="{{ composer_home }}/vendor"'
-#     dest: /etc/environment
-#     state: present
-#     insertafter: EOF
+# # Add Composer Global Bin To Path
+# - name: add composer global bin to path
+#   lineinfile: dest=/home/vagrant/.profile line=PATH="/home/vagrant/.composer/vendor/bin:$PATH" create=yes

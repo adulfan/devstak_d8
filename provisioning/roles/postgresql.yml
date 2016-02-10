@@ -1,0 +1,7 @@
+---
+- hosts: devstack
+  sudo: yes
+  roles:
+    - postgresql
+  tags:
+    - postgresql

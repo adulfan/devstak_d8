@@ -1,25 +1,27 @@
 ---
-
 - name: Install PostgreSQL Packages
   sudo: yes
   apt: name={{ item }} state=latest
   with_items:
-    - postgresql-9.3
-    - postgresql-contrib-9.3
-    - postgresql-client-9.3
+    - postgresql
+    - postgresql-contrib
+    - postgresql-client
+    - libpq-dev
     - python-pygresql
     - python-psycopg2
 
 - name: Configure PostgreSQL
   template: src=../templates/postgresql.conf dest=/etc/postgresql/9.3/main/postgresql.conf
 
+- name: Restart PostgreSQL
+  service: name=postgresql state=restarted enabled=yes
+
 - name: Create databases
   sudo: yes
   sudo_user: postgres
   postgresql_db: name={{ project_name }} state=present
 
-
 - name: Create users
   sudo: yes
   sudo_user: postgres
-  postgresql_user: name=vagrant password=vagrant db={{ project_name }} priv=ALL
+  postgresql_user: name=vagrant password=vagrant db={{ project_name }} priv=ALL state=present

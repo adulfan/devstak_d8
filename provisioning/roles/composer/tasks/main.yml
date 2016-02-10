@@ -2,6 +2,7 @@
 - name: Install Composer
   get_url: url=https://getcomposer.org/composer.phar dest=/usr/local/bin/composer mode=0755
 
+# We setup the paths to keep composer in a truly globally shared location (and not in a user . directory)
 - name: Create a COMPOSER_HOME directory
   file: path={{ composer_home }} state=directory
 
@@ -14,13 +15,8 @@
     dest: /etc/environment
     state: present
     insertafter: EOF
-
-- name: Set COMPOSER_BIN_DIR environment variable
-  lineinfile:
-    line: 'COMPOSER_BIN_DIR="/usr/local/bin"'
-    dest: /etc/environment
-    state: present
-    insertafter: EOF
+  environment:
+    COMPOSER_HOME: "{{ composer_home }}"
 
 - name: Set COMPOSER_VENDOR_DIR environment variable
   lineinfile:
@@ -28,3 +24,29 @@
     dest: /etc/environment
     state: present
     insertafter: EOF
+  environment:
+    COMPOSER_VENDOR_DIR: "{{ composer_home }}/vendor"
+
+- name: Set COMPOSER_BIN_DIR environment variable
+  lineinfile:
+    line: 'COMPOSER_BIN_DIR="{{ composer_home }}/vendor/bin"'
+    dest: /etc/environment
+    state: present
+    insertafter: EOF
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ composer_home }}/vendor/bin"
+    COMPOSER_BIN_DIR: "{{ composer_home }}/vendor/bin"
+
+- name: Setting permissions on COMPOSER_HOME
+  command: chmod -R 775 {{ composer_home }}
+
+- name: Setting group permissions on COMPOSER_HOME
+  command: chgrp -R vagrant {{ composer_home }}
+
+- name: Set PATH to include Composer Global bin
+  lineinfile:
+    dest: /etc/environment
+    state: present
+    backrefs: yes
+    regexp: 'PATH=(["]*)((?!.*?{{ composer_home }}\/vendor\/bin).*?)(["]*)$'
+    line: 'PATH=\1\2:{{ composer_home }}/vendor/bin\3'

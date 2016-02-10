@@ -28,7 +28,8 @@
 # - include: roles/mariadb.yml
 # - include: roles/percona.yml
 # - include: roles/mongodb.yml
-# - include: roles/pgsql.yml
+# - include: roles/postgresql.yml
+# - include: roles/sqlite.yml
 
 # Web Server
 - include: roles/apache.yml
@@ -49,6 +50,7 @@
 
 # Background Job Queue
 # - include: roles/resque.yaml # TODO
+# - include: roles/beanstalkd.yaml
 
 # Search Engine
 # - include: roles/solr.yml # TODO
@@ -64,7 +66,7 @@
 # - include: roles/wordpress.yml # TODO
 
 # Laravel and Tools
-# - include: roles/laravel.yml # TODO
+# - include: roles/laravel.yml
 
 # Symfony and Tools
 # - include: roles/symfony.yml
@@ -82,6 +84,9 @@
 # - include: phpcqt.yml # TODO Various PHP Code Quality tools in VM
 # - include: roles/jasmine.yml # TODO
 
+# Performance/Debugging Tools/Services
+# - include: roles/blackfire.yml
+
 # Project Documentation Tools
 # - include: roles/mkdocs.yml
 # - include: roles/phpdocumentor.yml # TODO
@@ -97,7 +102,7 @@
 # - include: roles/phing.yml # TODO
 
 # Managed hosting solution tools
-- include: roles/azure-cli.yml
+# - include: roles/azure-cli.yml
 
 # Project Site Configuration (any special configs)
 - include: roles/project.yml

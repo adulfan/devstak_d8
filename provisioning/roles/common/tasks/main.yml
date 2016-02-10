@@ -8,6 +8,12 @@
 - name: Clean out old packages if any
   command: apt-get -y autoremove
 
+# For adding PPA's more easily
+- name: Install software-properties-common
+  apt: name={{ item }} state=present
+  with_items:
+    - software-properties-common
+
 # Some npm (and other tools) install's can need this at times
 - name: Install build-essential
   apt: name={{ item }} state=present
@@ -55,6 +61,40 @@
   apt: name={{ item }} state=present
   with_items:
     - graphviz
+
+# Convert line endings
+- name: Install dos2unix
+  apt: name={{ item }} state=present
+  with_items:
+    - dos2unix
+
+- name: Install re2c
+  apt: name={{ item }} state=present
+  with_items:
+    - re2c
+
+- name: Install supervisor
+  apt: name={{ item }} state=present
+  with_items:
+    - supervisor
+
+- name: Install whois
+  apt: name={{ item }} state=present
+  with_items:
+    - whois
+
+# # Automatically install security upgrade
+# - name: Install unattended-upgrades
+#   apt: name={{ item }} state=present
+#   with_items:
+#     - unattended-upgrades
+
+# Not generally needed by us, but here for reference.
+# - name: Create locale
+#   locale_gen: name=en_US.UTF-8 state=present
+#
+# - name: Set locale
+#   lineinfile: line='LC_ALL=en_US.UTF-8' dest=/etc/default/locale
 
 # Useful if your application needs to check the environment it's running on
 - name: Export APPLICATION_ENV in .profile

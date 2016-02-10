@@ -1,0 +1,8 @@
+---
+- name: Install Beanstalkd
+  apt: name={{ item }} state=present
+  with_items:
+    - beanstalkd
+
+- name: Restart beanstalkd
+  service: name=beanstalkd state=restarted enabled=yes

@@ -1,0 +1,8 @@
+---
+allow_duplicates: no
+dependencies:
+#   - { role: common }
+#   - { role: git }
+  - { role: composer }
+#   - { role: php }
+#   - { role: apache }

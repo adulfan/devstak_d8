@@ -4,11 +4,13 @@
   with_items:
     - libapache2-mod-php5
     - php-pear
+    - php5-apcu
     - php5-cli
     - php5-common
     - php5-curl
     - php5-dev
     - php5-gd
+    - php5-gmp
     - php5-imagick
     - php5-imap
     - php5-intl
@@ -18,9 +20,11 @@
     - php5-memcached
     - php5-mhash
     - php5-mysqlnd
+    - php5-pgsql
     - php5-pspell
     - php5-recode
     - php5-redis
+    - php5-sqlite
     - php5-xdebug
     - php5-xhprof
     - php5-xmlrpc
@@ -29,6 +33,15 @@
 
 - name: Enable Apache mod_php
   command: a2enmod php5
+
+# Make MCrypt Available
+- name: Enable mcrypt in modphp
+  # command: php5enmod mcrypt
+  file: src=/etc/php5/mods-available/mcrypt.ini dest=/etc/php5/apache2/conf.d/20-mcrypt.ini state=link force=yes
+
+- name: Enable mcrypt on php cli
+  # command: php5enmod mcrypt
+  file: src=/etc/php5/mods-available/mcrypt.ini dest=/etc/php5/cli/conf.d/20-mcrypt.ini state=link force=yes
 
 - name: Configure Apache mod_php php.ini
   template: src=../templates/apache2-php.ini.j2 dest=/etc/php5/apache2/php.ini

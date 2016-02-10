@@ -62,7 +62,7 @@
   with_items:
     - graphviz
 
-# Covert line endings
+# Convert line endings
 - name: Install dos2unix
   apt: name={{ item }} state=present
   with_items:

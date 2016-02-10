@@ -2,6 +2,6 @@
 - hosts: devstack
   sudo: yes
   roles:
-    - sqlite
+    - beanstalkd
   tags:
-    - sqlite
+    - beanstalkd

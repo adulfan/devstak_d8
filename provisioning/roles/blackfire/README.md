@@ -7,7 +7,7 @@ https://blackfire.io/
 * Install blackfire-agent
 * Install blackfire-php
 
-NOTE: Blackfire and conflict with xdebug and xhprof so if you decide to use this role, consider disabling xdebug and xhprof.
+NOTE: Blackfire can conflict with xdebug and xhprof so if you decide to use this role, consider disabling xdebug and xhprof.
 
 ## Instructions
 

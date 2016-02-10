@@ -15,6 +15,8 @@
     dest: /etc/environment
     state: present
     insertafter: EOF
+  environment:
+    COMPOSER_HOME: "{{ composer_home }}"
 
 - name: Set COMPOSER_VENDOR_DIR environment variable
   lineinfile:
@@ -22,6 +24,8 @@
     dest: /etc/environment
     state: present
     insertafter: EOF
+  environment:
+    COMPOSER_VENDOR_DIR: "{{ composer_home }}/vendor"
 
 - name: Set COMPOSER_BIN_DIR environment variable
   lineinfile:
@@ -29,6 +33,9 @@
     dest: /etc/environment
     state: present
     insertafter: EOF
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ composer_home }}/vendor/bin"
+    COMPOSER_BIN_DIR: "{{ composer_home }}/vendor/bin"
 
 - name: Setting permissions on COMPOSER_HOME
   command: chmod -R 775 {{ composer_home }}

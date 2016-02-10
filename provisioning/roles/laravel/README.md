@@ -2,7 +2,7 @@
 
 This role performs a basic install of [Laravel](https://laravel.com/). After
 provisioning, you should be able to see the site at
-[http://devstack.vm/laravel/public/](http://devstack.vm/laravel/public/).
+[http://devstack.vm/](http://devstack.vm/).
 In real life, you would configure apache (or other web server) to hide some of
 that directory structure.
 

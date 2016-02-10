@@ -1,26 +1,26 @@
 # Reference: https://laravel.com/docs/5.2
-# As of 2/8/2016, our devstack VM meets the minimal requirements (PHP 5.5.9 and
-# required extentions).
-# We should enable the composer role: through documentation or meta/main.yml?
 ---
+# TODO: there must be a better way to do this to make sure composer vars are
+# used globally (not per task)?
+- name: Source the system ENV (make sure ENV VARS load everywhere)
+  shell: . /etc/environment
+
 - name: Install laravel installer with composer
-  command: composer global require --prefer-source "laravel/installer{{ laravel_installer_version }}"
-  # composer:
-  #   command: require
-  #   arguments: laravel/installer
-  #   working_dir: /usr/local/share/composer
+  become: yes
+  become_user: vagrant
+  command: composer global require "laravel/installer{{ laravel_installer_version }}"
+  # command: composer global require --prefer-source "laravel/installer{{ laravel_installer_version }}"
 
 - name: Ensure that the document root exists.
   file: path="{{ laravel_base }}" state="directory"
 
 - name: Create a Laravel project.
+  become: yes
+  become_user: vagrant
   shell: laravel new {{ laravel_folder }}
   args:
     chdir: "{{ laravel_base }}"
     creates: "{{ laravel_base }}/{{ laravel_folder }}"
-  # environment:
-  #   PATH: "{{ ansible_env.PATH }}:/root/.composer/vendor/bin"
-  # register: laravel_foo
 
 - name: Ensure that the web server can write to directories.
   file:
@@ -32,3 +32,23 @@
   with_items:
     - storage
     - bootstrap/cache
+
+# Copy Apache web server templates into place that are laravel specific?
+# First pass. Perhaps these work here, or perhaps we need to add
+# nginx as well or organize these differently?
+- name: Configure Laravel Project VirtualHost
+  template: src=../templates/apache-vhost.conf.j2 dest=/etc/apache2/sites-available/{{ project_name }}.conf
+
+- name: Configure Laravel Project HTTPS VirtualHost
+  template: src=../templates/apache-vhost-ssl.conf.j2 dest=/etc/apache2/sites-available/{{ project_name }}-ssl.conf
+
+- name: Enable Project VirtualHost
+  command: a2ensite {{ project_name }}
+
+- name: Enable Project HTTPS VirtualHost
+  command: a2ensite {{ project_name }}-ssl
+
+- name: Restart Apache
+  service: name=apache2 state=restarted
+
+# TODO: Copy nginx web server configs that are laravel specific?

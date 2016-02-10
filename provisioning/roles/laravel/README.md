@@ -1,15 +1,19 @@
-# Laravel Homestead
+# Laravel
 
-This is a role to install and configure Laravel inside the host VM according to your project standards and needs.
+This role performs a basic install of [Laravel](https://laravel.com/). After
+provisioning, you should be able to see the site at
+[http://devstack.vm/laravel/public/](http://devstack.vm/laravel/public/).
+In real life, you would configure apache (or other web server) to hide some of
+that directory structure.
 
-https://laravel.com/docs/5.2/
+## Variables
 
-## Instructions
-
-* Modify `main` in bootstrap to run `setup_laravel` and `setup_homestead`
-* Modify Vagrant file such that `laravel = true`
-* vagrant up --provider parallels
-* If you run into any issues during provisioning, try `vagrant provision` (which sometimes helps)
+- `laravel_installer_version`: version string for `laravel/installer`, passed to
+  `composer`.
+- `laravel_base`: parent directory for Laravel installation
+- `laravel_folder`: directory name passed to the Laravel installer
+- `laravel_docroot`: `{{ laravel_base }}/{{ laravel_folder }}/public` (for
+  reference, not currrently used)
 
 ## Author Information
 

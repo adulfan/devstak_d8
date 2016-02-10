@@ -1,1 +1,34 @@
+# Reference: https://laravel.com/docs/5.2
+# As of 2/8/2016, our devstack VM meets the minimal requirements (PHP 5.5.9 and
+# required extentions).
+# We should enable the composer role: through documentation or meta/main.yml?
 ---
+- name: Install laravel installer with composer
+  command: composer global require --prefer-source "laravel/installer{{ laravel_installer_version }}"
+  # composer:
+  #   command: require
+  #   arguments: laravel/installer
+  #   working_dir: /usr/local/share/composer
+
+- name: Ensure that the document root exists.
+  file: path="{{ laravel_base }}" state="directory"
+
+- name: Create a Laravel project.
+  shell: laravel new {{ laravel_folder }}
+  args:
+    chdir: "{{ laravel_base }}"
+    creates: "{{ laravel_base }}/{{ laravel_folder }}"
+  # environment:
+  #   PATH: "{{ ansible_env.PATH }}:/root/.composer/vendor/bin"
+  # register: laravel_foo
+
+- name: Ensure that the web server can write to directories.
+  file:
+    path: "{{ laravel_base }}/{{ laravel_folder }}/{{ item }}"
+    state: directory
+    group: www-data
+    mode: g+w
+    recurse: yes
+  with_items:
+    - storage
+    - bootstrap/cache

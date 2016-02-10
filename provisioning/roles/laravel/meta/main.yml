@@ -6,5 +6,3 @@ allow_duplicates: no
 #   - { role: composer }
 #   - { role: php }
 #   - { role: apache }
-#   - { role: mysql }
-#   - { role: nodejs }

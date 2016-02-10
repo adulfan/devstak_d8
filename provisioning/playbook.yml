@@ -28,8 +28,8 @@
 # - include: roles/mariadb.yml
 # - include: roles/percona.yml
 # - include: roles/mongodb.yml
-- include: roles/postgresql.yml
-- include: roles/sqlite.yml
+# - include: roles/postgresql.yml
+# - include: roles/sqlite.yml
 
 # Web Server
 - include: roles/apache.yml

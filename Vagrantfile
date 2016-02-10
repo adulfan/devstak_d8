@@ -95,7 +95,6 @@ Vagrant.configure(2) do |config|
   #
   # View the documentation for the provider you are using for more
   # information on available options.
-
   # http://parallels.github.io/vagrant-parallels/docs/configuration.html
   config.vm.provider "parallels" do |prl|
     prl.name = project_name
@@ -104,6 +103,17 @@ Vagrant.configure(2) do |config|
     # Make sure Parallels tools is installed in VM since it's not always
     prl.check_guest_tools = true
     prl.update_guest_tools = true
+  end
+
+  config.vm.provider "virtualbox" do |v|
+    v.name = project_name
+    # v.customize ["modifyvm", :id, "--cpus", "1"]
+    v.customize ["modifyvm", :id, "--cpus", "2"]
+    v.customize ["modifyvm", :id, "--cpuexecutioncap", "85"]
+    v.customize ['modifyvm', :id, '--ioapic', 'on']
+    v.customize ["modifyvm", :id, "--memory", "2048"]
+    # v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    # v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
   end
 
   # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies

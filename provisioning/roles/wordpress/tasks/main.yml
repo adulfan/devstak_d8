@@ -1,0 +1,20 @@
+---
+
+# Create empty wordpress database (wp-cli gives you more options with the DB there)
+- template: src=../templates/wordpress.sql.j2 dest=/tmp/wordpress.sql
+- mysql_db: name={{ project_name }} state=import target=/tmp/wordpress.sql
+
+- name: Downloading Wordpress
+  shell: "sudo -u vagrant -i -- wp core download --path={{ project_docroot }}"
+
+- name: Configuring Wordpress
+  shell: "sudo -u vagrant -i -- wp core config --dbname={{ project_name }} --dbuser=vagrant --dbpass=vagrant --path={{ project_docroot }}"
+
+- name: Installing Wordpress
+  shell: "sudo -u vagrant -i -- wp core install --url=\"http://{{ project_hostname }}\" --title=\"{{ wordpress_sitename }}\" --admin_user=\"{{ wordpress_admin_user }}\" --admin_password=\"{{ wordpress_admin_pass }}\" --admin_email=\"{{ wordpress_admin_email }}\" --path={{ project_docroot }}"
+
+#- name: Additional Wordpress provisioning
+  #shell: "sudo -u vagrant -i -- wp rewrite structure \"/%postname%/\" --path={{ project_docroot }}"
+  #shell: "sudo -u vagrant -i -- wp plugin install http://downloads.wordpress.org/plugin/relative-url.zip --activate --path={{ project_docroot }}"
+  #shell: "sudo -u vagrant -i -- wp plugin install http://downloads.wordpress.org/plugin/w3-total-cache.zip --activate --path={{ project_docroot }}"
+  #shell: "sudo -u vagrant -i -- wp theme install twentyfifteen --activate

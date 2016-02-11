@@ -38,7 +38,7 @@
 # Project Language (PHP)
 - include: roles/php.yml
 # - include: roles/php-fpm.yml # TODO
-# - include: roles/composer.yml
+- include: roles/composer.yml
 
 # Project Language (Ruby)
 # - include: roles/bundler.yml
@@ -55,7 +55,7 @@
 # Search Engine
 # - include: roles/solr.yml # TODO
 
-# Make sure that it all works OOTB.
+# Default LAMP Stack: make sure that it all works OOTB.
 - include: roles/devstack.yml
 
 # Drupal and Tools

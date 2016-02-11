@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 VBOX_VERSION_REQUIRED='5.0.0'
-VAGRANT_VERSION_REQUIRED='1.7.4'
+VAGRANT_VERSION_REQUIRED='1.8.1'
 
 ###########################
 ### USAGE AND VERSION INFO
@@ -93,7 +93,7 @@ function install_vagrant {
     return
   fi
 
-  local vagrant_url="https://dl.bintray.com/mitchellh/vagrant/vagrant_$VAGRANT_VERSION_REQUIRED.dmg"
+  local vagrant_url="https://releases.hashicorp.com/vagrant/$VAGRANT_VERSION_REQUIRED/vagrant_$VAGRANT_VERSION_REQUIRED.dmg"
   local vagrant_dmg=$( strip_url "${vagrant_url}" )
   local vagrant_pkg="Vagrant.pkg"
 

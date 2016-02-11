@@ -1,0 +1,2 @@
+---
+# devstack_docroot: '{{ project_docroot }}/devstack'

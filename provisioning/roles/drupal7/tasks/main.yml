@@ -5,8 +5,11 @@
 - name: Decompress D7 tarball
   shell: tar zxvf /tmp/drupal-7.40.tar.gz -C /tmp
 
+- name: Ensure that the document root exists.
+  file: path="{{ drupal7_docroot }}" state="directory"
+
 - name: Move D7 to project docroot
-  shell: "mv /tmp/drupal-7.40/* {{ project_docroot }}; mv /tmp/drupal-7.40/.* {{ project_docroot }}"
+  shell: "mv /tmp/drupal-7.40/* {{ drupal7_docroot }}; mv /tmp/drupal-7.40/.* {{ drupal7_docroot }}"
   ignore_errors: yes
 
 - name: Clean up - Delete D7 tarball
@@ -16,13 +19,13 @@
   ignore_errors: yes
   shell: chmod 777 {{ item }}
   with_items:
-    -  "{{ project_docroot }}/sites/default"
+    -  "{{ drupal7_docroot }}/sites/default"
 
 - name: Install D7 Minimal Site
   command: drush -y si minimal --db-url=mysql://root:@localhost/{{ project_name }} --site-name={{ project_name }} --account-name=admin --account-pass=admin --account-mail='vagrant@localhost.local' --notify=global
   run_once: true
   ignore_errors: yes
   args:
-    chdir: "{{ project_docroot }}"
+    chdir: "{{ drupal7_docroot }}"
 
 # Install Coding Standards tools here or perhaps on the host via bootstrap?

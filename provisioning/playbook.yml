@@ -63,6 +63,7 @@
 # - include: roles/drupal8.yml # Disable after first run to not overwrite everytime
 
 # Wordpress and Tools
+# - include: roles/wp-cli.yml
 # - include: roles/wordpress.yml
 
 # Laravel and Tools

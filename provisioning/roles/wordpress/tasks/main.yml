@@ -1,7 +1,4 @@
 ---
-- name: Installing wp-cli
-  sudo: true
-  get_url: url=https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar dest=/usr/bin/wp mode=0755
 
 # Create empty wordpress database (wp-cli gives you more options with the DB there)
 - template: src=../templates/wordpress.sql.j2 dest=/tmp/wordpress.sql

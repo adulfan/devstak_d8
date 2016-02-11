@@ -55,6 +55,9 @@
 # Search Engine
 # - include: roles/solr.yml # TODO
 
+# Make sure that it all works OOTB.
+- include: roles/devstack.yml
+
 # Drupal and Tools
 # - include: roles/drush.yml
 # - include: roles/acquia_insight.yml

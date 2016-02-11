@@ -4,11 +4,8 @@
 # Ignore Vagrant files
 .vagrant
 
-# Ignore opcache web viewer
-opcache.php
-
-# Ignore memcache web viewer
-memcached.php
+# Ignore the document root. Various roles install files there.
+/docroot
 
 # Ignore mkdocs build built docs artifacts
 documentation/site

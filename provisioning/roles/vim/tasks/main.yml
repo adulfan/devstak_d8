@@ -3,23 +3,18 @@
   apt: name={{ item }} state=present
   with_items:
     - vim-nox
-  sudo: yes
 
 - name: Install vimrc file
   template:
     src: vimrc.j2
     dest: "{{ vimconfig }}"
     force: no
-    owner: vagrant
-    group: vagrant
     mode: 0644
 
 - name: Create vim configuration directories
   file:
     path: "{{ vimfiles }}/{{ item }}"
     state: directory
-    owner: vagrant
-    group: vagrant
     recurse: yes
   with_items:
     - autoload
@@ -37,8 +32,6 @@
     src: "/tmp/{{ item.plugin }}.tar.gz"
     dest: "{{ vimfiles }}/bundle"
     copy: no
-    owner: vagrant
-    group: vagrant
   with_items: vim_plugin_info
 
 # With ansible 2.0, we can do this with the copy module.

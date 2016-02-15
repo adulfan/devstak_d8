@@ -39,3 +39,6 @@
   command: mv {{ vimfiles }}/bundle/{{ item.plugin }}-{{ item.version }}/autoload/pathogen.vim {{ vimfiles }}/autoload/.
   with_items: vim_plugin_info
   when: item.plugin == 'vim-pathogen'
+
+- name: Generate *.pyc files and plugin help tags.
+  command: vim +Helptags +q

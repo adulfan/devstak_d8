@@ -43,6 +43,9 @@
 # Project Language (Ruby)
 # - include: roles/bundler.yml
 
+# Project Language (Java)
+# - include: roles/java.yml
+
 # Cacheing Layers
 # - include: roles/memcached.yml
 # - include: roles/redis.yml

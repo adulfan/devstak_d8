@@ -1,10 +1,10 @@
 ---
 - name: Configure Project VirtualHost
-  template: src=../templates/vhost.conf.j2 dest=/etc/apache2/sites-available/{{ project_name }}.conf
+  template: src=vhost.conf.j2 dest=/etc/apache2/sites-available/{{ project_name }}.conf
   register: http_vhost
 
 - name: Configure Project HTTPS VirtualHost
-  template: src=../templates/vhost-ssl.conf.j2 dest=/etc/apache2/sites-available/{{ project_name }}-ssl.conf
+  template: src=vhost-ssl.conf.j2 dest=/etc/apache2/sites-available/{{ project_name }}-ssl.conf
   register: https_vhost
 
 - name: Enable Project VirtualHost

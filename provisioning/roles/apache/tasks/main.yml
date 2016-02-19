@@ -26,6 +26,3 @@
   lineinfile: >
     dest="/etc/apache2/envvars"
     line="export APPLICATION_ENV=local"
-
-- name: Restart Apache
-  service: name=apache2 state=restarted

@@ -1,1 +1,4 @@
 ---
+project_name: devstack
+project_hostname: devstack.vm
+project_docroot: /var/www/devstack/docroot

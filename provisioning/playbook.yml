@@ -33,6 +33,7 @@
 
 # Web Server
 - include: roles/apache.yml
+- include: roles/apache-config.yml
 # - include: roles/nginx.yml # TODO
 
 # Project Language (PHP)

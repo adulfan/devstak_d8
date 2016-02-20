@@ -14,6 +14,8 @@
     command: "require"
     arguments: "behat/behat=*"
     working_dir: "{{ devstack_composer_home }}"
+  tags:
+    - phpqat
 
 - name: Install PHP_Depend
   become: yes
@@ -22,6 +24,8 @@
     command: "require"
     arguments: "pdepend/pdepend=*"
     working_dir: "{{ devstack_composer_home }}"
+  tags:
+    - phpqat
 
 - name: Install PHP_CodeSniffer
   become: yes
@@ -30,6 +34,8 @@
     command: "require"
     arguments: "squizlabs/php_codesniffer=*"
     working_dir: "{{ devstack_composer_home }}"
+  tags:
+    - phpqat
 
 - name: Install PHPUnit
   become: yes
@@ -38,6 +44,8 @@
     command: "require"
     arguments: "phpunit/phpunit=*"
     working_dir: "{{ devstack_composer_home }}"
+  tags:
+    - phpqat
 
 - name: Install vfsStream
   become: yes
@@ -46,6 +54,8 @@
     command: "require"
     arguments: "mikey179/vfsStream=*"
     working_dir: "{{ devstack_composer_home }}"
+  tags:
+    - phpqat
 
 - name: Install PHPMD
   become: yes
@@ -54,7 +64,8 @@
     command: "require"
     arguments: "phpmd/phpmd=*"
     working_dir: "{{ devstack_composer_home }}"
-
+  tags:
+    - phpqat
 
 - name: Install phploc
   become: yes
@@ -63,6 +74,8 @@
     command: "require"
     arguments: "phploc/phploc=*"
     working_dir: "{{ devstack_composer_home }}"
+  tags:
+    - phpqat
 
 - name: Install phpdox
   become: yes
@@ -71,6 +84,8 @@
     command: "require"
     arguments: "theseer/phpdox=*"
     working_dir: "{{ devstack_composer_home }}"
+  tags:
+    - phpqat
 
 - name: Install phpmetrics
   become: yes
@@ -79,6 +94,8 @@
     command: "require"
     arguments: "halleck45/phpmetrics=*"
     working_dir: "{{ devstack_composer_home }}"
+  tags:
+    - phpqat
 
 - name: Install phpcpd
   become: yes
@@ -87,6 +104,8 @@
     command: "require"
     arguments: "sebastian/phpcpd=*"
     working_dir: "{{ devstack_composer_home }}"
+  tags:
+    - phpqat
 
 - name: Install qa-tools
   become: yes
@@ -95,3 +114,5 @@
     command: "require"
     arguments: "qa-tools/qa-tools=*"
     working_dir: "{{ devstack_composer_home }}"
+  tags:
+    - phpqat

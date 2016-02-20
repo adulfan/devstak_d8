@@ -42,18 +42,19 @@
     - php
     # - php-fpm # TODO
     - composer
+    - phpqat
 
     ## Project Language (Ruby)
-    # - bundler
+    - bundler
 
     ## Cacheing Layers
-    # - memcached
-    # - redis
-    # - varnish
+    - memcached
+    - redis
+    - varnish
 
     ## Background Job Queue
     # - resque # TODO
-    # - beanstalkd
+    - beanstalkd
 
     ## Search Engine
     # - solr # TODO
@@ -62,10 +63,10 @@
     - devstack
 
     ## Drupal and Tools
-    # - drush
+    - drush
     # - acquia_insight
     # - drupal7 # Disable after first run to not overwrite everytime
-    # - drupal_console
+    - drupal_console
     # - drupal8 # Disable after first run to not overwrite everytime
 
     # Wordpress and Tools
@@ -79,23 +80,22 @@
     # - symfony
 
     # Front End UI Theming Tools
-    # - sass
-    # - gulp
-    # - grunt
-    # - bower
-    # - yeoman
-    # - browsersync
+    - sass
+    - gulp
+    - grunt
+    - bower
+    - yeoman
+    - browsersync
 
     # QA Tools
     # - wraith # TODO
-    - phpqat
     # - jasmine # TODO
 
     # Performance/Debugging Tools/Services
     # - blackfire
 
     # Project Documentation Tools
-    # - mkdocs
+    - mkdocs
     # - phpdocumentor # TODO
     # - jekyll
 
@@ -103,13 +103,13 @@
     # TODO: Put these in an admin dir that is gitignored?
     # - phpmyadmin # TODO
     # - memcachedadmin # TODO
-    # - redis-commander
+    - redis-commander
     # - redis-stat # TODO
     # - webgrind # TODO
     # - phing # TODO
 
     # Managed hosting solution tools
-    # - azure-cli
+    - azure-cli
 
     # Project Site Configuration (any special configs)
     - project

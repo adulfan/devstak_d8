@@ -1,7 +1,0 @@
----
-- hosts: devstack
-  sudo: yes
-  roles:
-    - php
-  tags:
-    - php

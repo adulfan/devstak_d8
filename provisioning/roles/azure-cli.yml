@@ -1,7 +1,0 @@
----
-- hosts: devstack
-  sudo: yes
-  roles:
-    - azure-cli
-  tags:
-    - azure-cli

@@ -1,3 +1,6 @@
 ---
+# TODO: install with ansible npm module
 - name: Install Grunt globally
   command: npm install --global grunt-cli
+  tags:
+    - grunt

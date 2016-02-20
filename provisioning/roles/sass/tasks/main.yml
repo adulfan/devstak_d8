@@ -4,3 +4,5 @@
 # their own native Sass compiler.
 - name: Install Sass gem
   command: gem install sass
+  tags:
+    - sass

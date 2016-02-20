@@ -1,7 +1,0 @@
----
-- hosts: devstack
-  sudo: yes
-  roles:
-    - gulp
-  tags:
-    - gulp

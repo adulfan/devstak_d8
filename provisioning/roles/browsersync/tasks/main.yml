@@ -1,3 +1,5 @@
 ---
 - name: Install BrowserSync globally
   command: npm install --global browser-sync
+  tags:
+    - browsersync

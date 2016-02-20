@@ -4,15 +4,25 @@
   with_items:
     - memcached
     - libmemcached-tools
+  tags:
+    - memcached
 
 - name: Configure memcached
   template: src=../templates/memcached.conf.j2 dest=/etc/memcached.conf
+  tags:
+    - memcached
 
 - name: Restart memcached
   service: name=memcached state=restarted
+  tags:
+    - memcached
 
 - name: Ensure that the document root exists.
   file: path="{{ memcached_docroot }}" state="directory"
+  tags:
+    - memcached
 
 - name: Get memcache web viewer
   get_url: url=https://raw.githubusercontent.com/bainternet/Memchaced-Dashboard/master/index.php dest={{ memcached_docroot }}/memcached.php
+  tags:
+    - memcached

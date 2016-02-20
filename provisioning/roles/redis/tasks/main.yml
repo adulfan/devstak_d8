@@ -6,18 +6,27 @@
     - redis-server
     - redis-tools
     - python-redis
+  tags:
+    - redis
 
 - name: Configure redis
   template: src=../templates/redis.conf.j2 dest=/etc/redis/redis.conf
+  tags:
+    - redis
 
 - name: Configure sentinel
   template: src=../templates/sentinel.conf.j2 dest=/etc/redis/sentinel.conf
+  tags:
+    - redis
 
 - name: Restart redis-server
   service: name=redis-server state=restarted
+  tags:
+    - redis
 
 # https://github.com/junegunn/redis-stat
 - name: Install redis-stat
   command: gem install redis-stat
   tags:
+    - redis
     - redis-stat

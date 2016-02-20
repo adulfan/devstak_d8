@@ -1,8 +1,9 @@
 ---
-
+# TODO: clean this up.
 # Create empty wordpress database (wp-cli gives you more options with the DB there)
 - template: src=../templates/wordpress.sql.j2 dest=/tmp/wordpress.sql
 - mysql_db: name={{ project_name }} state=import target=/tmp/wordpress.sql
+
 
 - name: Downloading Wordpress
   shell: "sudo -u vagrant -i -- wp core download --path={{ project_docroot }}"

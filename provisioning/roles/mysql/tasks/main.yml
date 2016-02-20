@@ -5,18 +5,30 @@
     - mysql-server
     - mysql-client
     - python-mysqldb
+  tags:
+    - mysql
 
 - name: Install DB
   command: mysql_install_db
+  tags:
+    - mysql
 
 - name: Configure MySQL
   template: src=../templates/my.cnf.j2 dest=/etc/mysql/my.cnf
+  tags:
+    - mysql
 
 - name: Restart MySQL
   service: name=mysql state=restarted enabled=yes
+  tags:
+    - mysql
 
 - name: Setup MySQL User
   mysql_user: name=vagrant password=vagrant priv=*.*:ALL host=% state=present
+  tags:
+    - mysql
 
 - name: Create project database
   action: mysql_db db={{ project_name }} state=present
+  tags:
+    - mysql

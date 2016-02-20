@@ -1,6 +1,8 @@
 ---
 - name: Install Composer
   get_url: url=https://getcomposer.org/composer.phar dest=/usr/local/bin/composer mode=0755
+  tags:
+    - composer
 
 # NOTE: We setup the paths to keep composer in a truly globally shared location
 # (and not in a user . directory during install time)
@@ -11,9 +13,13 @@
 # project contains multiple sites, you might need to adjust this.
 - name: Create a COMPOSER_HOME directory
   file: path={{ composer_home }} state=directory
+  tags:
+    - composer
 
 # - name: Create a COMPOSER_VENDOR_DIR directory
 #   file: path={{ composer_home }}/vendor state=directory
+#   tags:
+#     - composer
 
 - name: Set COMPOSER_HOME environment variable
   lineinfile:
@@ -23,6 +29,8 @@
     insertafter: EOF
   environment:
     COMPOSER_HOME: "{{ composer_home }}"
+  tags:
+    - composer
 
 # Leave this disable to allow non-global installs to run in ./vendor (stuff
 # you want to commit) while still allowing global installs to run in COMPOSER_HOME/vendor
@@ -34,6 +42,8 @@
 #     insertafter: EOF
 #   environment:
 #     COMPOSER_VENDOR_DIR: "{{ composer_home }}/vendor"
+#   tags:
+#     - composer
 
 # Keep the binaries in a consistent location so we can make sure they are in PATH
 - name: Set COMPOSER_BIN_DIR environment variable
@@ -45,12 +55,18 @@
   environment:
     PATH: "{{ ansible_env.PATH }}:{{ composer_home }}/vendor/bin"
     COMPOSER_BIN_DIR: "{{ composer_home }}/vendor/bin"
+  tags:
+    - composer
 
 - name: Setting permissions on COMPOSER_HOME
   command: chmod -R 775 {{ composer_home }}
+  tags:
+    - composer
 
 - name: Setting group permissions on COMPOSER_HOME
   command: chgrp -R vagrant {{ composer_home }}
+  tags:
+    - composer
 
 - name: Set PATH to include Composer Global bin
   lineinfile:
@@ -59,6 +75,8 @@
     backrefs: yes
     regexp: 'PATH=(["]*)((?!.*?{{ composer_home }}\/vendor\/bin).*?)(["]*)$'
     line: 'PATH={{ composer_home }}/vendor/bin:\1\2\3'
+  tags:
+    - composer
 
 # - name: Source the system ENV (make sure ENV VARS load everywhere)
 #   shell: . /etc/environment
@@ -74,3 +92,5 @@
 #   become_user: vagrant
 #   command: composer config --global github-oauth.github.com 6ebd8aa451c65b6880adc9c2c6bc6fd60a9147c8
 #   # creates /usr/local/share/composer/auth.json
+#   tags:
+#     - composer

@@ -1,6 +1,0 @@
----
-- hosts: devstack
-  roles:
-    - ssh
-  tags:
-    - ssh

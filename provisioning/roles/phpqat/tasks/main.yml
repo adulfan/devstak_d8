@@ -1,0 +1,57 @@
+---
+# User PEAR
+# - name: Install PHP_CodeSniffer
+#   pear: name=PHP_CodeSniffer state=latest
+
+- name: Install PHP_Depend
+  become: yes
+  become_user: vagrant
+  command: composer global require "pdepend/pdepend=*"
+
+- name: Install PHP_CodeSniffer
+  become: yes
+  become_user: vagrant
+  command: composer global require "squizlabs/php_codesniffer=*"
+
+- name: Install PHPUnit
+  become: yes
+  become_user: vagrant
+  command: composer global require "phpunit/phpunit=*"
+
+- name: Install vfsStream
+  become: yes
+  become_user: vagrant
+  command: composer global require "mikey179/vfsStream=*"
+
+- name: Install PHPMD
+  become: yes
+  become_user: vagrant
+  command: composer global require "phpmd/phpmd=*"
+
+- name: Install phploc
+  become: yes
+  become_user: vagrant
+  command: composer global require "phploc/phploc=*"
+
+- name: Install phpdox
+  become: yes
+  become_user: vagrant
+  command: composer global require "theseer/phpdox=*"
+
+- name: Install phpmetrics
+  become: yes
+  become_user: vagrant
+  command: composer global require 'halleck45/phpmetrics=*'
+
+- name: Install phpcpd
+  become: yes
+  become_user: vagrant
+  command: composer global require "sebastian/phpcpd=*"
+
+- name: Install qa-tools
+  become: yes
+  become_user: vagrant
+  command: composer global require "qa-tools/qa-tools=*"
+
+# - name: Install Behat (fails ATM)
+#   command: composer global require "behat/behat=*"

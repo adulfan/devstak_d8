@@ -85,7 +85,7 @@
 
 # QA Tools
 # - include: roles/wraith.yml # TODO
-# - include: phpcqt.yml # TODO Various PHP Code Quality tools in VM
+- include: roles/phpqat.yml
 # - include: roles/jasmine.yml # TODO
 
 # Performance/Debugging Tools/Services

@@ -1,57 +1,97 @@
 ---
-# User PEAR
+# http://docs.ansible.com/ansible/composer_module.html
+# http://docs.ansible.com/ansible/pear_module.html
+
+# Use PEAR
 # - name: Install PHP_CodeSniffer
 #   pear: name=PHP_CodeSniffer state=latest
+
+# Use composer
+- name: Install Behat
+  become: yes
+  become_user: vagrant
+  composer:
+    command: "require"
+    arguments: "behat/behat=*"
+    working_dir: "{{ devstack_composer_home }}"
 
 - name: Install PHP_Depend
   become: yes
   become_user: vagrant
-  command: composer global require "pdepend/pdepend=*"
+  composer:
+    command: "require"
+    arguments: "pdepend/pdepend=*"
+    working_dir: "{{ devstack_composer_home }}"
 
 - name: Install PHP_CodeSniffer
   become: yes
   become_user: vagrant
-  command: composer global require "squizlabs/php_codesniffer=*"
+  composer:
+    command: "require"
+    arguments: "squizlabs/php_codesniffer=*"
+    working_dir: "{{ devstack_composer_home }}"
 
 - name: Install PHPUnit
   become: yes
   become_user: vagrant
-  command: composer global require "phpunit/phpunit=*"
+  composer:
+    command: "require"
+    arguments: "phpunit/phpunit=*"
+    working_dir: "{{ devstack_composer_home }}"
 
 - name: Install vfsStream
   become: yes
   become_user: vagrant
-  command: composer global require "mikey179/vfsStream=*"
+  composer:
+    command: "require"
+    arguments: "mikey179/vfsStream=*"
+    working_dir: "{{ devstack_composer_home }}"
 
 - name: Install PHPMD
   become: yes
   become_user: vagrant
-  command: composer global require "phpmd/phpmd=*"
+  composer:
+    command: "require"
+    arguments: "phpmd/phpmd=*"
+    working_dir: "{{ devstack_composer_home }}"
+
 
 - name: Install phploc
   become: yes
   become_user: vagrant
-  command: composer global require "phploc/phploc=*"
+  composer:
+    command: "require"
+    arguments: "phploc/phploc=*"
+    working_dir: "{{ devstack_composer_home }}"
 
 - name: Install phpdox
   become: yes
   become_user: vagrant
-  command: composer global require "theseer/phpdox=*"
+  composer:
+    command: "require"
+    arguments: "theseer/phpdox=*"
+    working_dir: "{{ devstack_composer_home }}"
 
 - name: Install phpmetrics
   become: yes
   become_user: vagrant
-  command: composer global require 'halleck45/phpmetrics=*'
+  composer:
+    command: "require"
+    arguments: "halleck45/phpmetrics=*"
+    working_dir: "{{ devstack_composer_home }}"
 
 - name: Install phpcpd
   become: yes
   become_user: vagrant
-  command: composer global require "sebastian/phpcpd=*"
+  composer:
+    command: "require"
+    arguments: "sebastian/phpcpd=*"
+    working_dir: "{{ devstack_composer_home }}"
 
 - name: Install qa-tools
   become: yes
   become_user: vagrant
-  command: composer global require "qa-tools/qa-tools=*"
-
-# - name: Install Behat (fails ATM)
-#   command: composer global require "behat/behat=*"
+  composer:
+    command: "require"
+    arguments: "qa-tools/qa-tools=*"
+    working_dir: "{{ devstack_composer_home }}"

@@ -1,2 +1,3 @@
 ---
-# devstack_docroot: '{{ project_docroot }}/devstack'
+devstack_docroot: '{{ project_docroot }}/devstack'
+devstack_composer_home: '/usr/local/share/composer'

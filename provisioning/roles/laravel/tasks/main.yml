@@ -8,8 +8,10 @@
 - name: Install laravel installer with composer
   become: yes
   become_user: vagrant
-  command: composer global require "laravel/installer{{ laravel_installer_version }}"
-  # command: composer global require --prefer-source "laravel/installer{{ laravel_installer_version }}"
+  composer:
+    command: "require"
+    arguments: "laravel/installer={{ laravel_installer_version }}"
+    working_dir: "{{ devstack_composer_home }}"
 
 - name: Ensure that the document root exists.
   file: path="{{ laravel_base }}" state="directory"

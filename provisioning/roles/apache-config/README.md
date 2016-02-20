@@ -31,10 +31,11 @@ the `dependencies` key:
 
 ## Variables
 
-- `apache_name`: used in the vhost and log file names (default `devstack`)
-- `apache_hostname`: the full hostname (default `devstack.vm`)
+- `apache_name`: used in the vhost and log file names
+  (default `{{ project_name }}`)
+- `apache_hostname`: the full hostname (default `{{ project_hostname }}`)
 - `apache_docroot`: the full path to the document root
-  (default `/var/www/devstack/docroot`)
+  (default `{{ project_docroot }}`)
 
 ## Author Information
 

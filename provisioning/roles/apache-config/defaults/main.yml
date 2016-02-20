@@ -1,4 +1,4 @@
 ---
-apache_name: devstack
-apache_hostname: devstack.vm
-apache_docroot: /var/www/devstack/docroot
+apache_name: "{{ project_name }}"
+apache_hostname: "{{ project_hostname }}"
+apache_docroot: "{{ project_docroot }}"

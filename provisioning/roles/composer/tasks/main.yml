@@ -5,7 +5,7 @@
 # NOTE: We setup the paths to keep composer in a truly globally shared location
 # (and not in a user . directory during install time)
 # NOTE: This is an attempt to keep libraries in a shared location. If this does not
-# work for your project, adjust as needed.
+# work for your project, adjust as needed. It also allows for a consistent bin location.
 #
 # Most of the time this VM is used to host a single site so this works. If your
 # project contains multiple sites, you might need to adjust this.
@@ -59,3 +59,18 @@
     backrefs: yes
     regexp: 'PATH=(["]*)((?!.*?{{ composer_home }}\/vendor\/bin).*?)(["]*)$'
     line: 'PATH={{ composer_home }}/vendor/bin:\1\2\3'
+
+# - name: Source the system ENV (make sure ENV VARS load everywhere)
+#   shell: . /etc/environment
+#
+# # TODO: we likely need to change this or ask users to enter this, sadly.
+# # TODO: this token is an example personal token to be replaced with your own.
+# # https://github.com/settings/tokens/new?scopes=repo&description=Composer+on+devstack+2016-02-20+0147
+# # When install package via composer you will hit API limits and will need to add
+# # your own like so:
+
+# - name: Set Composer GitHub Personal OAuth Token Example (update with your own)
+#   become: yes
+#   become_user: vagrant
+#   command: composer config --global github-oauth.github.com 6ebd8aa451c65b6880adc9c2c6bc6fd60a9147c8
+#   # creates /usr/local/share/composer/auth.json

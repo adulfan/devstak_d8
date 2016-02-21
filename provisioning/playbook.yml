@@ -49,6 +49,7 @@
     ## Project Language (Java)
     ## If you want to install Oracle's JRE/JDK, then make sure to read the instructions.
     # - { role: java-oracle, tags: ['java-oracle'] }
+    # - { role: java-open, tags: ['java-open'] }
 
 # Cacheing Layers
 # - include: roles/memcached.yml

@@ -1,10 +1,11 @@
 # Java
 
-This is a role to install and configure Java inside the host VM according to your project standards and needs.
+This is a role to install and configure Java (Oracle version) inside the host VM
+according to your project standards and needs.
 
 ## Instructions
 
-Enable this role by uncommenting the `java` line in the main `playbook.yml`.
+Enable this role by uncommenting the `java-oracle` line in the main `playbook.yml`.
 
 Download the required tarballs to the `src/` directory. See the [README](./src)
 there for details.

@@ -43,8 +43,12 @@
 # Project Language (Ruby)
 # - include: roles/bundler.yml
 
-# Project Language (Java)
-# - include: roles/java.yml
+- hosts: devstack
+  sudo: yes
+  roles:
+    ## Project Language (Java)
+    ## If you want to install Oracle's JRE/JDK, then make sure to read the instructions.
+    # - { role: java-oracle, tags: ['java-oracle'] }
 
 # Cacheing Layers
 # - include: roles/memcached.yml

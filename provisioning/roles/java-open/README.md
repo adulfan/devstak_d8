@@ -9,6 +9,8 @@ Enable the `java-open` role by uncommenting the appropriate line in the main
 `playbook.yml`.
 
 ## Variables
+- `java_main_version`: major version number (default: `7`)
+- `java_jre_or_jdk`: whether to install the JRE or JDK (default: `jre`)
 
 ## Author Information
 

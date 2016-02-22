@@ -1,6 +1,6 @@
 # PHP Quality Assurance Toolchain
 
-This is a role to install and configure the PHP QAT tools inside the host VM according to your project standards and needs.
+This is a role to install and configure the PHP QA Toolchain inside the host VM according to your project standards and needs.
 
 * http://phpqatools.org/
 

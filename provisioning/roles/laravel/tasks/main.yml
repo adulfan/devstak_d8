@@ -12,7 +12,7 @@
   become_user: vagrant
   composer:
     command: "require"
-    arguments: "laravel/installer={{ laravel_installer_version }}"
+    arguments: "laravel/installer{{ laravel_installer_version }}"
     working_dir: "{{ devstack_composer_home }}"
   tags:
     - laravel

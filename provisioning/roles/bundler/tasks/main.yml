@@ -1,3 +1,5 @@
 ---
 - name: Install Bundler gem
   command: gem install bundler
+  tags:
+    - bundler

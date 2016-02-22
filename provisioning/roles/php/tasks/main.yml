@@ -30,48 +30,78 @@
     - php5-xmlrpc
     - php5-xsl
     - libgv-php5
+  tags:
+    - php
 
 - name: Enable Apache mod_php
   command: a2enmod php5
+  tags:
+    - php
 
 # Make MCrypt Available
 - name: Enable mcrypt in modphp
   # command: php5enmod mcrypt
   file: src=/etc/php5/mods-available/mcrypt.ini dest=/etc/php5/apache2/conf.d/20-mcrypt.ini state=link force=yes
+  tags:
+    - php
 
 - name: Enable mcrypt on php cli
   # command: php5enmod mcrypt
   file: src=/etc/php5/mods-available/mcrypt.ini dest=/etc/php5/cli/conf.d/20-mcrypt.ini state=link force=yes
+  tags:
+    - php
 
 - name: Configure Apache mod_php php.ini
   template: src=../templates/apache2-php.ini.j2 dest=/etc/php5/apache2/php.ini
+  tags:
+    - php
 
 - name: Configure CLI php.ini
   template: src=../templates/cli-php.ini.j2 dest=/etc/php5/cli/php.ini
+  tags:
+    - php
 
 - name: Configure PHP Xdebug
   template: src=../templates/xdebug.ini.j2 dest=/etc/php5/mods-available/xdebug.ini
+  tags:
+    - php
 
 - name: Enable PHP Xdebug
   command: php5enmod xdebug
+  tags:
+    - php
 
 - name: Configure PHP XHprof
   template: src=../templates/xhprof.ini.j2 dest=/etc/php5/mods-available/xhprof.ini
+  tags:
+    - php
 
 - name: Enable PHP XHprof
   command: php5enmod xhprof
+  tags:
+    - php
 
 - name: Configure PHP Opcache
   template: src=../templates/opcache.ini.j2 dest=/etc/php5/mods-available/opcache.ini
+  tags:
+    - php
 
 - name: Enable PHP Opcache
   command: php5enmod opcache
+  tags:
+    - php
 
 - name: Ensure that the document root exists.
   file: path="{{ php_docroot }}" state="directory"
+  tags:
+    - php
 
 - name: Get Opcache web viewer
   get_url: url=https://raw.github.com/rlerdorf/opcache-status/master/opcache.php dest={{ php_docroot }}
+  tags:
+    - php
 
 - name: Restart Apache
   service: name=apache2 state=restarted
+  tags:
+    - php

@@ -1,9 +1,13 @@
 ---
 - name: Ensure that the document root exists.
   file: path="{{ devstack_docroot }}" state="directory"
+  tags:
+    - devstack
 
 - name: Copy files to the document root.
   copy: src="{{ item }}" dest="{{ devstack_docroot }}"
   with_items:
     - index.html
     - index.php
+  tags:
+    - devstack

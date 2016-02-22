@@ -1,18 +1,26 @@
 # Reference: https://laravel.com/docs/5.2
 ---
 # TODO: there must be a better way to do this to make sure composer vars are
-# used globally (not per task)?
+# used globally (not per task)? THIS MIGHT NOT BE NEEDED ANY MORE. TEST!
 - name: Source the system ENV (make sure ENV VARS load everywhere)
   shell: . /etc/environment
+  tags:
+    - laravel
 
 - name: Install laravel installer with composer
   become: yes
   become_user: vagrant
-  command: composer global require "laravel/installer{{ laravel_installer_version }}"
-  # command: composer global require --prefer-source "laravel/installer{{ laravel_installer_version }}"
+  composer:
+    command: "require"
+    arguments: "laravel/installer{{ laravel_installer_version }}"
+    working_dir: "{{ devstack_composer_home }}"
+  tags:
+    - laravel
 
 - name: Ensure that the document root exists.
   file: path="{{ laravel_base }}" state="directory"
+  tags:
+    - laravel
 
 - name: Create a Laravel project.
   become: yes
@@ -21,6 +29,8 @@
   args:
     chdir: "{{ laravel_base }}"
     creates: "{{ laravel_base }}/{{ laravel_folder }}"
+  tags:
+    - laravel
 
 - name: Ensure that the web server can write to directories.
   file:
@@ -32,23 +42,35 @@
   with_items:
     - storage
     - bootstrap/cache
+  tags:
+    - laravel
 
 # Copy Apache web server templates into place that are laravel specific?
 # First pass. Perhaps these work here, or perhaps we need to add
 # nginx as well or organize these differently?
 - name: Configure Laravel Project VirtualHost
   template: src=../templates/apache-vhost.conf.j2 dest=/etc/apache2/sites-available/{{ project_name }}.conf
+  tags:
+    - laravel
 
 - name: Configure Laravel Project HTTPS VirtualHost
   template: src=../templates/apache-vhost-ssl.conf.j2 dest=/etc/apache2/sites-available/{{ project_name }}-ssl.conf
+  tags:
+    - laravel
 
 - name: Enable Project VirtualHost
   command: a2ensite {{ project_name }}
+  tags:
+    - laravel
 
 - name: Enable Project HTTPS VirtualHost
   command: a2ensite {{ project_name }}-ssl
+  tags:
+    - laravel
 
 - name: Restart Apache
   service: name=apache2 state=restarted
+  tags:
+    - laravel
 
 # TODO: Copy nginx web server configs that are laravel specific?

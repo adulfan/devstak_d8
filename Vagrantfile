@@ -8,6 +8,11 @@ project_hostname = project_name + ".vm"
 ip_address = "172.22.22.20"
 project_root = "/var/www/" + project_name + "/"
 project_docroot = project_root + "docroot"
+# TODO: pass platform version so users don't have to dig deep into roles?
+# drupal_version?
+# wordpress_version?
+# laravel_version?
+# symfony_version?
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for

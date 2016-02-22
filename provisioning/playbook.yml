@@ -65,10 +65,10 @@
     ## Drupal and Tools
     # - { role: drush, tags: ['drush'] }
     # - { role: drupal_console, tags: ['drupal_console'] }
-    # - { role: drupal, tags: ['drupal'] }
+    - { role: drupal, tags: ['drupal'] }
     # - { role: acquia_insight, tags: ['acquia_insight'] }
     # - { role: acquia_cloud_hooks, tags: ['acquia_cloud_hooks'] } # TODO
-    # - { role: pantehon_termius, tags: ['pantehon_termius'] } # TODO
+    # - { role: pantheon_termius, tags: ['pantheon_termius'] } # TODO
 
     # Wordpress and Tools
     # - { role: wp-cli, tags: ['wp-cli'] }

@@ -17,7 +17,15 @@
   when: not drupal_installed.stat.exists
 
 - name: Install Drupal Standard Site
-  command: drush @{{ project_hostname }} -y si standard --db-url=mysql://root:@localhost/{{ drupal_project_name }} --site-name={{ drupal_project_name }} --account-name=admin --account-pass=admin --account-mail='vagrant@localhost.local' --notify=global
+  command: >
+    drush @{{ project_hostname }}
+    -y site-install standard
+    --db-url=mysql://root:@localhost/{{ drupal_project_name }}
+    --site-name={{ drupal_project_name }}
+    --account-name=admin
+    --account-pass=admin
+    --account-mail='vagrant@localhost.local'
+    --notify=global
   run_once: true
   ignore_errors: yes
   when: not drupal_installed.stat.exists

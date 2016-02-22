@@ -1,6 +1,7 @@
 # Drupal
 
-This is a role to install and configure Drupal inside the host VM according to your project standards and needs.
+This is a role to install and configure Drupal inside the guest VM according to
+your project standards and needs.
 
 * https://www.drupal.org
 

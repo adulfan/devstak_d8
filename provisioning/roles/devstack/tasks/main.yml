@@ -3,11 +3,12 @@
   file: path="{{ devstack_docroot }}" state="directory"
 
 - name: Test if an index.php is present
-  stat: path="{{ drupal_docroot }}/index.php"
+  stat: path="{{ devstack_docroot }}/index.php"
   register: index_present
 
 - name: Copy files to the document root.
   copy: src="{{ item }}" dest="{{ devstack_docroot }}"
   with_items:
     - index.php
+    - index.html
   when: not index_present.stat.exists

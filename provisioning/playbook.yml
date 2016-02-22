@@ -64,10 +64,11 @@
 
     ## Drupal and Tools
     # - { role: drush, tags: ['drush'] }
-    # - { role: acquia_insight, tags: ['acquia_insight'] }
-    # - { role: drupal7, tags: ['drupal7'] } # Disable after first run to not overwrite everytime
     # - { role: drupal_console, tags: ['drupal_console'] }
-    # - { role: drupal8, tags: ['drupal8'] } # Disable after first run to not overwrite everytime
+    - { role: drupal, tags: ['drupal'] }
+    # - { role: acquia_insight, tags: ['acquia_insight'] }
+    # - { role: acquia_cloud_hooks, tags: ['acquia_cloud_hooks'] } # TODO
+    # - { role: pantheon_termius, tags: ['pantheon_termius'] } # TODO
 
     # Wordpress and Tools
     # - { role: wp-cli, tags: ['wp-cli'] }
@@ -110,6 +111,7 @@
 
     # Managed hosting solution tools
     # - { role: azure-cli, tags: ['azure-cli'] }
+    # - { role: aws-cli, tags: ['aws-cli'] } # TODO
 
     # Project Site Configuration (any special configs)
     - { role: project, tags: ['project'] }

@@ -1,2 +1,0 @@
----
-drupal7_docroot: '{{ project_docroot }}'

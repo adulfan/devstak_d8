@@ -1,16 +1,15 @@
 <IfModule mod_ssl.c>
 	<VirtualHost _default_:443>
-    ServerName {{ project_hostname }}
-    ServerAlias {{ project_hostname }}
-    ServerAlias www.{{ project_hostname }}
+    ServerName {{ apache_hostname }}
+    ServerAlias www.{{ apache_hostname }}
 
     SetEnv APPLICATION_ENV 'local'
 
     ServerAdmin vagrant@localhost
 
-    DocumentRoot {{ project_docroot }}/laravel/public
+    DocumentRoot {{ apache_docroot }}
 
-    <Directory "{{ project_docroot }}/laravel/public">
+    <Directory "{{ apache_docroot }}/">
       Options All
       AllowOverride All
       Order allow,deny
@@ -26,8 +25,8 @@
     #LogLevel info ssl:warn
     LogLevel debug
 
-    ErrorLog ${APACHE_LOG_DIR}/{{ project_name }}-error.log
-    CustomLog ${APACHE_LOG_DIR}/{{ project_name }}-access.log combined
+    ErrorLog ${APACHE_LOG_DIR}/{{ apache_name }}-error.log
+    CustomLog ${APACHE_LOG_DIR}/{{ apache_name }}-access.log combined
 
 		# For most configuration files from conf-available/, which are
 		# enabled or disabled at a global level, it is possible to

@@ -1,0 +1,20 @@
+---
+- name: Configure Project VirtualHost
+  template: src=vhost.conf.j2 dest=/etc/apache2/sites-available/{{ apache_name }}.conf
+  register: http_vhost
+
+- name: Configure Project HTTPS VirtualHost
+  template: src=vhost-ssl.conf.j2 dest=/etc/apache2/sites-available/{{ apache_name }}-ssl.conf
+  register: https_vhost
+
+- name: Enable Project VirtualHost
+  command: a2ensite {{ apache_name }}
+  when: http_vhost|changed
+
+- name: Enable Project HTTPS VirtualHost
+  command: a2ensite {{ apache_name }}-ssl
+  when: https_vhost|changed
+
+- name: Restart Apache
+  service: name=apache2 state=restarted
+  when: http_vhost|changed or https_vhost|changed

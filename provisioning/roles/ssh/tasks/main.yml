@@ -5,15 +5,9 @@
     dest: /home/vagrant/.ssh/id_rsa
     mode: 0600
     force: yes
-  tags:
-    - ssh
 
 - name: Validate SSH authorized_keys permissions
   command: chmod 600 /home/vagrant/.ssh/authorized_keys
-  tags:
-    - ssh
 
 - name: Validate SSH directory permissions
   command: chmod 700 /home/vagrant/.ssh
-  tags:
-    - ssh

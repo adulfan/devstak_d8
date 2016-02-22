@@ -1,29 +1,21 @@
 ---
 - name: Install Drush
   get_url: url=https://github.com/drush-ops/drush/releases/download/8.0.3/drush.phar dest=/usr/local/bin/drush mode=0755
-  tags:
-    - drush
 
 - name: Create a ~/.drush directory
   sudo: yes
   sudo_user: vagrant
   file: path=/home/vagrant/.drush/ state=directory
-  tags:
-    - drush
 
 - name: Ensure /etc/drush directory exists
   file:
     path: /etc/drush
     state: directory
-  tags:
-    - drush
 
 - name: Configure project default local Drush aliases
   template:
     src: project.aliases.drushrc.php.j2
     dest: /etc/drush/{{ project_name }}.aliases.drushrc.php
-  tags:
-    - drush
 
 # - name: Enable drush autocomplete
 #   lineinfile:
@@ -31,5 +23,3 @@
 #     dest: "{{ ansible_env.HOME }}/.bashrc"
 #     state: present
 #     insertafter: EOF
-#   tags:
-#     - drush

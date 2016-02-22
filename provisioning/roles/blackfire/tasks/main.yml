@@ -1,18 +1,12 @@
 ---
 - name: add blackfire apt key
   apt_key: url=https://packagecloud.io/gpg.key
-  tags:
-    - blackfire
 
 - name: add blackfire repository
   apt_repository: repo='deb http://packages.blackfire.io/debian any main'
-  tags:
-    - blackfire
 
 - name: Update APT cache
   apt: update_cache=yes
-  tags:
-    - blackfire
 
 # Install Blackfire
 - name: install blackfire
@@ -20,5 +14,3 @@
   with_items:
     - blackfire-agent
     - blackfire-php
-  tags:
-    - blackfire

@@ -1,5 +1,3 @@
 ---
 - name: Download Drupal console installer
   get_url: url=http://drupalconsole.com/installer dest=/usr/local/bin/drupal mode=0755
-  tags:
-    - drupal_console

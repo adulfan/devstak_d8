@@ -1,12 +1,8 @@
 ---
 - name: Install the Symfony installer
   shell: "curl -LsS http://symfony.com/installer -o /usr/local/bin/symfony"
-  tags:
-    - symfony
 
 - name: Set symfony mode
   shell: "chmod 755 /usr/local/bin/symfony"
-  tags:
-    - symfony
 
 # Install Coding Standards tools here or perhaps on the host via bootstrap?

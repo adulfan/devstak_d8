@@ -1,5 +1,3 @@
 ---
 - name: Install azure-cli globally
   command: npm install --global azure-cli
-  tags:
-    - azure-cli

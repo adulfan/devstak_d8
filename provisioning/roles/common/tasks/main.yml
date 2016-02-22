@@ -1,140 +1,100 @@
 ---
 - name: Update APT cache
   apt: update_cache=yes cache_valid_time=3600
-  tags:
-    - common
 
 - name: Upgrade all base packages
   apt: upgrade=dist
-  tags:
-    - common
 
 - name: Clean out old packages if any
   command: apt-get -y autoremove
-  tags:
-    - common
 
 # For adding PPA's more easily
 - name: Install software-properties-common
   apt: name={{ item }} state=present
   with_items:
     - software-properties-common
-  tags:
-    - common
 
 # Some npm (and other tools) install's can need this at times
 - name: Install build-essential
   apt: name={{ item }} state=present
   with_items:
     - build-essential
-  tags:
-    - common
 
 # Some pip's can use this at times
 - name: Install python-dev
   apt: name={{ item }} state=present
   with_items:
     - python-dev
-  tags:
-    - common
 
 - name: Install python pip
   apt: name={{ item }} state=present
   with_items:
     - python-pip
-  tags:
-    - common
 
 # Some gems can use this at times
 - name: Install ruby-dev
   apt: name={{ item }} state=present
   with_items:
     - ruby-dev
-  tags:
-    - common
 
 - name: Install wget
   apt: name={{ item }} state=present
   with_items:
     - wget
-  tags:
-    - common
 
 - name: Install curl
   apt: name={{ item }} state=present
   with_items:
     - curl
-  tags:
-    - common
 
 - name: Install unzip
   apt: name={{ item }} state=present
   with_items:
     - unzip
-  tags:
-    - common
 
 - name: Install imagemagick
   apt: name={{ item }} state=present
   with_items:
     - imagemagick
-  tags:
-    - common
 
 - name: Install graphviz
   apt: name={{ item }} state=present
   with_items:
     - graphviz
-  tags:
-    - common
 
 # Convert line endings
 - name: Install dos2unix
   apt: name={{ item }} state=present
   with_items:
     - dos2unix
-  tags:
-    - common
 
 - name: Install re2c
   apt: name={{ item }} state=present
   with_items:
     - re2c
-  tags:
-    - common
 
 - name: Install supervisor
   apt: name={{ item }} state=present
   with_items:
     - supervisor
-  tags:
-    - common
 
 - name: Install whois
   apt: name={{ item }} state=present
   with_items:
     - whois
-  tags:
-    - common
 
 # # Automatically install security upgrade
 # - name: Install unattended-upgrades
 #   apt: name={{ item }} state=present
 #   with_items:
 #     - unattended-upgrades
-#   tags:
-#     - common
 
 # Not generally needed by us, but here for reference.
 # - name: Create locale
 #   locale_gen: name=en_US.UTF-8 state=present
-#   tags:
-#     - common
 #
 # - name: Set locale
 #   lineinfile: line='LC_ALL=en_US.UTF-8' dest=/etc/default/locale
-#   tags:
-#     - common
 
 # Useful if your application needs to check the environment it's running on
 - name: Export APPLICATION_ENV in .profile
@@ -142,5 +102,3 @@
   lineinfile: >
     dest="~/.profile"
     line="export APPLICATION_ENV=local"
-  tags:
-    - common

@@ -12,104 +12,104 @@
   sudo: yes
   roles:
     ## apt-get update and some basic tools required elsewhere
-    - common
+    - { role: common, tags: ['common'] }
 
     ## Include your private SSH key in the VM
-    - ssh
+    - { role: ssh, tags: ['ssh'] }
 
     ## Git and your private .gitconfig in the VM
-    - git
+    - { role: git, tags: ['git'] }
 
     ## Vim and some standard plugins in the VM
-    - vim
+    - { role: vim, tags: ['vim'] }
 
     ## Additional Tools
-    - nodejs # Includes npm
+    - { role: nodejs, tags: ['nodejs'] } # Includes npm
 
     ## Database
-    - mysql
-    # - mariadb
-    # - percona
-    # - mongodb
-    # - postgresql
-    # - sqlite
+    - { role: mysql, tags: ['mysql'] }
+    # - { role: mariadb, tags: ['mariadb'] }
+    # - { role: percona, tags: ['percona'] }
+    # - { role: mongodb, tags: ['mongodb'] }
+    # - { role: postgresql, tags: ['postgresql'] }
+    # - { role: sqlite, tags: ['sqlite'] }
 
     ## Web Server
-    - apache
-    # - nginx # TODO
+    - { role: apache, tags: ['apache'] }
+    # - { role: nginx, tags: ['nginx'] } # TODO
 
     ## Project Language (PHP)
-    - php
-    # - php-fpm # TODO
-    - composer
-    # - phpqat
+    - { role: php, tags: ['php'] }
+    # - { role: php-fpm, tags: ['php-fpm'] } # TODO
+    - { role: composer, tags: ['composer'] }
+    # - { role: phpqat, tags: ['phpqat'] }
 
     ## Project Language (Ruby)
-    # - bundler
+    # - { role: bundler, tags: ['bundler'] }
 
     ## Cacheing Layers
-    # - memcached
-    # - redis
-    # - varnish
+    # - { role: memcached, tags: ['memcached'] }
+    # - { role: redis, tags: ['redis'] }
+    # - { role: varnish, tags: ['varnish'] }
 
     ## Background Job Queue
-    # - resque # TODO
-    # - beanstalkd
+    # - { role: resque, tags: ['resque'] } # TODO
+    # - { role: beanstalkd, tags: ['beanstalkd'] }
 
     ## Search Engine
-    # - solr # TODO
+    # - { role: solr, tags: ['solr'] } # TODO
 
     ## Default LAMP Stack: make sure that it all works OOTB.
-    - devstack
+    - { role: devstack, tags: ['devstack'] }
 
     ## Drupal and Tools
-    # - drush
-    # - acquia_insight
-    # - drupal7 # Disable after first run to not overwrite everytime
-    # - drupal_console
-    # - drupal8 # Disable after first run to not overwrite everytime
+    # - { role: drush, tags: ['drush'] }
+    # - { role: acquia_insight, tags: ['acquia_insight'] }
+    # - { role: drupal7, tags: ['drupal7'] } # Disable after first run to not overwrite everytime
+    # - { role: drupal_console, tags: ['drupal_console'] }
+    # - { role: drupal8, tags: ['drupal8'] } # Disable after first run to not overwrite everytime
 
     # Wordpress and Tools
-    # - wp-cli
-    # - wordpress
+    # - { role: wp-cli, tags: ['wp-cli'] }
+    # - { role: wordpress, tags: ['wordpress'] }
 
     # Laravel and Tools
-    # - laravel
+    # - { role: laravel, tags: ['laravel'] }
 
     # Symfony and Tools
-    # - symfony
+    # - { role: symfony, tags: ['symfony'] }
 
     # Front End UI Theming Tools
-    # - sass
-    # - gulp
-    # - grunt
-    # - bower
-    # - yeoman
-    # - browsersync
+    # - { role: sass, tags: ['sass'] }
+    # - { role: gulp, tags: ['gulp'] }
+    # - { role: grunt, tags: ['grunt'] }
+    # - { role: bower, tags: ['bower'] }
+    # - { role: yeoman, tags: ['yeoman'] }
+    # - { role: browsersync, tags: ['browsersync'] }
 
     # QA Tools
-    # - wraith # TODO
-    # - jasmine # TODO
+    # - { role: wraith, tags: ['wraith'] } # TODO
+    # - { role: jasmine, tags: ['jasmine'] } # TODO
 
     # Performance/Debugging Tools/Services
-    # - blackfire
+    # - { role: blackfire, tags: ['blackfire'] }
 
     # Project Documentation Tools
-    # - mkdocs
-    # - phpdocumentor # TODO
-    # - jekyll
+    # - { role: mkdocs, tags: ['mkdocs'] }
+    # - { role: phpdocumentor, tags: ['phpdocumentor'] } # TODO
+    # - { role: jekyll, tags: ['jekyll'] }
 
     # TODO: Local admin tools to provide admin and analytics in vm
     # TODO: Put these in an admin dir that is gitignored?
-    # - phpmyadmin # TODO
-    # - memcachedadmin # TODO
-    # - redis-commander
-    # - redis-stat # TODO
-    # - webgrind # TODO
-    # - phing # TODO
+    # - { role: phpmyadmin, tags: ['phpmyadmin'] } # TODO
+    # - { role: memcachedadmin, tags: ['memcachedadmin'] } # TODO
+    # - { role: redis-commander, tags: ['redis-commander'] }
+    # - { role: redis-stat, tags: ['redis-stat'] } # TODO
+    # - { role: webgrind, tags: ['webgrind'] } # TODO
+    # - { role: phing, tags: ['phing'] } # TODO
 
     # Managed hosting solution tools
-    # - azure-cli
+    # - { role: azure-cli, tags: ['azure-cli'] }
 
     # Project Site Configuration (any special configs)
-    - project
+    - { role: project, tags: ['project'] }

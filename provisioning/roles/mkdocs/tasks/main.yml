@@ -1,8 +1,6 @@
 ---
 - name: Install MkDocs
   command: pip install mkdocs
-  tags:
-    - mkdocs
 
 # Disable after first provision to not overwrite docs.
 # This has been run the first time for convenience

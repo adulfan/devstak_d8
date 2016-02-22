@@ -2,7 +2,7 @@
 
 $aliases['vm'] = array(
   'uri' => '{{ project_hostname }}',
-  'root' => '/var/www/{{ project_name }}/docroot',
+  'root' => '{{ project_docroot }}',
   'variables' => array(
     'site_name' => '{{ project_hostname }}'
   ),

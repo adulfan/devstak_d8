@@ -1,0 +1,11 @@
+---
+allow_duplicates: no
+dependencies:
+#   - { role: drush }
+#   - { role: composer }
+#   - { role: php }
+#   - { role: apache }
+#   - { role: mysql }
+#   - { role: nodejs }
+#   - { role: git }
+#   - { role: common }

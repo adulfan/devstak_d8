@@ -1,0 +1,19 @@
+---
+# Using these defaults since this is the acquia repo location that we often use.
+# Change as you see fit for your project.
+drupal_project_name: '{{ project_name }}'
+drupal_project_root: '{{ project_root }}'
+drupal_directory_name: 'docroot'
+drupal_docroot: '{{ drupal_project_root }}/{{ drupal_directory_name }}'
+
+# Drupal 8
+# drupal_version: 'drupal'
+
+# Drupal 7
+drupal_version: 'drupal-7'
+
+# Drupal 7-dev
+# drupal_version: 'drupal-7.x'
+
+# Drupal 6
+# drupal_version: 'drupal-6'

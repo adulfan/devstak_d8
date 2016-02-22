@@ -1,0 +1,23 @@
+---
+# This will default to not ovrewrite (-n) so that it is idempotent.
+- name: Test whether Drupal is present.
+  stat: path="{{ drupal_docroot }}/update.php"
+  register: drupal_present
+
+- name: Download Drupal via Drush
+  shell: drush -y dl {{ drupal_version }} --destination={{ drupal_project_root }} --drupal-project-rename={{ drupal_directory_name }}
+  when: not drupal_present.stat.exists
+
+- name: Test whether Drupal is already installed.
+  stat: path="{{ drupal_docroot }}/sites/default/settings.php"
+  register: drupal_installed
+
+- name: Unlock file permissions before install
+  file: path={{ drupal_docroot }}/sites/default mode=0777
+  when: not drupal_installed.stat.exists
+
+- name: Install Drupal Standard Site
+  command: drush @{{ project_hostname }} -y si standard --db-url=mysql://root:@localhost/{{ drupal_project_name }} --site-name={{ drupal_project_name }} --account-name=admin --account-pass=admin --account-mail='vagrant@localhost.local' --notify=global
+  run_once: true
+  ignore_errors: yes
+  when: not drupal_installed.stat.exists

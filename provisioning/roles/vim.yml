@@ -1,7 +1,0 @@
----
-- hosts: devstack
-  sudo: no
-  roles:
-    - vim
-  tags:
-    - vim

@@ -1,4 +1,5 @@
 ---
+# TODO: Perhaps install drupal via drush, drupal console or composer instead?
 - name: Download Drupal 8
   get_url: url=http://ftp.drupal.org/files/projects/drupal-8.0.1.tar.gz dest=/tmp
 

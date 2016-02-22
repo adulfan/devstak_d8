@@ -8,106 +8,108 @@
 # To install a starter site and the dependant stack, simply enable your
 # desired tool such as "drupal", "wordpress", "laravel", "symfony", etc...
 
-# apt-get update and some basic tools required elsewhere
-- include: roles/common.yml
+- hosts: devstack
+  sudo: yes
+  roles:
+    ## apt-get update and some basic tools required elsewhere
+    - { role: common, tags: ['common'] }
 
-# Include your private SSH key in the VM
-- include: roles/ssh.yml
+    ## Include your private SSH key in the VM
+    - { role: ssh, tags: ['ssh'] }
 
-# Git and your private .gitconfig in the VM
-- include: roles/git.yml
+    ## Git and your private .gitconfig in the VM
+    - { role: git, tags: ['git'] }
 
-# Vim and some standard plugins in the VM
-- include: roles/vim.yml
+    ## Vim and some standard plugins in the VM
+    - { role: vim, tags: ['vim'] }
 
-# Additional Tools
-- include: roles/nodejs.yml # Includes npm
+    ## Additional Tools
+    - { role: nodejs, tags: ['nodejs'] } # Includes npm
 
-# Database
-- include: roles/mysql.yml
-# - include: roles/mariadb.yml
-# - include: roles/percona.yml
-# - include: roles/mongodb.yml
-# - include: roles/postgresql.yml
-# - include: roles/sqlite.yml
+    ## Database
+    - { role: mysql, tags: ['mysql'] }
+    # - { role: mariadb, tags: ['mariadb'] }
+    # - { role: percona, tags: ['percona'] }
+    # - { role: mongodb, tags: ['mongodb'] }
+    # - { role: postgresql, tags: ['postgresql'] }
+    # - { role: sqlite, tags: ['sqlite'] }
 
-# Web Server
-- include: roles/apache.yml
-- include: roles/apache-config.yml
-# - include: roles/nginx.yml # TODO
+    ## Web Server
+    - { role: apache, tags: ['apache'] }
+    # - { role: nginx, tags: ['nginx'] } # TODO
 
-# Project Language (PHP)
-- include: roles/php.yml
-# - include: roles/php-fpm.yml # TODO
-- include: roles/composer.yml
+    ## Project Language (PHP)
+    - { role: php, tags: ['php'] }
+    # - { role: php-fpm, tags: ['php-fpm'] } # TODO
+    - { role: composer, tags: ['composer'] }
+    # - { role: phpqat, tags: ['phpqat'] }
 
-# Project Language (Ruby)
-# - include: roles/bundler.yml
+    ## Project Language (Ruby)
+    # - { role: bundler, tags: ['bundler'] }
 
-# Cacheing Layers
-# - include: roles/memcached.yml
-# - include: roles/redis.yml
-# - include: roles/varnish.yml
+    ## Cacheing Layers
+    # - { role: memcached, tags: ['memcached'] }
+    # - { role: redis, tags: ['redis'] }
+    # - { role: varnish, tags: ['varnish'] }
 
-# Background Job Queue
-# - include: roles/resque.yaml # TODO
-# - include: roles/beanstalkd.yaml
+    ## Background Job Queue
+    # - { role: resque, tags: ['resque'] } # TODO
+    # - { role: beanstalkd, tags: ['beanstalkd'] }
 
-# Search Engine
-# - include: roles/solr.yml # TODO
+    ## Search Engine
+    # - { role: solr, tags: ['solr'] } # TODO
 
-# Default LAMP Stack: make sure that it all works OOTB.
-- include: roles/devstack.yml
+    ## Default LAMP Stack: make sure that it all works OOTB.
+    - { role: devstack, tags: ['devstack'] }
 
-# Drupal and Tools
-# - include: roles/drush.yml
-# - include: roles/acquia_insight.yml
-# - include: roles/drupal7.yml # Disable after first run to not overwrite everytime
-# - include: roles/drupal_console.yml
-# - include: roles/drupal8.yml # Disable after first run to not overwrite everytime
+    ## Drupal and Tools
+    # - { role: drush, tags: ['drush'] }
+    # - { role: acquia_insight, tags: ['acquia_insight'] }
+    # - { role: drupal7, tags: ['drupal7'] } # Disable after first run to not overwrite everytime
+    # - { role: drupal_console, tags: ['drupal_console'] }
+    # - { role: drupal8, tags: ['drupal8'] } # Disable after first run to not overwrite everytime
 
-# Wordpress and Tools
-# - include: roles/wp-cli.yml
-# - include: roles/wordpress.yml
+    # Wordpress and Tools
+    # - { role: wp-cli, tags: ['wp-cli'] }
+    # - { role: wordpress, tags: ['wordpress'] }
 
-# Laravel and Tools
-# - include: roles/laravel.yml
+    # Laravel and Tools
+    # - { role: laravel, tags: ['laravel'] }
 
-# Symfony and Tools
-# - include: roles/symfony.yml
+    # Symfony and Tools
+    # - { role: symfony, tags: ['symfony'] }
 
-# Front End UI Theming Tools
-# - include: roles/sass.yml
-# - include: roles/gulp.yml
-# - include: roles/grunt.yml
-# - include: roles/bower.yml
-# - include: roles/yeoman.yml
-# - include: roles/browsersync.yml
+    # Front End UI Theming Tools
+    # - { role: sass, tags: ['sass'] }
+    # - { role: gulp, tags: ['gulp'] }
+    # - { role: grunt, tags: ['grunt'] }
+    # - { role: bower, tags: ['bower'] }
+    # - { role: yeoman, tags: ['yeoman'] }
+    # - { role: browsersync, tags: ['browsersync'] }
 
-# QA Tools
-# - include: roles/wraith.yml # TODO
-# - include: phpcqt.yml # TODO Various PHP Code Quality tools in VM
-# - include: roles/jasmine.yml # TODO
+    # QA Tools
+    # - { role: wraith, tags: ['wraith'] } # TODO
+    # - { role: jasmine, tags: ['jasmine'] } # TODO
 
-# Performance/Debugging Tools/Services
-# - include: roles/blackfire.yml
+    # Performance/Debugging Tools/Services
+    # - { role: blackfire, tags: ['blackfire'] }
 
-# Project Documentation Tools
-# - include: roles/mkdocs.yml
-# - include: roles/phpdocumentor.yml # TODO
-# - include: roles/jekyll.yml
+    # Project Documentation Tools
+    # - { role: mkdocs, tags: ['mkdocs'] }
+    # - { role: phpdocumentor, tags: ['phpdocumentor'] } # TODO
+    # - { role: jekyll, tags: ['jekyll'] }
 
-# TODO: Local admin tools to provide admin and analytics in vm
-# TODO: Put these in an admin dir that is gitignored?
-# - include: roles/phpmyadmin.yml # TODO
-# - include: roles/memcachedadmin.yml # TODO
-# - include: roles/redis-commander.yml
-# - include: roles/redis-stat.yml # TODO
-# - include: roles/webgrind.yml # TODO
-# - include: roles/phing.yml # TODO
+    # TODO: Local admin tools to provide admin and analytics in vm
+    # TODO: Put these in an admin dir that is gitignored?
+    # - { role: phpmyadmin, tags: ['phpmyadmin'] } # TODO
+    # - { role: memcachedadmin, tags: ['memcachedadmin'] } # TODO
+    # - { role: redis-commander, tags: ['redis-commander'] }
+    # - { role: redis-stat, tags: ['redis-stat'] } # TODO
+    # - { role: webgrind, tags: ['webgrind'] } # TODO
+    # - { role: phing, tags: ['phing'] } # TODO
 
-# Managed hosting solution tools
-# - include: roles/azure-cli.yml
+    # Managed hosting solution tools
+    # - { role: azure-cli, tags: ['azure-cli'] }
 
-# Project Site Configuration (any special configs)
-- include: roles/project.yml
+    # Project Site Configuration (any special configs)
+    - { role: project, tags: ['project'] }

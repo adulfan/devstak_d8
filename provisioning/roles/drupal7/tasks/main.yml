@@ -1,4 +1,5 @@
 ---
+# TODO: Perhaps install drupal via drush or composer instead?
 - name: Download Drupal 7
   get_url: url=http://ftp.drupal.org/files/projects/drupal-7.40.tar.gz dest=/tmp
 

@@ -2,6 +2,8 @@
 
 VBOX_VERSION_REQUIRED='5.0.0'
 VAGRANT_VERSION_REQUIRED='1.8.1'
+VAGRANT_DEFAULT_PROVIDER='parallels'
+ANSIBLE_VERSION_REQUIRED='2.0.0.2'
 
 ###########################
 ### USAGE AND VERSION INFO
@@ -55,6 +57,7 @@ function install_command_line_tools {
 }
 
 function install_virtual_box {
+  # TODO: brew install virtualbox instead
   loud "Checking VirtualBox"
   if hash vboxmanage &> /dev/null; then
     VBOX_VERSION_LONG=$( cd ~; vboxmanage --version)
@@ -87,6 +90,7 @@ function install_virtual_box {
 }
 
 function install_vagrant {
+  # TODO: brew install vagrant instead
   loud "Checking Vagrant"
   VAGRANT_VERSION=$( cd ~; vagrant --version 2> /dev/null | awk '{ print $2 }')
   if hash vagrant &> /dev/null && (( $(vercomp $VAGRANT_VERSION $VAGRANT_VERSION_REQUIRED) < 2 )); then
@@ -119,6 +123,10 @@ function install_vagrant {
 
   quiet "Done installing Vagrant"
 }
+
+# function install_parallels {
+#   # TODO: brew install parallels
+# }
 
 function install_vagrant_hostmanager {
   loud "Checking Vagrant Hostmanager"
@@ -158,6 +166,7 @@ function install_homebrew {
 
 function install_ansible {
   loud "Checking Ansible Environment"
+  # TODO: check ansible is right version
 
   # Ensure ansible is installed
   if ! hash ansible &> /dev/null; then
@@ -200,7 +209,7 @@ function install_wp_cli {
 # Install PHP Code Quality Tools
 # These tools are installed with brew globally so any build tool or IDE on your
 # host machine can easily use them in a non-project specific way. Adjust as needed.
-function install_php_cqt {
+function install_php_qat {
   loud "Checking for PHP Code Quality Tools"
 
   # Ensure phpmd is installed
@@ -422,14 +431,16 @@ function main {
   install_vagrant_hostmanager
   install_vagrant_parallels_provider
   install_homebrew
+  # TODO: run brew doctor if already installed? make sure things are right?
   install_ansible
 
   # Install some local PHP tools for in IDE code linting and QA
   install_php
   install_composer
-  install_php_cqt
+  install_php_qat
   install_wp_cli
   # install_coder # TODO for drupal coding standards linting
+  # install_java # TODO brew install java
 
   # Install host FE tools for running FE processes locally for those who want
   # to. Running grunt/gulp on the host performs better than in VM.

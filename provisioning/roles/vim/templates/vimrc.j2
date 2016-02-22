@@ -3,7 +3,7 @@
 source $VIMRUNTIME/vimrc_example.vim
 
 " Tim Pope's pathogen plugin for managing plugins etc.
-call pathogen#infect()
+call pathogen#infect('{{ vimfiles }}/bundle/{}')
 syntax on
 filetype plugin indent on
 

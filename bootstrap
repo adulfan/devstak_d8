@@ -311,6 +311,17 @@ function install_azure_cli {
   fi
 }
 
+function install_java {
+  loud "Checking Java Environment"
+
+  # Ensure java is installed
+  if ! hash javac &> /dev/null; then
+    quiet "Installing Java"
+    brew tap caskroom/cask &> /dev/null
+    brew install Caskroom/cask/java &> /dev/null
+  fi
+}
+
 # function run_custom {
 #   loud "Running any custom bootstrap scripts"
 #   export -f run_script
@@ -454,6 +465,7 @@ function main {
 
   # Managed Hosting Service Tools to optionally enable
   install_azure_cli
+  #install_java
 
   # Install tools for running automated QA on host machines.
   # Especially useful for browser testing automation tools such as WebDriver

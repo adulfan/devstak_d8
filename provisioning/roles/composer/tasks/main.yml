@@ -58,4 +58,4 @@
     state: present
     backrefs: yes
     regexp: 'PATH=(["]*)((?!.*?{{ composer_home }}\/vendor\/bin).*?)(["]*)$'
-    line: 'PATH={{ composer_home }}/vendor/bin:\1\2\3'
+    line: 'PATH=\1{{ composer_home }}/vendor/bin:\2\3'

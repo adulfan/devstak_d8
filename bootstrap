@@ -166,12 +166,16 @@ function install_homebrew {
 
 function install_ansible {
   loud "Checking Ansible Environment"
-  # TODO: check ansible is right version
+
+  ANSIBLE_VERSION=$( ansible --version 2> /dev/null | sed -n '/^ansible /s///p' )
 
   # Ensure ansible is installed
   if ! hash ansible &> /dev/null; then
     quiet "Installing ansible"
     brew install ansible &> /dev/null
+  elif (( $(vercomp $ANSIBLE_VERSION $ANSIBLE_VERSION_REQUIRED) == 2 )); then
+    quiet "Upgrading ansible"
+    brew upgrade ansible &> /dev/null
   fi
 }
 

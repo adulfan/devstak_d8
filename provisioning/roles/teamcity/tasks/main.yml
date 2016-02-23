@@ -1,0 +1,62 @@
+---
+- name: Ensure that there is a user to control the app.
+  user:
+    name: "{{ teamcity_user }}"
+    state: present
+    system: yes
+
+- name: Ensure that the install path exists
+  file: path={{ teamcity_install_path }} state=directory
+
+- name: Check whether the tarball has been downloaded
+  local_action: stat path=../src/{{ teamcity_tarball }}
+  sudo: no
+  register: teamcity_have_tarball
+
+- name: Download the tarball
+  get_url:
+    url: "{{ teamcity_download_url }}"
+    dest: "{{ playbook_dir }}/roles/teamcity/src/{{ teamcity_tarball }}"
+    validate_certs: no
+  delegate_to: localhost
+  sudo: no
+  when: not teamcity_have_tarball.stat.exists
+
+- name: Ensure that TeamCity is installed.
+  unarchive:
+    src: src/{{ teamcity_tarball }}
+    dest: "{{ teamcity_install_path }}"
+    owner: "{{ teamcity_user }}"
+    group: "{{ teamcity_user }}"
+    creates: "{{ teamcity_install_path }}/TeamCity"
+
+- name: Ensure that the directory for the database connector exists.
+  file:
+    path: "{{ teamcity_install_path }}/TeamCityData/lib"
+    owner: "{{ teamcity_user }}"
+    group: "{{ teamcity_user }}"
+    state: directory
+    recurse: yes
+
+- name: Tell TeamCity where to find the database connector.
+  # The java role comes before this one, so db_connector_path is still in
+  # scope. Alternatively, we could include the java role and set this variable
+  # to what we want.
+  file:
+    src:  "{{ db_connector_path }}"
+    dest: "{{ teamcity_install_path }}/TeamCityData/lib/jdbc"
+    owner: "{{ teamcity_user }}"
+    group: "{{ teamcity_user }}"
+    state: link
+
+- name: Ensure that service is configured to control the application.
+  template:
+    src: templates/service.sh.j2
+    dest: /etc/init.d/teamcity
+    owner: root
+    group: root
+    mode: 0755
+
+  # todo: make this a handler and notify it.
+- name: Ensure the application is started and enabled on boot.
+  service: name=teamcity state=started enabled=yes

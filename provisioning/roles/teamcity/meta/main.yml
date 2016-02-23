@@ -1,0 +1,7 @@
+---
+allow_duplicates: no
+dependencies:
+  # - { role: mysql }
+  ## Enable one of the Java roles.
+  # - { role: java-oracle }
+  # - { role: java-open }

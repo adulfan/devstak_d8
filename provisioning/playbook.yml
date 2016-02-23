@@ -98,6 +98,9 @@
     # - { role: wraith, tags: ['wraith'] } # TODO
     # - { role: jasmine, tags: ['jasmine'] } # TODO
 
+    # Continuous integration
+    # - { role: teamcity, tags: ['teamcity'] }
+
     # Performance/Debugging Tools/Services
     # - { role: blackfire, tags: ['blackfire'] }
 

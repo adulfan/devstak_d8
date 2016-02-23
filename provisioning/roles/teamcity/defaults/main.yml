@@ -1,0 +1,7 @@
+---
+teamcity_user: teamcity
+teamcity_version: 9.1.6
+teamcity_install_path: /usr/share/teamcity
+
+teamcity_tarball: "TeamCity-{{ teamcity_version }}.tar.gz"
+teamcity_download_url: "https://download.jetbrains.com/teamcity/{{ teamcity_tarball }}"

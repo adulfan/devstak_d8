@@ -11,7 +11,7 @@
   composer:
     command: "require"
     arguments: "laravel/installer{{ laravel_installer_version }}"
-    working_dir: "{{ devstack_composer_home }}"
+    working_dir: "{{ composer_home }}"
 
 - name: Ensure that the document root exists.
   file: path="{{ laravel_base }}" state="directory"

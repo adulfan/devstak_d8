@@ -1,4 +1,1 @@
 ---
-# Location to Composer's home directory.
-# This is the directory where Composer downloads dependencies to.
-composer_home: "/usr/local/share/composer"

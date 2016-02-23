@@ -24,25 +24,5 @@
 - name: Confirm the installation
   debug: var=java_version_output.stderr
 
-- name: Ensure that the directory for the database connector exists
-  file:
-    path: "{{ db_connector_path }}"
-    state: directory
-
-- name: Check whether the database connector already exists
-  stat: path={{ db_connector_path }}/{{ db_connector_jar }} get_md5=no
-  register: jar_link
-
-- name: Ensure that the database connector is available
-  unarchive:
-    src: ../src/{{ db_connector_tarball }}
-    dest: "{{ db_connector_path }}"
-    creates: "{{ db_connector_path }}/{{ db_connector_expanded }}"
-  when: not jar_link.stat.exists
-
-- name: Ensure that there is a link to the database connector .jar file
-  file:
-    src: "{{ db_connector_path }}/{{ db_connector_expanded }}/{{ db_connector_jar }}"
-    dest: "{{ db_connector_path }}/{{ db_connector_jar }}"
-    state: hard
-  when: not jar_link.stat.exists
+- name: Install the MySQL connector
+  apt: name='libmysql-java' state='present'

@@ -1,6 +1,6 @@
 # Percona
 
-Percona is a high performance drop in replacement for MySQL. This is a role to install and configure Percona inside the host VM according to your project standards and needs.
+Percona is a high performance drop in replacement for MySQL. This is a role to install and configure Percona inside the guest VM according to your project standards and needs.
 
 * https://www.percona.com
 

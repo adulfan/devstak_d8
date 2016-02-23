@@ -8,84 +8,29 @@
 - name: Clean out old packages if any
   command: apt-get -y autoremove
 
-# For adding PPA's more easily
-- name: Install software-properties-common
+- name: Install Ubuntu packages
   apt: name={{ item }} state=present
   with_items:
+      # For adding PPA's more easily
     - software-properties-common
-
-# Some npm (and other tools) install's can need this at times
-- name: Install build-essential
-  apt: name={{ item }} state=present
-  with_items:
+      # Some npm (and other tools) install's can need this at times
     - build-essential
-
-# Some pip's can use this at times
-- name: Install python-dev
-  apt: name={{ item }} state=present
-  with_items:
+      # Some pip's can use this at times
     - python-dev
-
-- name: Install python pip
-  apt: name={{ item }} state=present
-  with_items:
     - python-pip
-
-# Some gems can use this at times
-- name: Install ruby-dev
-  apt: name={{ item }} state=present
-  with_items:
+      # Some gems can use this at times
     - ruby-dev
-
-- name: Install wget
-  apt: name={{ item }} state=present
-  with_items:
     - wget
-
-- name: Install curl
-  apt: name={{ item }} state=present
-  with_items:
     - curl
-
-- name: Install unzip
-  apt: name={{ item }} state=present
-  with_items:
     - unzip
-
-- name: Install imagemagick
-  apt: name={{ item }} state=present
-  with_items:
     - imagemagick
-
-- name: Install graphviz
-  apt: name={{ item }} state=present
-  with_items:
     - graphviz
-
-# Convert line endings
-- name: Install dos2unix
-  apt: name={{ item }} state=present
-  with_items:
+      # Convert line endings
     - dos2unix
-
-- name: Install re2c
-  apt: name={{ item }} state=present
-  with_items:
     - re2c
-
-- name: Install supervisor
-  apt: name={{ item }} state=present
-  with_items:
     - supervisor
-
-- name: Install whois
-  apt: name={{ item }} state=present
-  with_items:
     - whois
-
-- name: Install mailutils postfix for sending local emails
-  apt: name={{ item }}
-  with_items:
+      # Install mailutils postfix for sending local emails
     - mailutils
     - postfix
 
@@ -110,6 +55,6 @@
 # Useful if your application needs to check the environment it's running on
 - name: Export APPLICATION_ENV in .profile
   sudo_user: vagrant
-  lineinfile: >
-    dest="~/.profile"
-    line="export APPLICATION_ENV=local"
+  lineinfile:
+    dest: "~/.profile"
+    line: "export APPLICATION_ENV=local"

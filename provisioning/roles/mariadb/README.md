@@ -1,6 +1,6 @@
 # MariaDB
 
-MariaDB is a drop in replacement for MySQL. This is a role to install and configure MariaDB inside the host VM according to your project standards and needs.
+MariaDB is a drop in replacement for MySQL. This is a role to install and configure MariaDB inside the guest VM according to your project standards and needs.
 
 * https://mariadb.org
 

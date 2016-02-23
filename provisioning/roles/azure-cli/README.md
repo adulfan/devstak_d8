@@ -2,7 +2,7 @@
 
 Azure is Microsofts cloud hosting service where you can host servers and services of all kinds. A competitor to AWS.
 
-This is a role to install and configure azure-cli inside the host VM according to your project standards and needs.
+This is a role to install and configure azure-cli inside the guest VM according to your project standards and needs.
 
 Azure CLI is used to manage Azure hosting resources from the command line and scripts.
 

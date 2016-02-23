@@ -1,6 +1,6 @@
 # beanstalkd
 
-A role to install and configure beanstalkd inside the host VM according to your project standards and needs.
+A role to install and configure beanstalkd inside the guest VM according to your project standards and needs.
 
 http://kr.github.io/beanstalkd/
 

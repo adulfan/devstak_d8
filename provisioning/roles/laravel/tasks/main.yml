@@ -35,4 +35,33 @@
     - storage
     - bootstrap/cache
 
-# TODO: Copy nginx web server configs that are laravel specific?
+- name: Setting Laravel environment
+  template:
+    src=env.j2
+    dest={{ laravel_base }}/{{ laravel_folder }}/.env
+    force=yes
+
+- name: Setting Laravel routes
+  template:
+    src=routes.php.j2
+    dest={{ laravel_base }}/{{ laravel_folder }}/app/Http/routes.php
+    owner=vagrant
+    group=vagrant
+    mode=0644
+    force=yes
+
+- name: Setting Laravel controller
+  template:
+    src=WelcomeController.php.j2
+    dest={{ laravel_base }}/{{ laravel_folder }}/app/Http/Controllers/WelcomeController.php
+    owner=vagrant
+    group=vagrant
+    mode=0644
+
+- name: Setting Laravel
+  copy:
+    src=../files/arrived.blade.php
+    dest={{ laravel_base }}/{{ laravel_folder }}/resources/views/arrived.blade.php
+    owner=vagrant
+    group=vagrant
+    mode=0644

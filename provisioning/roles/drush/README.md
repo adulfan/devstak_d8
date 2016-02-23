@@ -1,6 +1,6 @@
 # Drush
 
-This is a role to install and configure Drush inside the host VM according to your project standards and needs.
+This is a role to install and configure Drush inside the guest VM according to your project standards and needs.
 
 * http://www.drush.org/
 

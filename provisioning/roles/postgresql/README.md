@@ -1,6 +1,6 @@
 # PostgreSQL
 
-A role to install and configure PostgreSQL inside the host VM according to your project standards and needs.
+A role to install and configure PostgreSQL inside the guest VM according to your project standards and needs.
 
 http://www.postgresql.org/
 

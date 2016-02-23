@@ -1,6 +1,6 @@
 # vim
 
-A role to install and configure vim inside the host VM according to your project standards and needs.
+A role to install and configure vim inside the guest VM according to your project standards and needs.
 
 * http://www.vim.org
 

@@ -1,6 +1,6 @@
 # redis-commander
 
-This is a role to install and configure redis-commander inside the host VM according to your project standards and needs.
+This is a role to install and configure redis-commander inside the guest VM according to your project standards and needs.
 
 * http://joeferner.github.io/redis-commander/
 

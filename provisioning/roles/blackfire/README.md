@@ -1,6 +1,6 @@
 # blackfire
 
-A role to install and configure blackfire inside the host VM according to your project standards and needs.
+A role to install and configure blackfire inside the guest VM according to your project standards and needs.
 
 https://blackfire.io/
 

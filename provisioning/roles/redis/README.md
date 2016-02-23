@@ -1,6 +1,6 @@
 # redis
 
-This is a role to install and configure redis inside the host VM according to your project standards and needs.
+This is a role to install and configure redis inside the guest VM according to your project standards and needs.
 
 * http://redis.io
 * https://github.com/junegunn/redis-stat

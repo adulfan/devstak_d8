@@ -1,6 +1,6 @@
 # git
 
-A role to install and configure git inside the host VM according to your project standards and needs.
+A role to install and configure git inside the guest VM according to your project standards and needs.
 
 * https://git-scm.com
 

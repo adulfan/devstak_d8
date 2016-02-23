@@ -1,6 +1,6 @@
 # MySQL
 
-A role to install and configure MySQL inside the host VM according to your project standards and needs.
+A role to install and configure MySQL inside the guest VM according to your project standards and needs.
 
 http://www.mysql.com
 

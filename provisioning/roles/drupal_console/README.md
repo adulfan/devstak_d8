@@ -1,6 +1,6 @@
 # Drupal Console
 
-This is a role to install and configure the Drupal Console inside the host VM according to your project standards and needs.
+This is a role to install and configure the Drupal Console inside the guest VM according to your project standards and needs.
 
 * http://drupalconsole.com
 

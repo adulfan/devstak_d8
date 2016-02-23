@@ -1,6 +1,6 @@
 # Bundler
 
-This is a role to install and configure bundler inside the host VM according to your project standards and needs.
+This is a role to install and configure bundler inside the guest VM according to your project standards and needs.
 
 * http://bundler.io/
 

@@ -56,5 +56,5 @@
 - name: Export APPLICATION_ENV in .profile
   sudo_user: vagrant
   lineinfile:
-  dest: "~/.profile"
-  line: "export APPLICATION_ENV=local"
+    dest: "~/.profile"
+    line: "export APPLICATION_ENV=local"

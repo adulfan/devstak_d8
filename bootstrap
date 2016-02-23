@@ -216,6 +216,13 @@ function install_wp_cli {
 function install_php_qat {
   loud "Checking for PHP Code Quality Tools"
 
+  # Ensure behat is installed
+  # http://behat.org
+  if ! hash behat &> /dev/null; then
+    quiet "Installing behat"
+    brew install homebrew/php/behat &> /dev/null
+  fi
+
   # Ensure phpmd is installed
   # http://phpmd.org
   if ! hash phpmd &> /dev/null; then
@@ -243,6 +250,44 @@ function install_php_qat {
     quiet "Installing phpcpd (PHP Copy Paste Detector)"
     brew install homebrew/php/phpcpd &> /dev/null
   fi
+
+  # Ensure pdepend is installed
+  # https://pdepend.org
+  if ! hash pdepend &> /dev/null; then
+    quiet "Installing pdepend"
+    brew install homebrew/php/pdepend &> /dev/null
+  fi
+
+  # Ensure phpunit is installed
+  # https://phpunit.de
+  if ! hash phpunit &> /dev/null; then
+    quiet "Installing phpunit"
+    brew install homebrew/php/phpunit &> /dev/null
+  fi
+
+  # Ensure phploc is installed
+  # https://github.com/sebastianbergmann/phploc
+  if ! hash phploc &> /dev/null; then
+    quiet "Installing phploc"
+    brew install homebrew/php/phploc &> /dev/null
+  fi
+
+  # Ensure phpdox is installed
+  # http://phpdox.de
+  if ! hash phpdox &> /dev/null; then
+    quiet "Installing phpdox"
+    brew install homebrew/php/phpdox &> /dev/null
+  fi
+
+  # Ensure phpmetrics is installed
+  # http://www.phpmetrics.org
+  if ! hash phpmetrics &> /dev/null; then
+    quiet "Installing phpmetrics"
+    brew install homebrew/php/phpmetrics &> /dev/null
+  fi
+
+  # - "qa-tools/qa-tools=*"
+  # - "mikey179/vfsStream=*"
 }
 
 function install_sassc {
@@ -453,7 +498,7 @@ function main {
   install_php
   install_composer
   install_php_qat
-  install_wp_cli
+  # install_wp_cli
   # install_coder # TODO for drupal coding standards linting
   # install_java # TODO brew install java
 
@@ -468,7 +513,7 @@ function main {
   install_browsersync
 
   # Managed Hosting Service Tools to optionally enable
-  install_azure_cli
+  # install_azure_cli
   #install_java
 
   # Install tools for running automated QA on host machines.

@@ -39,11 +39,11 @@
     recurse: yes
 
 - name: Tell TeamCity where to find the database connector.
-  # The java role comes before this one, so db_connector_path is still in
+  # The java role comes before this one, so java_mysql_path is still in
   # scope. Alternatively, we could include the java role and set this variable
   # to what we want.
   file:
-    src:  "{{ db_connector_path }}"
+    src:  "{{ java_mysql_path }}"
     dest: "{{ teamcity_install_path }}/TeamCityData/lib/jdbc"
     owner: "{{ teamcity_user }}"
     group: "{{ teamcity_user }}"

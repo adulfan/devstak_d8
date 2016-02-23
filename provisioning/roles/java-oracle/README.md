@@ -28,8 +28,8 @@ The JRE and JDK from Oracle use the same directory name, so the default value of
 
 ### MySQL connector variables
 
-- `db_connector_path`: where the connector will be installed
-- `db_connector_jar`: file name of the `jar` file, defaults to
+- `java_mysql_path`: where the connector will be installed
+- `java_mysql_jar`: file name of the `jar` file, defaults to
   `mysql-connector-java-5.1.38-bin.jar`
 
 ## Author Information

@@ -7,5 +7,5 @@ java_expanded: jdk1.8.0_74
 java_path: /usr/share/java/oracle/{{ java_expanded }}
 
 # The MySQL connector.
-db_connector_path: /usr/share/java
-db_connector_jar: mysql-connector-java-5.1.38-bin.jar
+java_mysql_path: /usr/share/java
+java_mysql_jar: mysql-connector-java-5.1.38-bin.jar

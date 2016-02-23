@@ -1,7 +1,0 @@
----
-- hosts: devstack
-  sudo: yes
-  roles:
-    - acquia_insight
-  tags:
-    - acquia_insight

@@ -1,0 +1,4 @@
+---
+apache_name: "{{ project_name }}"
+apache_hostname: "{{ project_hostname }}"
+apache_docroot: "{{ project_docroot }}"

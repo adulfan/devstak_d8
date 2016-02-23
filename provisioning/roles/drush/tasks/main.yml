@@ -1,12 +1,6 @@
 ---
 - name: Install Drush
-  shell:
-    composer global require drush/drush:dev-master
-  environment:
-    COMPOSER_HOME: "{{ composer_home }}"
-    COMPOSER_BIN_DIR: "/usr/local/bin"
-    COMPOSER_VENDOR_DIR: "{{ composer_home }}/vendor"
-  register: drush
+  get_url: url=https://github.com/drush-ops/drush/releases/download/8.0.3/drush.phar dest=/usr/local/bin/drush mode=0755
 
 - name: Create a ~/.drush directory
   sudo: yes

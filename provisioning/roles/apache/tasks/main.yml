@@ -21,23 +21,8 @@
 - name: Disable Default HTTPS Site VirtualHost
   command: a2dissite default-ssl
 
-- name: Configure Project VirtualHost
-  template: src=../templates/vhost.conf.j2 dest=/etc/apache2/sites-available/{{ project_name }}.conf
-
-- name: Configure Project HTTPS VirtualHost
-  template: src=../templates/vhost-ssl.conf.j2 dest=/etc/apache2/sites-available/{{ project_name }}-ssl.conf
-
-- name: Enable Project VirtualHost
-  command: a2ensite {{ project_name }}
-
-- name: Enable Project HTTPS VirtualHost
-  command: a2ensite {{ project_name }}-ssl
-
 # Useful if your application needs to check the environment it's running on
 - name: Add APPLICATION_ENV to Apache envars
   lineinfile: >
     dest="/etc/apache2/envvars"
     line="export APPLICATION_ENV=local"
-
-- name: Restart Apache
-  service: name=apache2 state=restarted

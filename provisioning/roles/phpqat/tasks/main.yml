@@ -1,0 +1,28 @@
+---
+# http://docs.ansible.com/ansible/composer_module.html
+# http://docs.ansible.com/ansible/pear_module.html
+
+# Use PEAR
+# - name: Install PHP_CodeSniffer
+#   pear: name=PHP_CodeSniffer state=latest
+
+# Use composer
+- name: Install the PHP QA Tools
+  become: yes
+  become_user: vagrant
+  composer:
+    command: "require"
+    arguments: "{{ item }}"
+    working_dir: "{{ devstack_composer_home }}"
+  with_items:
+    - "behat/behat=*"
+    - "pdepend/pdepend=*"
+    - "squizlabs/php_codesniffer=*"
+    - "phpunit/phpunit=*"
+    - "mikey179/vfsStream=*"
+    - "phpmd/phpmd=*"
+    - "phploc/phploc=*"
+    - "theseer/phpdox=*"
+    - "halleck45/phpmetrics=*"
+    - "sebastian/phpcpd=*"
+    - "qa-tools/qa-tools=*"

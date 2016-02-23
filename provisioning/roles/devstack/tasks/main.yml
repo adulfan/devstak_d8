@@ -2,8 +2,13 @@
 - name: Ensure that the document root exists.
   file: path="{{ devstack_docroot }}" state="directory"
 
+- name: Test if an index.php is present
+  stat: path="{{ devstack_docroot }}/index.php"
+  register: index_present
+
 - name: Copy files to the document root.
   copy: src="{{ item }}" dest="{{ devstack_docroot }}"
   with_items:
-    - index.html
     - index.php
+    - index.html
+  when: not index_present.stat.exists

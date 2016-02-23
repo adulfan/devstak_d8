@@ -5,7 +5,7 @@
 # NOTE: We setup the paths to keep composer in a truly globally shared location
 # (and not in a user . directory during install time)
 # NOTE: This is an attempt to keep libraries in a shared location. If this does not
-# work for your project, adjust as needed.
+# work for your project, adjust as needed. It also allows for a consistent bin location.
 #
 # Most of the time this VM is used to host a single site so this works. If your
 # project contains multiple sites, you might need to adjust this.
@@ -58,4 +58,4 @@
     state: present
     backrefs: yes
     regexp: 'PATH=(["]*)((?!.*?{{ composer_home }}\/vendor\/bin).*?)(["]*)$'
-    line: 'PATH={{ composer_home }}/vendor/bin:\1\2\3'
+    line: 'PATH=\1{{ composer_home }}/vendor/bin:\2\3'

@@ -1,3 +1,5 @@
 ---
 # - name: Project special task
 #   command: touch /tmp/{{ project_name }}.txt
+#   tags:
+#     - postgresql

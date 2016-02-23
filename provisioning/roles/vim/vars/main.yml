@@ -1,9 +1,9 @@
 ---
 # Location of vimrc file on the VM
-vimconfig: "/home/vagrant/.vimrc"
+vimconfig: "/etc/vim/vimrc.local"
 
 # Location of vim plugins on the VM
-vimfiles: "/home/vagrant/.vim"
+vimfiles: "/usr/share/vim/vimfiles"
 
 # Plugin names, URL's, and versions
 # The full URL for download is  "{{ item.url }}/v{{ item.version }}.tar.gz"

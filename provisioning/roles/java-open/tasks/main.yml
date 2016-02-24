@@ -4,7 +4,7 @@
     name: openjdk-{{ java_main_version }}-{{ java_jre_or_jdk }}
     state: present
 
-- name: Test that jave is installed
+- name: Test that java is installed
   command: java -version
   register: java_version_output
   changed_when: false

@@ -1,0 +1,11 @@
+---
+# There is no public download link for Java, since you have to accept Oracle's
+# terms and conditions. Download a copy to the host machine (use the src/
+# directory in this role).
+java_tarball: server-jre-8u74-linux-x64.tar.gz
+java_expanded: jdk1.8.0_74
+java_path: /usr/share/java/oracle/{{ java_expanded }}
+
+# The MySQL connector.
+java_mysql_path: /usr/share/java
+java_mysql_jar: mysql-connector-java-5.1.38-bin.jar

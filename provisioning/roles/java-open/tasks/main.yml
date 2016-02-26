@@ -1,0 +1,16 @@
+---
+- name: Install the JRE or JDK as required.
+  apt:
+    name: openjdk-{{ java_main_version }}-{{ java_jre_or_jdk }}
+    state: present
+
+- name: Test that java is installed
+  command: java -version
+  register: java_version_output
+  changed_when: false
+
+- name: Confirm the installation
+  debug: msg="Output of 'java -version' is {{ java_version_output.stderr }}"
+
+- name: Install the MySQL connector
+  apt: name='libmysql-java' state='present'

@@ -1,0 +1,28 @@
+---
+- name: Ensure that the java parent directory exists
+  file:
+    path: "{{ java_path | dirname }}"
+    state: directory
+
+- name: Ensure that Java is installed
+  unarchive:
+    src: ../src/{{ java_tarball }}
+    dest: "{{ java_path | dirname }}"
+    creates: "{{ java_path }}"
+
+- name: Ensure that java is linked to /usr/bin
+  file:
+    src: "{{ java_path }}/bin/java"
+    dest: /usr/bin/java
+    state: link
+
+- name: Test that java is installed
+  command: java -version
+  register: java_version_output
+  changed_when: false
+
+- name: Confirm the installation
+  debug: msg="Output of 'java -version' is {{ java_version_output.stderr }}"
+
+- name: Install the MySQL connector
+  apt: name='libmysql-java' state='present'

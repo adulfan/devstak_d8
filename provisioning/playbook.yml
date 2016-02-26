@@ -48,6 +48,11 @@
     ## Project Language (Ruby)
     # - { role: bundler, tags: ['bundler'] }
 
+    ## Project Language (Java)
+    ## If you want to install Oracle's JRE/JDK, then make sure to read the instructions.
+    # - { role: java-oracle, tags: ['java-oracle'] }
+    # - { role: java-open, tags: ['java-open'] }
+
     ## Cacheing Layers
     # - { role: memcached, tags: ['memcached'] }
     # - { role: redis, tags: ['redis'] }
@@ -92,6 +97,9 @@
     # QA Tools
     # - { role: wraith, tags: ['wraith'] } # TODO
     # - { role: jasmine, tags: ['jasmine'] } # TODO
+
+    # Continuous integration
+    # - { role: teamcity, tags: ['teamcity'] }
 
     # Performance/Debugging Tools/Services
     # - { role: blackfire, tags: ['blackfire'] }

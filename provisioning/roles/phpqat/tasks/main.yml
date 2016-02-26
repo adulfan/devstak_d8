@@ -13,7 +13,7 @@
   composer:
     command: "require"
     arguments: "{{ item }}"
-    working_dir: "{{ devstack_composer_home }}"
+    working_dir: "{{ composer_home }}"
   with_items:
     - "behat/behat=*"
     - "pdepend/pdepend=*"

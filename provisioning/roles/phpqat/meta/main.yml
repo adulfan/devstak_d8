@@ -1,5 +1,5 @@
 ---
 allow_duplicates: no
-# dependencies:
+dependencies:
 #  - { role: php }
-#  - { role: composer }
+  - { role: composer }

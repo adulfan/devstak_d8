@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 ANSIBLE_VERSION_REQUIRED='2.0.0.2'
+LOCAL=$(dirname $0)
 
 ###########################
 ### INSTALLATION FUNCTIONS
@@ -9,7 +10,8 @@ function install_homebrew {
   loud "Checking Homebrew"
   if ! hash brew &> /dev/null; then
     quiet "Installing Homebrew"
-    (cd ~; echo -e "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null)
+    INSTALL_HOMEBREW=$LOCAL/scripts/install_homebrew.rb
+    (cd ~; echo -e "\n" | ruby -e $INSTALL_HOMEBREW &> /dev/null)
     quiet "Done installing Homebrew"
   fi
 

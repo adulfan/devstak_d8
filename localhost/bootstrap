@@ -34,6 +34,11 @@ function install_ansible {
   fi
 }
 
+function run_ansible {
+  loud "Running Ansible to install the rest"
+  ansible-playbook -i $LOCAL/hosts $LOCAL/playbook.yml
+}
+
 #####################
 ### HELPER FUNCTIONS
 #####################
@@ -86,6 +91,7 @@ function main {
   install_homebrew
   # TODO: run brew doctor if already installed? make sure things are right?
   install_ansible
+  run_ansible
   loud 'Bootstrap Complete!'
   quiet 'Make sure you restart your shell. Now!\n'
 }

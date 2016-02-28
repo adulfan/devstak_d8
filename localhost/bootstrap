@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+
+ANSIBLE_VERSION_REQUIRED='2.0.0.2'
+
+###########################
+### INSTALLATION FUNCTIONS
+###########################
+function install_homebrew {
+  loud "Checking Homebrew"
+  if ! hash brew &> /dev/null; then
+    quiet "Installing Homebrew"
+    (cd ~; echo -e "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null)
+    quiet "Done installing Homebrew"
+  fi
+
+  quiet "Updating Homebrew packages"
+  brew update &> /dev/null
+}
+
+function install_ansible {
+  loud "Checking Ansible Environment"
+
+  ANSIBLE_VERSION=$( ansible --version 2> /dev/null | sed -n '/^ansible /s///p' )
+
+  # Ensure ansible is installed
+  if ! hash ansible &> /dev/null; then
+    quiet "Installing ansible"
+    brew install ansible &> /dev/null
+  elif (( $(vercomp $ANSIBLE_VERSION $ANSIBLE_VERSION_REQUIRED) == 2 )); then
+    quiet "Upgrading ansible"
+    brew upgrade ansible &> /dev/null
+  fi
+}
+
+#####################
+### HELPER FUNCTIONS
+#####################
+function loud {
+  echo -e "\n#### ${1}"
+}
+
+function quiet {
+  echo -e "\t${1}"
+}
+
+function vercomp () {
+    if [[ $1 == $2 ]]
+    then
+        echo 0
+        return
+    fi
+    local IFS=.
+    local i ver1=($1) ver2=($2)
+    # fill empty fields in ver1 with zeros
+    for ((i=${#ver1[@]}; i<${#ver2[@]}; i++))
+    do
+        ver1[i]=0
+    done
+    for ((i=0; i<${#ver1[@]}; i++))
+    do
+        if [[ -z ${ver2[i]} ]]
+        then
+            # fill empty fields in ver2 with zeros
+            ver2[i]=0
+        fi
+        if ((10#${ver1[i]} > 10#${ver2[i]}))
+        then
+            echo 1
+            return
+        fi
+        if ((10#${ver1[i]} < 10#${ver2[i]}))
+        then
+            echo 2
+            return
+        fi
+    done
+    echo 0
+}
+
+#####################
+### MAIN FUNCTION
+#####################
+function main {
+  install_homebrew
+  # TODO: run brew doctor if already installed? make sure things are right?
+  install_ansible
+  loud 'Bootstrap Complete!'
+  quiet 'Make sure you restart your shell. Now!\n'
+}
+
+main

@@ -3,7 +3,6 @@
 VBOX_VERSION_REQUIRED='5.0.0'
 VAGRANT_VERSION_REQUIRED='1.8.1'
 VAGRANT_DEFAULT_PROVIDER='parallels'
-ANSIBLE_VERSION_REQUIRED='2.0.0.2'
 
 ###########################
 ### USAGE AND VERSION INFO
@@ -150,33 +149,6 @@ function install_vagrant_parallels_provider {
 
   vagrant plugin install vagrant-parallels &> /dev/null
   quiet "Done installing Vagrant Parallels Provider"
-}
-
-function install_homebrew {
-  loud "Checking Homebrew"
-  if ! hash brew &> /dev/null; then
-    quiet "Installing Homebrew"
-    (cd ~; echo -e "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null)
-    quiet "Done installing Homebrew"
-  fi
-
-  quiet "Updating Homebrew packages"
-  brew update &> /dev/null
-}
-
-function install_ansible {
-  loud "Checking Ansible Environment"
-
-  ANSIBLE_VERSION=$( ansible --version 2> /dev/null | sed -n '/^ansible /s///p' )
-
-  # Ensure ansible is installed
-  if ! hash ansible &> /dev/null; then
-    quiet "Installing ansible"
-    brew install ansible &> /dev/null
-  elif (( $(vercomp $ANSIBLE_VERSION $ANSIBLE_VERSION_REQUIRED) == 2 )); then
-    quiet "Upgrading ansible"
-    brew upgrade ansible &> /dev/null
-  fi
 }
 
 # Install PHP for use below with Linters for local IDE's
@@ -490,9 +462,6 @@ function main {
   install_vagrant
   install_vagrant_hostmanager
   install_vagrant_parallels_provider
-  install_homebrew
-  # TODO: run brew doctor if already installed? make sure things are right?
-  install_ansible
 
   # Install some local PHP tools for in IDE code linting and QA
   install_php

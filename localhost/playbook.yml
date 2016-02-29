@@ -6,3 +6,5 @@
     - { role: common, tags: ['common'] }
     ## Vagrant and related
     - { role: vagrant, tags: ['vagrant'] }
+    ## PHP and composer
+    - { role: php, tags: ['php'] }

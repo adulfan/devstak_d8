@@ -91,28 +91,6 @@ function install_virtual_box {
 #   # TODO: brew install parallels
 # }
 
-# Install PHP for use below with Linters for local IDE's
-function install_php {
-  loud "Checking PHP Environment"
-
-  # Ensure PHP is installed
-  if ! [ -f "/usr/local/bin/php" ] &> /dev/null; then
-    quiet "Installing PHP"
-    brew install homebrew/php/php55 --with-pear &> /dev/null
-  fi
-}
-
-# Install Composer, used for installing PHP project dependencies
-function install_composer {
-  loud "Checking for Composer"
-
-  # Ensure Composer is installed
-  if ! hash composer &> /dev/null; then
-    quiet "Installing Composer"
-    brew install homebrew/php/composer &> /dev/null
-  fi
-}
-
 # Install WP-CLI on host machine
 function install_wp_cli {
   if ! hash wp &> /dev/null; then
@@ -391,8 +369,6 @@ function main {
   # install_parallels
 
   # Install some local PHP tools for in IDE code linting and QA
-  install_php
-  install_composer
   install_php_qat
   # install_wp_cli
   # install_coder # TODO for drupal coding standards linting

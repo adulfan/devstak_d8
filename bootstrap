@@ -272,16 +272,6 @@ function install_sassc {
   fi
 }
 
-function install_node {
-  loud "Checking NodeJS Environment"
-
-  # Ensure node is installed
-  if ! hash node &> /dev/null; then
-    quiet "Installing node"
-    brew install node &> /dev/null
-  fi
-}
-
 function install_bower {
   loud "Checking for bower"
 
@@ -474,7 +464,6 @@ function main {
   # Install host FE tools for running FE processes locally for those who want
   # to. Running grunt/gulp on the host performs better than in VM.
   install_sassc
-  install_node
   install_bower
   # install_yeoman?
   install_gulp

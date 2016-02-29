@@ -2,3 +2,5 @@
 - hosts: local
   become: no
   roles:
+    ## package managers and some basic tools required elsewhere
+    - { role: common, tags: ['common'] }

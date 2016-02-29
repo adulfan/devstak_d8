@@ -4,3 +4,5 @@
   roles:
     ## package managers and some basic tools required elsewhere
     - { role: common, tags: ['common'] }
+    ## Vagrant and related
+    - { role: vagrant, tags: ['vagrant'] }

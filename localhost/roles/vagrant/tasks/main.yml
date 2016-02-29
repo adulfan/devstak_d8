@@ -1,0 +1,59 @@
+---
+- name: Get version information for Vagrant
+  command: vagrant --version
+  register: vagrant_version_raw
+  changed_when: false
+  ignore_errors: true
+
+- name: Save the Vagrant version
+  set_fact: vagrant_version="{{ vagrant_version_raw.stdout | regex_replace('^Vagrant ([0-9.]+).*$', '\\1') }}"
+  when: vagrant_version_raw | success
+
+  # In my testing, the homebrew_cask Ansible module does not work. :-(
+- name: Install Vagrant
+  # homebrew_cask: name=vagrant state=present
+  shell: brew cask install --force vagrant
+  environment:
+    path: $PATH:/usr/local/bin
+  when: (vagrant_version_raw | failed) or (vagrant_version | version_compare(vagrant_min_version, '<'))
+
+- name: Get updated version information for Vagrant
+  command: vagrant --version
+  register: vagrant_version_raw
+  changed_when: false
+
+- name: Save the Vagrant version
+  set_fact: vagrant_version="{{ vagrant_version_raw.stdout | regex_replace('^Vagrant ([0-9.]+).*$', '\\1') }}"
+
+- name: Install GUI applications related to Vagrant
+  # homebrew_cask: name={{ item }} state=present
+  shell: brew cask install {{ item }}
+  with_items: vagrant_apps
+  environment:
+    path: $PATH:/usr/local/bin
+
+- name: Find installed Vagrant plugins
+  command: vagrant plugin list
+  register: vagrant_plugin_list
+  changed_when: false
+
+- name: Install required Vagrant plugins
+  command: vagrant plugin install {{ item }}
+  when: vagrant_plugin_list.stdout.find('{{ item }}') == -1
+  with_items: vagrant_plugins
+
+- name: Ensure that vagrant-hostmanager can update hosts and exports files
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    line: "{{ item }}"
+  with_items:
+    - "# Allow vagrant to update /etc/exports without a password."
+    - "# See https://docs.vagrantup.com/v2/synced-folders/nfs.html"
+    - "Cmnd_Alias VAGRANT_EXPORTS_ADD = /usr/bin/tee -a /etc/exports"
+    - "Cmnd_Alias VAGRANT_NFSD = /sbin/nfsd restart"
+    - "Cmnd_Alias VAGRANT_EXPORTS_REMOVE = /usr/bin/sed -E -e /*/ d -ibak /etc/exports"
+    - "%admin ALL=(root) NOPASSWD: VAGRANT_EXPORTS_ADD, VAGRANT_NFSD, VAGRANT_EXPORTS_REMOVE"
+  become: yes
+  become_user: root
+  when: vagrant_use_nfs

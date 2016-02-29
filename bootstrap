@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 VBOX_VERSION_REQUIRED='5.0.0'
-VAGRANT_VERSION_REQUIRED='1.8.1'
 VAGRANT_DEFAULT_PROVIDER='parallels'
 
 ###########################
@@ -88,68 +87,9 @@ function install_virtual_box {
   fi
 }
 
-function install_vagrant {
-  # TODO: brew install vagrant instead
-  loud "Checking Vagrant"
-  VAGRANT_VERSION=$( cd ~; vagrant --version 2> /dev/null | awk '{ print $2 }')
-  if hash vagrant &> /dev/null && (( $(vercomp $VAGRANT_VERSION $VAGRANT_VERSION_REQUIRED) < 2 )); then
-    return
-  fi
-
-  local vagrant_url="https://releases.hashicorp.com/vagrant/$VAGRANT_VERSION_REQUIRED/vagrant_$VAGRANT_VERSION_REQUIRED.dmg"
-  local vagrant_dmg=$( strip_url "${vagrant_url}" )
-  local vagrant_pkg="Vagrant.pkg"
-
-  loud "Installing Vagrant"
-
-  quiet "Downloading Vagrant"
-  curl -sOL "$vagrant_url"
-
-  local vagrant_path=''
-
-  attach_volume "${vagrant_dmg}" vagrant_path
-
-  if hash vagrant &> /dev/null; then
-    quiet "Uninstalling previous Vagrant"
-    echo -e "Yes\n\n" | "${vagrant_path}/uninstall.tool" >> /dev/null
-  fi
-  rm -rf "${HOME}/.vagrant.d"
-
-  install_pkg "${vagrant_path}" "${vagrant_pkg}"
-  detach_volume "${vagrant_path}"
-
-  rm -f "${vagrant_dmg}"
-
-  quiet "Done installing Vagrant"
-}
-
 # function install_parallels {
 #   # TODO: brew install parallels
 # }
-
-function install_vagrant_hostmanager {
-  loud "Checking Vagrant Hostmanager"
-  if vagrant plugin list | grep "vagrant-hostmanager" &> /dev/null; then
-    return
-  fi
-
-  loud "Installing Vagrant Hostmanager"
-
-  vagrant plugin install vagrant-hostmanager &> /dev/null
-  quiet "Done installing Vagrant Hostmanager"
-}
-
-function install_vagrant_parallels_provider {
-  loud "Checking Vagrant Parallels Provider"
-  if vagrant plugin list | grep "vagrant-parallels" &> /dev/null; then
-    return
-  fi
-
-  loud "Installing Vagrant Parallels Provider"
-
-  vagrant plugin install vagrant-parallels &> /dev/null
-  quiet "Done installing Vagrant Parallels Provider"
-}
 
 # Install PHP for use below with Linters for local IDE's
 function install_php {
@@ -449,9 +389,6 @@ function main {
   install_command_line_tools
   # install_virtual_box
   # install_parallels
-  install_vagrant
-  install_vagrant_hostmanager
-  install_vagrant_parallels_provider
 
   # Install some local PHP tools for in IDE code linting and QA
   install_php

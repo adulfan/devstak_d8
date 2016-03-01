@@ -8,3 +8,5 @@
     - { role: vagrant, tags: ['vagrant'] }
     ## PHP and composer
     - { role: php, tags: ['php'] }
+    ## PHP QA Toolchain
+    - { role: php_qat, tags: ['php_qat'] }

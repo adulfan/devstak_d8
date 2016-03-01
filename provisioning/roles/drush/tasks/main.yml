@@ -2,10 +2,6 @@
 - name: Install Drush
   get_url: url=https://github.com/drush-ops/drush/releases/download/8.0.3/drush.phar dest=/usr/local/bin/drush mode=0755
 
-- name: Create a ~/.drush directory
-  become: no
-  file: path=/home/vagrant/.drush/ state=directory
-
 - name: Ensure /etc/drush directory exists
   file:
     path: /etc/drush
@@ -16,9 +12,7 @@
     src: project.aliases.drushrc.php.j2
     dest: /etc/drush/{{ project_name }}.aliases.drushrc.php
 
-# - name: Enable drush autocomplete
-#   lineinfile:
-#     line: "source {{ composer_home }}/vendor/drush/drush/examples/example.bashrc"
-#     dest: "{{ ansible_env.HOME }}/.bashrc"
-#     state: present
-#     insertafter: EOF
+- name: Enable drush autocomplete and more
+  # This will only affect the user vagrant.
+  command: drush -y init creates=~/.drush/drush.complete.sh
+  become: no

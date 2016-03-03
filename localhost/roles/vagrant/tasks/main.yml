@@ -12,6 +12,7 @@
   # In my testing, the homebrew_cask Ansible module does not work. :-(
 - name: Install Vagrant
   # homebrew_cask: name=vagrant state=present
+  # homebrew: name=caskroom/cask/vagrant state=present
   shell: brew cask install --force vagrant
   environment:
     path: $PATH:/usr/local/bin
@@ -31,6 +32,7 @@
   with_items: vagrant_apps
   environment:
     path: $PATH:/usr/local/bin
+  when: item not in brew_cask_list
 
 - name: Find installed Vagrant plugins
   command: vagrant plugin list

@@ -1,0 +1,4 @@
+---
+# Make sure that homebrew is up to date, and set the brew_cask_list fact.
+dependencies:
+  - common

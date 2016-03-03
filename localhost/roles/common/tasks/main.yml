@@ -13,16 +13,18 @@
     update_homebrew: yes
   when: brew_version | version_compare(homebrew_min_version, '<')
 
-# - name: Tap the repo for Homebrew Cask
-#   homebrew_tap:
-#     name: caskroom/cask
-#     state: present
+- name: Tap the repo for Homebrew Cask
+  homebrew_tap:
+    name: caskroom/cask
+    state: present
 
-# - name: Install Cask using Homebrew
-#   homebrew:
-#     name: brew-cask
-#     state: present
-#     update_homebrew: no
+- name: List the installed casks
+  command: brew cask list -1
+  register: brew_cask_list_raw
+  changed_when: false
+
+- name: Parse the list of installed casks
+  set_fact: brew_cask_list="{{ brew_cask_list_raw.stdout_lines }}"
 
 - name: Install node.js and npm
   homebrew:

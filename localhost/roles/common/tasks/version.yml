@@ -1,0 +1,8 @@
+---
+- name: Ask brew what its version is
+  command: brew --version
+  register: brew_version_raw
+  changed_when: false
+
+- name: Save the Homebrew version
+  set_fact: brew_version="{{ brew_version_raw.stdout | regex_replace('^Homebrew ([0-9.]+).*$', '\\1') }}"

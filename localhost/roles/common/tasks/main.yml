@@ -1,17 +1,17 @@
 ---
 ## The bootstrap script makes sure that Homebrew is installed. Check the version.
 - name: Get version information for Homebrew
-  command: brew --version
-  register: brew_version_raw
-  changed_when: false
-
-- name: Save the Homebrew version
-  set_fact: brew_version="{{ brew_version_raw.stdout | regex_replace('^Homebrew ([0-9.]+).*$', '\\1') }}"
+  include: version.yml
 
 - name: Ensure that Homebrew is recent enough
   homebrew:
     update_homebrew: yes
+  register: brew_updated
   when: brew_version | version_compare(homebrew_min_version, '<')
+
+- name: Update version information for Homebrew
+  include: version.yml
+  when: brew_updated | changed
 
 - name: Tap the repo for Homebrew Cask
   homebrew_tap:

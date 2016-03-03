@@ -1,13 +1,6 @@
 ---
 - name: Get version information for Vagrant
-  command: vagrant --version
-  register: vagrant_version_raw
-  changed_when: false
-  ignore_errors: true
-
-- name: Save the Vagrant version
-  set_fact: vagrant_version="{{ vagrant_version_raw.stdout | regex_replace('^Vagrant ([0-9.]+).*$', '\\1') }}"
-  when: vagrant_version_raw | success
+  include: version.yml
 
   # In my testing, the homebrew_cask Ansible module does not work. :-(
 - name: Install Vagrant
@@ -16,15 +9,12 @@
   shell: brew cask install --force vagrant
   environment:
     path: $PATH:/usr/local/bin
+  register: vagrant_updated
   when: (vagrant_version_raw | failed) or (vagrant_version | version_compare(vagrant_min_version, '<'))
 
-- name: Get updated version information for Vagrant
-  command: vagrant --version
-  register: vagrant_version_raw
-  changed_when: false
-
-- name: Save the Vagrant version
-  set_fact: vagrant_version="{{ vagrant_version_raw.stdout | regex_replace('^Vagrant ([0-9.]+).*$', '\\1') }}"
+- name: Update version information for Vagrant
+  include: version.yml
+  when: vagrant_updated | changed
 
 - name: Install GUI applications related to Vagrant
   # homebrew_cask: name={{ item }} state=present

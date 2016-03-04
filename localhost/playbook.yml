@@ -4,6 +4,8 @@
   roles:
     ## package managers and some basic tools required elsewhere
     - { role: common, tags: ['common'] }
+    ## VirtualBox
+    # - { role: virtualbox, tags: ['virtualbox'] }
     ## Vagrant and related
     - { role: vagrant, tags: ['vagrant'] }
     ## PHP and composer

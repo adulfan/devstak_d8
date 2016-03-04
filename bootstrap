@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-VBOX_VERSION_REQUIRED='5.0.0'
 VAGRANT_DEFAULT_PROVIDER='parallels'
 
 ###########################
@@ -51,39 +50,6 @@ function install_command_line_tools {
     quiet "Done installing OS X Command Line Tools."
   else
     loud "ERROR: Command line tools not found."
-  fi
-}
-
-function install_virtual_box {
-  # TODO: brew install virtualbox instead
-  loud "Checking VirtualBox"
-  if hash vboxmanage &> /dev/null; then
-    VBOX_VERSION_LONG=$( cd ~; vboxmanage --version)
-    VBOX_VERSION=${VBOX_VERSION_LONG:0:5}
-  fi
-
-  if hash vboxmanage &> /dev/null && (( $(vercomp $VBOX_VERSION $VBOX_VERSION_REQUIRED) < 2 )); then
-    return
-  fi
-
-  if hash vboxmanage &> /dev/null; then
-    loud "ERROR: VIRTUALBOX IS OUT OF DATE."
-  else
-    loud "ERROR: VIRTUALBOX IS NOT INSTALLED."
-  fi
-  echo -en "\tInstall VirtualBox version $VBOX_VERSION_REQUIRED or greater\n\tPress enter to open the download page in your browser... "
-  read
-
-  open "https://encrypted.google.com/search?hl=en&q=virtualbox+version+$VBOX_VERSION_REQUIRED#hl=en&q=virtualbox+download+version&btnI=745"
-
-  echo -en "\tOnce installed press enter to continue... "
-  read
-
-  if hash vboxmanage &> /dev/null && (( $(vercomp $VBOX_VERSION $VBOX_VERSION_REQUIRED) < 2 )); then
-    quiet "Done installing Virtual Box"
-  else
-    loud "ERROR: Virtual Box version $VBOX_VERSION_REQUIRED or greater not installed."
-    exit 1
   fi
 }
 
@@ -285,7 +251,6 @@ function run_script () {
 function main {
   # Install host VM tools
   install_command_line_tools
-  # install_virtual_box
   # install_parallels
 
   # install_wp_cli

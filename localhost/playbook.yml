@@ -1,3 +1,7 @@
+# The boostrap script installs Homebrew and Ansible before running this
+# playbook. The Homebrew install script makes sure that the Mac command-line
+# tools are installed.
+# TODO: run brew doctor if already installed? make sure things are right?
 ---
 - hosts: local
   become: no
@@ -6,6 +10,7 @@
     - { role: common, tags: ['common'] }
     ## VirtualBox
     # - { role: virtualbox, tags: ['virtualbox'] }
+    ## TODO: install Parallels
     ## Vagrant and related
     - { role: vagrant, tags: ['vagrant'] }
     ## PHP and composer
@@ -14,9 +19,20 @@
     - { role: php_qat, tags: ['php_qat'] }
     ## WordPress CLI tools
     # - { role: wp_cli, tags: ['wp_cli'] }
-    ## FE tools
+    ## TODO: install coder for drupal coding standards linting
+    ## Front end tools
     - { role: fe_tools, tags: ['fe_tools'] }
     ## Java
     # - { role: java, tags: ['java'] }
     ## Hosting Services tools
     # - { role: hosting_services, tags: ['hosting_services'] }
+
+    ## Install tools for running automated QA on host machines.
+    ## Especially useful for browser testing automation tools such as WebDriver
+    ## based tests.
+    ## TODO: install WebDriver
+
+    ## Trigger other dependency installs?
+    ## `composer install`
+    ## `npm install`
+    ## `bower install`

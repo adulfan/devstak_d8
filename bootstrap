@@ -173,21 +173,7 @@ function main {
   install_command_line_tools
   # install_parallels
 
-  # install_coder # TODO for drupal coding standards linting
 
-
-  # Install tools for running automated QA on host machines.
-  # Especially useful for browser testing automation tools such as WebDriver
-  # based tests.
-  # TODO: install_webdriver...
-
-  # Run any custom scripts for your project
-  # run_custom
-
-  # Trigger other dependency installs?
-  # `composer install`
-  # `npm install`
-  # `bower install`
 
   loud 'Bootstrap Complete!'
   quiet 'Make sure you restart your shell. Now!\n'

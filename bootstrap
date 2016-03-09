@@ -57,56 +57,6 @@ function install_command_line_tools {
 #   # TODO: brew install parallels
 # }
 
-function install_sassc {
-  loud "Checking Sass Environment"
-
-  # Ensure sassc is installed
-  if ! hash sassc &> /dev/null; then
-    quiet "Installing sassc"
-    brew install sassc &> /dev/null
-  fi
-}
-
-function install_bower {
-  loud "Checking for bower"
-
-  # Ensure bower is installed
-  if ! hash bower &> /dev/null; then
-    quiet "Installing bower"
-    npm install -g bower &> /dev/null
-  fi
-}
-
-function install_gulp {
-  loud "Checking for gulp"
-
-  # Ensure gulp is installed
-  if ! hash gulp &> /dev/null; then
-    quiet "Installing gulp"
-    npm install -g gulp &> /dev/null
-  fi
-}
-
-function install_grunt {
-  loud "Checking for grunt"
-
-  # Ensure grunt is installed
-  if ! hash grunt &> /dev/null; then
-    quiet "Installing grunt"
-    npm install -g grunt-cli &> /dev/null
-  fi
-}
-
-function install_browsersync {
-  loud "Checking for browser-sync"
-
-  # Ensure browser-sync is installed
-  if ! hash browser-sync &> /dev/null; then
-    quiet "Installing browser-sync"
-    npm install -g browser-sync &> /dev/null
-  fi
-}
-
 function install_azure_cli {
   loud "Checking for azure cli tools"
 
@@ -247,14 +197,7 @@ function main {
   # install_coder # TODO for drupal coding standards linting
   # install_java # TODO brew install java
 
-  # Install host FE tools for running FE processes locally for those who want
-  # to. Running grunt/gulp on the host performs better than in VM.
-  install_sassc
-  install_bower
   # install_yeoman?
-  install_gulp
-  install_grunt
-  install_browsersync
 
   # Managed Hosting Service Tools to optionally enable
   # install_azure_cli

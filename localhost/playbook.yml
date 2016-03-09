@@ -14,3 +14,5 @@
     - { role: php_qat, tags: ['php_qat'] }
     ## WordPress CLI tools
     # - { role: wp_cli, tags: ['wp_cli'] }
+    ## FE tools
+    - { role: fe_tools, tags: ['fe_tools'] }

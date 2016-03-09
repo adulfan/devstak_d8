@@ -1,0 +1,51 @@
+# Use this file to override default values from any of the included roles. See
+# ../roles/*/defaults/main.yml for all available variables. See
+# ../roles/*/README.md for documentation.
+---
+## Minimum required versions:
+# homebrew_min_version: 0.9.5
+# virtualbox_min_version: 5.0.0
+# vagrant_min_version: 1.8.1
+# php_brew_version: php55
+
+## Front end tools
+# fe_tools_brew:
+  # - sassc
+# fe_tools_npm:
+  # - bower
+  # - gulp
+  # - grunt-cli
+  # - browser-sync
+  # - yo # yeoman
+
+## Hosting services tools
+# hosting_services_brew: []
+# hosting_services_npm:
+  # - azure-cli
+
+## PHP
+# php_brew_options: --with-pear
+
+## PHP QA tools
+# php_qat_state: present
+# php_qat_packages:
+  # - behat
+  # - phpmd
+  # - php-code-sniffer
+  # - php-cs-fixer
+  # - phpcpd
+  # - pdepend
+  # - phpunit
+  # - phploc
+  # - phpdox
+  # - phpmetrics
+
+## Vagrant
+# vagrant_use_nfs: no
+
+# vagrant_apps:
+  # - vagrant-bar
+
+# vagrant_plugins:
+  # - vagrant-hostmanager
+  # - vagrant-parallels

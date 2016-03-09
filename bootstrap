@@ -175,7 +175,6 @@ function main {
 
   # install_coder # TODO for drupal coding standards linting
 
-  # install_yeoman?
 
   # Install tools for running automated QA on host machines.
   # Especially useful for browser testing automation tools such as WebDriver

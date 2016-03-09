@@ -6,3 +6,4 @@ fe_tools_npm:
   - gulp
   - grunt-cli
   - browser-sync
+  - yo # yeoman

@@ -57,15 +57,6 @@ function install_command_line_tools {
 #   # TODO: brew install parallels
 # }
 
-# Install WP-CLI on host machine
-function install_wp_cli {
-  if ! hash wp &> /dev/null; then
-    loud "Installing WordPress CLI tools"
-    brew install wp-cli &> /dev/null
-    quiet "Done Installing WordPress CLI tools"
-  fi
-}
-
 function install_sassc {
   loud "Checking Sass Environment"
 
@@ -253,7 +244,6 @@ function main {
   install_command_line_tools
   # install_parallels
 
-  # install_wp_cli
   # install_coder # TODO for drupal coding standards linting
   # install_java # TODO brew install java
 

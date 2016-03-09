@@ -12,3 +12,5 @@
     - { role: php, tags: ['php'] }
     ## PHP QA Toolchain
     - { role: php_qat, tags: ['php_qat'] }
+    ## WordPress CLI tools
+    # - { role: wp_cli, tags: ['wp_cli'] }

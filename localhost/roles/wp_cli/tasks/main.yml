@@ -1,0 +1,3 @@
+---
+- name: Installing WordPress CLI tools
+  homebrew: name=wp-cli state=present update_homebrew=no

@@ -18,3 +18,5 @@
     - { role: fe_tools, tags: ['fe_tools'] }
     ## Java
     # - { role: java, tags: ['java'] }
+    ## Hosting Services tools
+    # - { role: hosting_services, tags: ['hosting_services'] }

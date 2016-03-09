@@ -1,0 +1,4 @@
+---
+hosting_services_brew: []
+hosting_services_npm:
+  - azure-cli

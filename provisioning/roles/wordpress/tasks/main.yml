@@ -18,18 +18,25 @@
   register: wordpress_present
 
 - name: Downloading Wordpress
-  shell: "sudo -u vagrant -i -- wp core download --path={{ wordpress_docroot }}"
+  shell: "wp core download --path={{ wordpress_docroot }}"
   when: not wordpress_present.stat.exists
+  become: no
 
 - name: Configuring Wordpress
-  shell: "sudo -u vagrant -i -- wp core config --dbname={{ project_name }} --dbuser=vagrant --dbpass=vagrant --path={{ wordpress_docroot }}"
+  shell: "wp core config --dbname={{ project_name }} --dbuser=vagrant --dbpass=vagrant --path={{ wordpress_docroot }}"
   when: not wordpress_present.stat.exists
+  become: no
 
 - name: Installing Wordpress
-  shell: "sudo -u vagrant -i -- wp core install --url=\"http://{{ project_hostname }}\" --title=\"{{ wordpress_sitename }}\" --admin_user=\"{{ wordpress_admin_user }}\" --admin_password=\"{{ wordpress_admin_pass }}\" --admin_email=\"{{ wordpress_admin_email }}\" --path={{ wordpress_docroot }}"
+  shell: "wp core install --url=\"http://{{ project_hostname }}\" --title=\"{{ wordpress_sitename }}\" --admin_user=\"{{ wordpress_admin_user }}\" --admin_password=\"{{ wordpress_admin_pass }}\" --admin_email=\"{{ wordpress_admin_email }}\" --path={{ wordpress_docroot }}"
+  become: no
 
 #- name: Additional Wordpress provisioning
-  #shell: "sudo -u vagrant -i -- wp rewrite structure \"/%postname%/\" --path={{ wordpress_docroot }}"
-  #shell: "sudo -u vagrant -i -- wp plugin install http://downloads.wordpress.org/plugin/relative-url.zip --activate --path={{ wordpress_docroot }}"
-  #shell: "sudo -u vagrant -i -- wp plugin install http://downloads.wordpress.org/plugin/w3-total-cache.zip --activate --path={{ wordpress_docroot }}"
-  #shell: "sudo -u vagrant -i -- wp theme install twentyfifteen --activate
+  #shell: "wp rewrite structure \"/%postname%/\" --path={{ wordpress_docroot }}"
+  # become: no
+  #shell: "wp plugin install http://downloads.wordpress.org/plugin/relative-url.zip --activate --path={{ wordpress_docroot }}"
+  # become: no
+  #shell: "wp plugin install http://downloads.wordpress.org/plugin/w3-total-cache.zip --activate --path={{ wordpress_docroot }}"
+  # become: no
+  #shell: "wp theme install twentyfifteen --activate
+  # become: no

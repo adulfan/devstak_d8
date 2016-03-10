@@ -31,6 +31,12 @@
   when: not wordpress_present.stat.exists
   become: no
 
+- name: Test whether Wordpress is installed
+  command: wp core is-installed --path={{ wordpress_docroot }}
+  register: wordpress_installed
+  changed_when: false
+  become: no
+
 - name: Installing Wordpress
   shell: >
     wp core install
@@ -40,6 +46,7 @@
     --admin_password="{{ wordpress_admin_pass }}"
     --admin_email="{{ wordpress_admin_email }}"
     --path={{ wordpress_docroot }}
+  when: not wordpress_installed
   become: no
 
 # - name: Additional Wordpress provisioning

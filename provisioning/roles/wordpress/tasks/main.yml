@@ -35,6 +35,7 @@
   command: wp core is-installed --path={{ wordpress_docroot }}
   register: wordpress_installed
   changed_when: false
+  ignore_errors: yes
   become: no
 
 - name: Installing Wordpress
@@ -46,7 +47,7 @@
     --admin_password="{{ wordpress_admin_pass }}"
     --admin_email="{{ wordpress_admin_email }}"
     --path={{ wordpress_docroot }}
-  when: not wordpress_installed
+  when: wordpress_installed | failed
   become: no
 
 # - name: Additional Wordpress provisioning

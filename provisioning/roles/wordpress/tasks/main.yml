@@ -13,12 +13,17 @@
     login_user: vagrant
     login_password: vagrant
 
+- name: Test whether Wordpress is present.
+  stat: path="{{ wordpress_docroot }}/wp-config.php"
+  register: wordpress_present
 
 - name: Downloading Wordpress
   shell: "sudo -u vagrant -i -- wp core download --path={{ wordpress_docroot }}"
+  when: not wordpress_present.stat.exists
 
 - name: Configuring Wordpress
   shell: "sudo -u vagrant -i -- wp core config --dbname={{ project_name }} --dbuser=vagrant --dbpass=vagrant --path={{ wordpress_docroot }}"
+  when: not wordpress_present.stat.exists
 
 - name: Installing Wordpress
   shell: "sudo -u vagrant -i -- wp core install --url=\"http://{{ project_hostname }}\" --title=\"{{ wordpress_sitename }}\" --admin_user=\"{{ wordpress_admin_user }}\" --admin_password=\"{{ wordpress_admin_pass }}\" --admin_email=\"{{ wordpress_admin_email }}\" --path={{ wordpress_docroot }}"

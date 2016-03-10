@@ -7,8 +7,11 @@
     mode: 0755
 
 # Create empty wordpress database (wp-cli gives you more options with the DB there)
-- template: src=../templates/wordpress.sql.j2 dest=/tmp/wordpress.sql
-- mysql_db: name={{ project_name }} state=import target=/tmp/wordpress.sql
+- mysql_db:
+    name: '{{ project_name }}'
+    state: present
+    login_user: vagrant
+    login_password: vagrant
 
 
 - name: Downloading Wordpress

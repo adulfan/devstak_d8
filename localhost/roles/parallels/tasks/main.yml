@@ -1,0 +1,19 @@
+---
+- name: Get version information for Parallels
+  include: version.yml
+
+- name: Install Parallels
+  shell: brew cask install --force parallels-desktop
+  register: parallels_updated
+  when: >
+    parallels_version_raw | failed or
+    parallels_version | version_compare(parallels_min_version, '<')
+  environment:
+    path: $PATH:/usr/local/bin
+
+- name: Update version information for Parallels
+  include: version.yml
+  when: parallels_updated | changed
+
+- name: Report Parallels version
+  debug: msg="Parallels version {{ parallels_version }} is installed."

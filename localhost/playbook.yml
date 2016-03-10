@@ -8,6 +8,8 @@
   roles:
     ## package managers and some basic tools required elsewhere
     - { role: common, tags: ['common'] }
+    ## Parallels Desktop
+    - { role: parallels, tags: ['parallels'] }
     ## VirtualBox
     # - { role: virtualbox, tags: ['virtualbox'] }
     ## TODO: install Parallels

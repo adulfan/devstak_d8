@@ -14,9 +14,3 @@
 
 - name: Restart MySQL
   service: name=mysql state=restarted enabled=yes
-
-- name: Setup MySQL User
-  mysql_user: name=vagrant password=vagrant priv=*.*:ALL host=% state=present
-
-- name: Create project database
-  action: mysql_db db={{ project_name }} state=present

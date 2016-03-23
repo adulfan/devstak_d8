@@ -14,9 +14,3 @@
 
 - name: Restart MariaDB
   service: name=mysql state=restarted
-
-- name: Setup MariaDB User
-  mysql_user: name=vagrant password=vagrant priv=*.*:ALL host=% state=present
-
-- name: Create project database
-  action: mysql_db db={{ project_name }} state=present

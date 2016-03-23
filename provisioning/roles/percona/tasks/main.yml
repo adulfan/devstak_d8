@@ -23,9 +23,3 @@
 
 - name: Restart Percona MySQL
   service: name=mysql state=restarted
-
-- name: Setup MySQL User
-  mysql_user: name=vagrant password=vagrant priv=*.*:ALL host=% state=present
-
-- name: Create project database
-  action: mysql_db db={{ project_name }} state=present

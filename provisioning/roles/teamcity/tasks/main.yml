@@ -57,6 +57,17 @@
     group: root
     mode: 0755
 
+- name: Setup MySQL User
+  mysql_user:
+    name: vagrant
+    password: vagrant
+    priv: "{{ project_name }}.*:ALL"
+    host: "%"
+    state: present
+
+- name: Create project database
+  mysql_db: db={{ project_name }} state=present
+
   # todo: make this a handler and notify it.
 - name: Ensure the application is started and enabled on boot.
   service: name=teamcity state=started enabled=yes

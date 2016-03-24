@@ -8,6 +8,17 @@
   shell: drush -y dl {{ drupal_version }} --destination={{ drupal_project_root }} --drupal-project-rename={{ drupal_directory_name }}
   when: not drupal_present.stat.exists
 
+- name: Setup MySQL User
+  mysql_user:
+    name: vagrant
+    password: vagrant
+    priv: "{{ project_name }}.*:ALL"
+    host: "%"
+    state: present
+
+- name: Create project database
+  mysql_db: db={{ project_name }} state=present
+
 - name: Test whether Drupal is already installed.
   stat: path="{{ drupal_docroot }}/sites/default/settings.php"
   register: drupal_installed

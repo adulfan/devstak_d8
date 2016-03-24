@@ -8,9 +8,3 @@
 
 # - name: Install DB
 #   command: mysql_install_db
-
-- name: Configure MariaDB
-  template: src=../templates/my.cnf.j2 dest=/etc/mysql/my.cnf
-
-- name: Restart MariaDB
-  service: name=mysql state=restarted

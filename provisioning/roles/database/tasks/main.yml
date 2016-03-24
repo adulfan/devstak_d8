@@ -1,0 +1,8 @@
+---
+- include: "{{ database_provider }}.yml"
+
+- name: Configure MySQL
+  template: src=../templates/my.cnf.j2 dest=/etc/mysql/my.cnf
+
+- name: Restart MySQL and enable on boot
+  service: name=mysql state=restarted enabled=yes

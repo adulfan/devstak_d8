@@ -17,9 +17,3 @@
 
 # - name: Install DB
 #   command: mysql_install_db
-
-- name: Configure MySQL
-  template: src=../templates/my.cnf.j2 dest=/etc/mysql/my.cnf
-
-- name: Restart Percona MySQL
-  service: name=mysql state=restarted

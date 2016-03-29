@@ -5,3 +5,9 @@ laravel_installer_version: '=*'
 laravel_base: '{{ project_docroot }}'
 laravel_folder: 'laravel'
 laravel_docroot: '{{ laravel_base }}/{{ laravel_folder }}/public'
+
+# Database parameters
+laravel_db_name: laravel
+laravel_db_user: vagrant
+laravel_db_password: vagrant
+laravel_db_dump: false

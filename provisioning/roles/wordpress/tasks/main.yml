@@ -8,19 +8,8 @@
 - name: Downloading Wordpress
   shell: "sudo -u vagrant -i -- wp core download --path={{ project_docroot }}"
 
-- name: Setup MySQL User
-  mysql_user:
-    name: vagrant
-    password: vagrant
-    priv: "{{ project_name }}.*:ALL"
-    host: "%"
-    state: present
-
-- name: Create project database
-  mysql_db: db={{ project_name }} state=present
-
 - name: Configuring Wordpress
-  shell: "sudo -u vagrant -i -- wp core config --dbname={{ project_name }} --dbuser=vagrant --dbpass=vagrant --path={{ project_docroot }}"
+  shell: "sudo -u vagrant -i -- wp core config --dbname={{ wordpress_db_name }} --dbuser={{ wordpress_db_user }} --dbpass={{ wordpress_db_user }} --path={{ project_docroot }}"
 
 - name: Installing Wordpress
   shell: "sudo -u vagrant -i -- wp core install --url=\"http://{{ project_hostname }}\" --title=\"{{ wordpress_sitename }}\" --admin_user=\"{{ wordpress_admin_user }}\" --admin_password=\"{{ wordpress_admin_pass }}\" --admin_email=\"{{ wordpress_admin_email }}\" --path={{ project_docroot }}"

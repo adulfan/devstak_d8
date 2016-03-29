@@ -13,17 +13,6 @@
     arguments: "laravel/installer{{ laravel_installer_version }}"
     working_dir: "{{ composer_home }}"
 
-- name: Setup MySQL User
-  mysql_user:
-    name: vagrant
-    password: vagrant
-    priv: "{{ project_name }}.*:ALL"
-    host: "%"
-    state: present
-
-- name: Create project database
-  mysql_db: db={{ project_name }} state=present
-
 - name: Ensure that the document root exists.
   file: path="{{ laravel_base }}" state="directory"
 

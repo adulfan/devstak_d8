@@ -8,3 +8,8 @@ allow_duplicates: no
 #   - { role: nodejs }
 #   - { role: git }
 #   - { role: common }
+  - role: database-config
+    database_name: "{{ wordpress_db_name }}"
+    database_user: "{{ wordpress_db_user }}"
+    database_password: "{{ wordpress_db_password }}"
+    database_dump: "{{ wordpress_db_dump }}"

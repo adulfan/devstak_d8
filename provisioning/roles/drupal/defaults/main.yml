@@ -6,6 +6,12 @@ drupal_project_root: '{{ project_root }}'
 drupal_directory_name: 'docroot'
 drupal_docroot: '{{ drupal_project_root }}/{{ drupal_directory_name }}'
 
+# Database parameters
+drupal_db_name: drupal
+drupal_db_user: vagrant
+drupal_db_password: vagrant
+drupal_db_dump: false
+
 # Drupal 8
 # drupal_version: 'drupal'
 

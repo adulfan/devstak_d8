@@ -12,14 +12,3 @@
     - index.php
     - index.html
   when: not index_present.stat.exists
-
-- name: Setup MySQL User
-  mysql_user:
-    name: vagrant
-    password: vagrant
-    priv: "{{ project_name }}.*:ALL"
-    host: "%"
-    state: present
-
-- name: Create project database
-  mysql_db: db={{ project_name }} state=present

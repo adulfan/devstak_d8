@@ -1,0 +1,5 @@
+---
+database_name: devstack
+database_user: vagrant
+database_password: vagrant
+database_dump: false

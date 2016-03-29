@@ -1,0 +1,26 @@
+---
+- name: Create a database
+  mysql_db: db={{ database_name }} state=present
+  register: database_created
+
+- name: Set up the MySQL user
+  mysql_user:
+    user: "{{ database_user }}"
+    host: "{{ item }}"
+    password: "{{ database_password }}"
+    priv: "{{ database_name }}.*:ALL"
+    state: present
+    append_privs: yes
+    update_password: on_create
+  with_items:
+    - "%"
+    - "localhost"
+  register: database_user_created
+
+- name: Upload database dump to the server
+  copy: src={{ database_dump }} dest=/tmp
+  when: database_dump != false and database_created.changed
+
+- name: Import the database dump
+  mysql_db: db={{ database_name }} state=import target=/tmp/{{ database_dump }}
+  when: database_dump != false and database_created.changed

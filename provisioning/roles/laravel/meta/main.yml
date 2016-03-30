@@ -6,4 +6,7 @@ dependencies:
   - { role: composer }
 #   - { role: php }
 #   - { role: apache }
-  - { role: apache-config, apache_docroot: "{{ laravel_docroot }}" }
+  - role: apache-config
+    apache_name: "laravel"
+    apache_hostname: "{{ laravel_hostname }}"
+    apache_docroot: "{{ laravel_docroot }}"

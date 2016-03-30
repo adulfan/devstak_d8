@@ -12,6 +12,7 @@
     path: /etc/drush
     state: directory
 
+# todo: make it possible to add multiple aliases to the file, or make one file per alias.
 - name: Configure project default local Drush aliases
   template:
     src: project.aliases.drushrc.php.j2

@@ -1,1 +1,3 @@
 ---
+drush_hostname: "{{ project_hostname }}"
+drush_docroot: "{{ project_docroot }}"

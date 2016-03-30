@@ -2,11 +2,6 @@
 - name: Install Drush
   get_url: url=https://github.com/drush-ops/drush/releases/download/8.0.3/drush.phar dest=/usr/local/bin/drush mode=0755
 
-- name: Create a ~/.drush directory
-  sudo: yes
-  sudo_user: vagrant
-  file: path=/home/vagrant/.drush/ state=directory
-
 - name: Ensure /etc/drush directory exists
   file:
     path: /etc/drush
@@ -18,9 +13,25 @@
     src: project.aliases.drushrc.php.j2
     dest: /etc/drush/{{ project_name }}.aliases.drushrc.php
 
-# - name: Enable drush autocomplete
-#   lineinfile:
-#     line: "source {{ composer_home }}/vendor/drush/drush/examples/example.bashrc"
-#     dest: "{{ ansible_env.HOME }}/.bashrc"
-#     state: present
-#     insertafter: EOF
+# https://www.drupal.org/project/site_audit
+- name: Install the site-audit drush command
+  unarchive:
+    src: https://ftp.drupal.org/files/projects/site_audit-{{ drush_site_audit_version }}.tar.gz
+    copy: no
+    dest: /etc/drush
+    creates: /etc/drush/site_audit
+
+# As of 3/2016, there are no dev releases and integration with site_audit is
+# not in 7.x-1.2 so specify a commit.
+# https://www.drupal.org/project/security_review
+- name: Install security_review to integrate with site-audit
+  git:
+    repo: https://git.drupal.org/project/security_review.git
+    dest: /etc/drush/security_review
+    update: no
+    version: "{{ drush_security_review_version }}"
+
+- name: Enable drush autocomplete and more
+  # This will only affect the user vagrant.
+  command: drush -y init creates=~/.drush/drush.complete.sh
+  become: no

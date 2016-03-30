@@ -1,2 +1,8 @@
 ---
 devstack_docroot: '{{ project_docroot }}'
+
+# Database parameters
+devstack_db_name: devstack
+devstack_db_user: vagrant
+devstack_db_password: vagrant
+devstack_db_dump: false

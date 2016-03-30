@@ -58,6 +58,12 @@ dependencies:
 where `this_db_name` is defined in the role's `defaulta/main.yml` and can be
 overridden as usual.
 
+It looks like a bug to me, but variables overridden this way take precendence
+over the defaults every time the role is included, either directly from the
+playbook or as a dependency, even as a dependency of an earlier-included role:
+https://github.com/ansible/ansible/issues/14840
+It is safest to declare all role variables when including this role.
+
 ## Variables
 
 - `database_name`: name of the database to create (default: `devstack`)

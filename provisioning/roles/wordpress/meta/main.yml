@@ -1,6 +1,6 @@
 ---
 allow_duplicates: no
-# dependencies:
+dependencies:
 #   - { role: composer }
 #   - { role: php }
 #   - { role: apache }
@@ -8,3 +8,7 @@ allow_duplicates: no
 #   - { role: nodejs }
 #   - { role: git }
 #   - { role: common }
+  - role: apache-config
+    apache_name: "wordpress"
+    apache_hostname: "{{ wordpress_hostname }}"
+    apache_docroot: "{{ wordpress_docroot }}"

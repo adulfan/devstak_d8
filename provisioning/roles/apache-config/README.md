@@ -36,6 +36,11 @@ This role can be included more than once, with different variables. Be careful
 when you do this: if you override a variable the first time you include this
 role, that override becomes the new default for the next time you include it.
 
+In fact, if you override a variable when declaring a dependency, then the
+defaults are overridden even if you include this role from an earlier one.
+Looks like a bug to me:  https://github.com/ansible/ansible/issues/14840
+It is safest to define all role variables when including a role.
+
 ## Variables
 
 - `apache_name`: used in the vhost and log file names

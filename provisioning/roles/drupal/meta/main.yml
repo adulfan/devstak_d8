@@ -11,6 +11,8 @@ dependencies:
     apache_name: "drupal"
     apache_hostname: "{{ drupal_hostname }}"
     apache_docroot: "{{ drupal_docroot }}"
+    apache_port: "{{ drupal_port }}"
+    apache_ssl_port: "{{ drupal_ssl_port }}"
 #   - { role: mysql }
 #   - { role: nodejs }
 #   - { role: git }

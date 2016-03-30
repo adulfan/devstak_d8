@@ -6,6 +6,8 @@ drupal_project_root: '{{ project_docroot }}'
 drupal_directory_name: 'drupal'
 drupal_docroot: '{{ drupal_project_root }}/{{ drupal_directory_name }}'
 drupal_hostname: "{{ project_hostname }}"
+drupal_port: "80"
+drupal_ssl_port: "443"
 
 # Drupal 8
 # drupal_version: 'drupal'

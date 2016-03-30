@@ -12,3 +12,5 @@ dependencies:
     apache_name: "wordpress"
     apache_hostname: "{{ wordpress_hostname }}"
     apache_docroot: "{{ wordpress_docroot }}"
+    apache_port: "{{ wordpress_port }}"
+    apache_ssl_port: "{{ wordpress_ssl_port }}"

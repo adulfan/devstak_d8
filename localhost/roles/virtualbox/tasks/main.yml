@@ -1,0 +1,19 @@
+---
+- name: Get version information for VirtualBox
+  include: version.yml
+
+- name: Install VirtualBox
+  shell: brew cask install --force virtualbox
+  register: virtualbox_updated
+  when: >
+    virtualbox_version_raw | failed or
+    virtualbox_version | version_compare(virtualbox_min_version, '<')
+  environment:
+    path: $PATH:/usr/local/bin
+
+- name: Update version information for VirtualBox
+  include: version.yml
+  when: virtualbox_updated | changed
+
+- name: Report VirtualBox version
+  debug: msg="VirtualBox version {{ virtualbox_version }} is installed."

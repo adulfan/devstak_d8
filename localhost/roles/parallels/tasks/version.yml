@@ -1,0 +1,12 @@
+---
+- name: Ask Parallels which version it is
+  command: prlctl --version
+  register: parallels_version_raw
+  ignore_errors: true
+  changed_when: false
+
+- name: Save the Parallels version
+  set_fact: >
+    parallels_version="{{ parallels_version_raw.stdout
+    | regex_replace('^prlctl version *([0-9.]+).*$', '\\1') }}"
+  when: parallels_version_raw | success

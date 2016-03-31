@@ -1,0 +1,11 @@
+---
+- name: Ask Vagrant what version it is
+  command: vagrant --version
+  register: vagrant_version_raw
+  changed_when: false
+  ignore_errors: true
+
+- name: Save the Vagrant version
+  set_fact: vagrant_version="{{ vagrant_version_raw.stdout | regex_replace('^Vagrant ([0-9.]+).*$', '\\1') }}"
+  when: vagrant_version_raw | success
+

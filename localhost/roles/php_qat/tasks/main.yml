@@ -1,0 +1,4 @@
+---
+- name: Install the PHP QA Tools
+  homebrew: name={{ item }} update_homebrew=no state={{ php_qat_state }}
+  with_items: php_qat_packages

@@ -1,0 +1,10 @@
+---
+- name: Ask VirtualBox which version it is
+  command: vboxmanage --version
+  register: virtualbox_version_raw
+  ignore_errors: true
+  changed_when: false
+
+- name: Save the VirtualBox version
+  set_fact: virtualbox_version="{{ virtualbox_version_raw.stdout | regex_replace('^ *([0-9.]+).*$', '\\1') }}"
+  when: virtualbox_version_raw | success

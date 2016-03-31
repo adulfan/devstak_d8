@@ -1,0 +1,3 @@
+---
+php_brew_version: php55
+php_brew_options: --with-pear

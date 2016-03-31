@@ -1,0 +1,23 @@
+---
+php_qat_state: present
+php_qat_packages:
+  # http://behat.org
+  - behat
+  # http://phpmd.org (PHP Mess Detector)
+  - phpmd
+  # http://pear.php.net/package/PHP_CodeSniffer
+  - php-code-sniffer
+  # http://cs.sensiolabs.org (PHP Coding Standards Fixer)
+  - php-cs-fixer
+  # https://github.com/sebastianbergmann/phpcpd (PHP Copy Paste Detector)
+  - phpcpd
+  # https://pdepend.org
+  - pdepend
+  # https://phpunit.de
+  - phpunit
+  # https://github.com/sebastianbergmann/phploc (PHP Lines of Code)
+  - phploc
+  # http://phpdox.de
+  - phpdox
+  # http://www.phpmetrics.org
+  - phpmetrics

@@ -23,6 +23,8 @@
   args:
     chdir: "{{ laravel_base }}"
     creates: "{{ laravel_base }}/{{ laravel_folder }}"
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ composer_home }}/vendor/bin"
 
 - name: Ensure that the web server can write to directories.
   file:

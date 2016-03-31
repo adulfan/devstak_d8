@@ -1,11 +1,18 @@
 ---
 allow_duplicates: no
 dependencies:
-  - { role: drush }
+  - role: drush
+    drush_hostname: "{{ drupal_hostname }}"
+    drush_docroot: "{{ drupal_docroot }}"
 #   - { role: composer }
 #   - { role: php }
 #   - { role: apache }
-  - { role: apache-config, apache_docroot: "{{ drupal_docroot }}" }
+  - role: apache-config
+    apache_name: "drupal"
+    apache_hostname: "{{ drupal_hostname }}"
+    apache_docroot: "{{ drupal_docroot }}"
+    apache_port: "{{ drupal_port }}"
+    apache_ssl_port: "{{ drupal_ssl_port }}"
 #   - { role: mysql }
 #   - { role: nodejs }
 #   - { role: git }

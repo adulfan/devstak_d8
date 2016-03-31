@@ -5,3 +5,6 @@ laravel_installer_version: '=*'
 laravel_base: '{{ project_docroot }}'
 laravel_folder: 'laravel'
 laravel_docroot: '{{ laravel_base }}/{{ laravel_folder }}/public'
+laravel_hostname: '{{ project_hostname }}'
+laravel_port: "80"
+laravel_ssl_port: "443"

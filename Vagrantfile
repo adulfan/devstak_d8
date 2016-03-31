@@ -6,8 +6,8 @@ project_name = "devstack"
 # OS X uses .local for Bonjour and can cause slowness in some tools
 project_hostname = project_name + ".vm"
 ip_address = "172.22.22.20"
-project_root = "/var/www/" + project_name + "/"
-project_docroot = project_root + "docroot"
+project_root = "/var/www/" + project_name
+project_docroot = project_root + "/docroot"
 # TODO: pass platform version so users don't have to dig deep into roles?
 # drupal_version?
 # wordpress_version?
@@ -84,7 +84,7 @@ Vagrant.configure(2) do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-  config.vm.synced_folder "./", project_root
+  config.vm.synced_folder "./", project_root + "/"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.

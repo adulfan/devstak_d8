@@ -36,7 +36,6 @@
 
     ## Web Server
     - { role: apache, tags: ['apache'] }
-    - { role: apache-config, tags: ['apache-config'] }
     # - { role: nginx, tags: ['nginx'] } # TODO
 
     ## Project Language (PHP)

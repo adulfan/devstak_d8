@@ -1,21 +1,54 @@
 ---
-# TODO: clean this up.
-# Create empty wordpress database (wp-cli gives you more options with the DB there)
-- template: src=../templates/wordpress.sql.j2 dest=/tmp/wordpress.sql
-- mysql_db: name={{ project_name }} state=import target=/tmp/wordpress.sql
+- name: Installing WP-CLI
+  get_url:
+    url: https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+    dest: /usr/bin/wp
+    mode: 0755
+  become: yes
 
+- name: Test whether Wordpress is present.
+  stat: path="{{ wordpress_docroot }}/wp-config.php"
+  register: wordpress_present
 
 - name: Downloading Wordpress
-  shell: "sudo -u vagrant -i -- wp core download --path={{ wordpress_docroot }}"
+  shell: wp core download --path={{ wordpress_docroot }}
+  when: not wordpress_present.stat.exists
 
 - name: Configuring Wordpress
-  shell: "sudo -u vagrant -i -- wp core config --dbname={{ wordpress_db_name }} --dbuser={{ wordpress_db_user }} --dbpass={{ wordpress_db_user }} --path={{ wordpress_docroot }}"
+  shell: >
+    wp core config
+    --dbname={{ wordpress_db_name }}
+    --dbuser={{ wordpress_db_user }}
+    --dbpass={{ wordpress_db_password }}
+    --path={{ wordpress_docroot }}
+  when: not wordpress_present.stat.exists
+
+- name: Test whether Wordpress is installed
+  command: wp core is-installed --path={{ wordpress_docroot }}
+  register: wordpress_installed
+  changed_when: false
+  ignore_errors: yes
 
 - name: Installing Wordpress
-  shell: "sudo -u vagrant -i -- wp core install --url=\"http://{{ wordpress_hostname }}\" --title=\"{{ wordpress_sitename }}\" --admin_user=\"{{ wordpress_admin_user }}\" --admin_password=\"{{ wordpress_admin_pass }}\" --admin_email=\"{{ wordpress_admin_email }}\" --path={{ wordpress_docroot }}"
+  shell: >
+    wp core install
+    --url="http://{{ wordpress_hostname }}"
+    --title="{{ wordpress_sitename }}"
+    --admin_user="{{ wordpress_admin_user }}"
+    --admin_password="{{ wordpress_admin_pass }}"
+    --admin_email="{{ wordpress_admin_email }}"
+    --path={{ wordpress_docroot }}
+  when: wordpress_installed | failed
 
-#- name: Additional Wordpress provisioning
-  #shell: "sudo -u vagrant -i -- wp rewrite structure \"/%postname%/\" --path={{ wordpress_docroot }}"
-  #shell: "sudo -u vagrant -i -- wp plugin install http://downloads.wordpress.org/plugin/relative-url.zip --activate --path={{ wordpress_docroot }}"
-  #shell: "sudo -u vagrant -i -- wp plugin install http://downloads.wordpress.org/plugin/w3-total-cache.zip --activate --path={{ wordpress_docroot }}"
-  #shell: "sudo -u vagrant -i -- wp theme install twentyfifteen --activate
+# - name: Additional Wordpress provisioning
+  # shell: >
+    # wp rewrite structure "/%postname%/" --path={{ wordpress_docroot }}
+  # shell: >
+    # wp plugin install http://downloads.wordpress.org/plugin/relative-url.zip
+    # --activate
+    # --path={{ wordpress_docroot }}
+  # shell: >
+    # wp plugin install http://downloads.wordpress.org/plugin/w3-total-cache.zip
+    # --activate
+    # --path={{ wordpress_docroot }}
+  # shell: wp theme install twentyfifteen --activate

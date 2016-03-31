@@ -76,8 +76,7 @@
     # - { role: pantheon_termius, tags: ['pantheon_termius'] } # TODO
 
     # Wordpress and Tools
-    # - { role: wp-cli, tags: ['wp-cli'] }
-    # - { role: wordpress, tags: ['wordpress'] }
+    # - { role: wordpress, tags: ['wordpress'], become: no }
 
     # Laravel and Tools
     # - { role: laravel, tags: ['laravel'] }

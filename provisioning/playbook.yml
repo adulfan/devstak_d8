@@ -27,7 +27,9 @@
     - { role: nodejs, tags: ['nodejs'] } # Includes npm
 
     ## Database
-    - { role: database, tags: ['database'] }
+    - { role: database, tags: ['mysql'] }
+    # - { role: database, tags: ['mariadb'], database_provider: 'mariadb' }
+    # - { role: database, tags: ['percona'], database_provider: 'percona' }
     # - { role: mongodb, tags: ['mongodb'] }
     # - { role: postgresql, tags: ['postgresql'] }
     # - { role: sqlite, tags: ['sqlite'] }

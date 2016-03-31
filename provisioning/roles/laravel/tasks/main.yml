@@ -1,13 +1,7 @@
 # Reference: https://laravel.com/docs/5.2
 ---
-# TODO: there must be a better way to do this to make sure composer vars are
-# used globally (not per task)? THIS MIGHT NOT BE NEEDED ANY MORE. TEST!
-- name: Source the system ENV (make sure ENV VARS load everywhere)
-  shell: . /etc/environment
-
 - name: Install laravel installer with composer
-  become: yes
-  become_user: vagrant
+  become: no
   composer:
     command: "require"
     arguments: "laravel/installer{{ laravel_installer_version }}"
@@ -17,8 +11,7 @@
   file: path="{{ laravel_base }}" state="directory"
 
 - name: Create a Laravel project.
-  become: yes
-  become_user: vagrant
+  become: no
   shell: laravel new {{ laravel_folder }}
   args:
     chdir: "{{ laravel_base }}"
@@ -62,7 +55,7 @@
 
 - name: Setting Laravel
   copy:
-    src=../files/arrived.blade.php
+    src=arrived.blade.php
     dest={{ laravel_base }}/{{ laravel_folder }}/resources/views/arrived.blade.php
     owner=vagrant
     group=vagrant

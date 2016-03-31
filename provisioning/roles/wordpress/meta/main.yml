@@ -4,7 +4,6 @@ dependencies:
 #   - { role: composer }
 #   - { role: php }
 #   - { role: apache }
-  - { role: apache-config, apache_docroot: "{{ wordpress_docroot }}" }
 #   - { role: mysql }
 #   - { role: nodejs }
 #   - { role: git }

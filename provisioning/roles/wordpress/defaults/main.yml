@@ -1,5 +1,4 @@
 ---
-wordpress_docroot: '{{ project_docroot }}'
 # You'll probably want to change this stuff
 wordpress_sitename: 'Just Another Wordpress Site'
 wordpress_admin_user: 'wordpress'

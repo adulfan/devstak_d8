@@ -4,6 +4,7 @@
     url: https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
     dest: /usr/bin/wp
     mode: 0755
+  become: yes
 
 - name: Test whether Wordpress is present.
   stat: path="{{ wordpress_docroot }}/wp-config.php"
@@ -12,7 +13,6 @@
 - name: Downloading Wordpress
   shell: wp core download --path={{ wordpress_docroot }}
   when: not wordpress_present.stat.exists
-  become: no
 
 - name: Configuring Wordpress
   shell: >
@@ -22,14 +22,12 @@
     --dbpass={{ wordpress_db_password }}
     --path={{ wordpress_docroot }}
   when: not wordpress_present.stat.exists
-  become: no
 
 - name: Test whether Wordpress is installed
   command: wp core is-installed --path={{ wordpress_docroot }}
   register: wordpress_installed
   changed_when: false
   ignore_errors: yes
-  become: no
 
 - name: Installing Wordpress
   shell: >
@@ -41,21 +39,16 @@
     --admin_email="{{ wordpress_admin_email }}"
     --path={{ wordpress_docroot }}
   when: wordpress_installed | failed
-  become: no
 
 # - name: Additional Wordpress provisioning
   # shell: >
     # wp rewrite structure "/%postname%/" --path={{ wordpress_docroot }}
-  # become: no
   # shell: >
     # wp plugin install http://downloads.wordpress.org/plugin/relative-url.zip
     # --activate
     # --path={{ wordpress_docroot }}
-  # become: no
   # shell: >
     # wp plugin install http://downloads.wordpress.org/plugin/w3-total-cache.zip
     # --activate
     # --path={{ wordpress_docroot }}
-  # become: no
   # shell: wp theme install twentyfifteen --activate
-  # become: no

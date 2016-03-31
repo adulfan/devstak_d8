@@ -32,7 +32,7 @@
 - name: Installing Wordpress
   shell: >
     wp core install
-    --url="http://{{ wordpress_hostname }}"
+    --url="http://{{ wordpress_hostname }}:{{ wordpress_port }}"
     --title="{{ wordpress_sitename }}"
     --admin_user="{{ wordpress_admin_user }}"
     --admin_password="{{ wordpress_admin_pass }}"

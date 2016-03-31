@@ -1,5 +1,4 @@
 ---
-# This will default to not ovrewrite (-n) so that it is idempotent.
 - name: Test whether Drupal is present.
   stat: path="{{ drupal_docroot }}/update.php"
   register: drupal_present

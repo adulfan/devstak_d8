@@ -1,5 +1,9 @@
 ---
-devstack_docroot: '{{ project_docroot }}'
+# Apache parameters
+devstack_hostname: "{{ project_hostname }}"
+devstack_docroot: "{{ project_docroot }}"
+devstack_port: "80"
+devstack_ssl_port: "443"
 
 # Database parameters
 devstack_db_name: devstack

@@ -1,6 +1,12 @@
 ---
 allow_duplicates: no
 dependencies:
+  - role: apache-config
+    apache_name: "devstack"
+    apache_hostname: "{{ devstack_hostname }}"
+    apache_docroot: "{{ devstack_docroot }}"
+    apache_port: "{{ devstack_port }}"
+    apache_ssl_port: "{{ devstack_ssl_port }}"
   - role: database-config
     database_name: "{{ devstack_db_name }}"
     database_user: "{{ devstack_db_user }}"

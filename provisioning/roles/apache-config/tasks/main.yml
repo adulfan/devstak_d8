@@ -1,4 +1,21 @@
 ---
+- name: Configure apache http ports
+  lineinfile:
+    dest: /etc/apache2/ports.conf
+    insertafter: '^Listen 80$'
+    line: 'Listen {{ apache_port }}'
+    state: present
+
+- name: Configure apache https ports
+  lineinfile:
+    dest: /etc/apache2/ports.conf
+    insertafter: '^<IfModule {{ item.module }}>$'
+    line: '{{ item.whitespace }}Listen {{ apache_ssl_port }}'
+    state: present
+  with_items:
+    - {module: "ssl_module", whitespace: '	' }
+    - {module: "mod_gnutls.c", whitespace: '    ' }
+
 - name: Configure Project VirtualHost
   template: src=vhost.conf.j2 dest=/etc/apache2/sites-available/{{ apache_name }}.conf
   register: http_vhost

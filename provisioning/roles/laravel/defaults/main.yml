@@ -4,7 +4,12 @@ laravel_installer_version: '=*'
 #laravel_installer_version: '=~1.3'
 laravel_base: '{{ project_docroot }}'
 laravel_folder: 'laravel'
+
+# Apache parameters
 laravel_docroot: '{{ laravel_base }}/{{ laravel_folder }}/public'
+laravel_hostname: '{{ project_hostname }}'
+laravel_port: "80"
+laravel_ssl_port: "443"
 
 # Database parameters
 laravel_db_name: laravel

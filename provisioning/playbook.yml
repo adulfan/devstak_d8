@@ -1,5 +1,5 @@
 ---
-# To install a base LAMP stack enable "mysql, apache, php"
+# To install a base LAMP stack enable "database, apache, php"
 # From there, enable any other tools your project requires.
 
 # TODO: To install a base MEAN stack enable "mongodb, express, angular, nodejs"
@@ -27,9 +27,9 @@
     - { role: nodejs, tags: ['nodejs'] } # Includes npm
 
     ## Database
-    - { role: mysql, tags: ['mysql'] }
-    # - { role: mariadb, tags: ['mariadb'] }
-    # - { role: percona, tags: ['percona'] }
+    - { role: database, tags: ['mysql'] }
+    # - { role: database, tags: ['mariadb'], database_provider: 'mariadb' }
+    # - { role: database, tags: ['percona'], database_provider: 'percona' }
     # - { role: mongodb, tags: ['mongodb'] }
     # - { role: postgresql, tags: ['postgresql'] }
     # - { role: sqlite, tags: ['sqlite'] }

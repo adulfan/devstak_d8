@@ -1,0 +1,3 @@
+---
+# One of mysql, mariadb, percona
+database_provider: mysql

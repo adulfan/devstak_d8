@@ -14,6 +14,11 @@ dependencies:
     apache_port: "{{ drupal_port }}"
     apache_ssl_port: "{{ drupal_ssl_port }}"
 #   - { role: mysql }
+  - role: database-config
+    database_name: "{{ drupal_db_name }}"
+    database_user: "{{ drupal_db_user }}"
+    database_password: "{{ drupal_db_password }}"
+    database_dump: "{{ drupal_db_dump }}"
 #   - { role: nodejs }
 #   - { role: git }
 #   - { role: common }

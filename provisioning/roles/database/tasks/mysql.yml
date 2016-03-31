@@ -1,0 +1,10 @@
+---
+- name: Install MySQL Server and Client
+  apt: name={{ item }} state=present
+  with_items:
+    - mysql-server
+    - mysql-client
+    - python-mysqldb
+
+- name: Install DB
+  command: mysql_install_db

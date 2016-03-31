@@ -5,3 +5,8 @@ dependencies:
   ## Enable one of the Java roles.
   # - { role: java-oracle }
   # - { role: java-open }
+  - role: database-config
+    database_name: "{{ teamcity_db_name }}"
+    database_user: "{{ teamcity_db_user }}"
+    database_password: "{{ teamcity_db_password }}"
+    database_dump: "{{ teamcity_db_dump }}"

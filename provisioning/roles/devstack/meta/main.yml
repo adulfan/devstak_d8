@@ -7,3 +7,8 @@ dependencies:
     apache_docroot: "{{ devstack_docroot }}"
     apache_port: "{{ devstack_port }}"
     apache_ssl_port: "{{ devstack_ssl_port }}"
+  - role: database-config
+    database_name: "{{ devstack_db_name }}"
+    database_user: "{{ devstack_db_user }}"
+    database_password: "{{ devstack_db_password }}"
+    database_dump: "{{ devstack_db_dump }}"

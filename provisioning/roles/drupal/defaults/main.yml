@@ -9,6 +9,12 @@ drupal_hostname: "{{ project_hostname }}"
 drupal_port: "80"
 drupal_ssl_port: "443"
 
+# Database parameters
+drupal_db_name: drupal
+drupal_db_user: vagrant
+drupal_db_password: vagrant
+drupal_db_dump: false
+
 # Drupal 8
 # drupal_version: 'drupal'
 

@@ -2,3 +2,5 @@
 apache_name: "{{ project_name }}"
 apache_hostname: "{{ project_hostname }}"
 apache_docroot: "{{ project_docroot }}"
+apache_port: "80"
+apache_ssl_port: "443"

@@ -1,9 +1,9 @@
 <?php
 
 $aliases['vm'] = array(
-  'uri' => '{{ project_hostname }}',
-  'root' => '{{ project_docroot }}',
+  'uri' => '{{ drush_hostname }}',
+  'root' => '{{ drush_docroot }}',
   'variables' => array(
-    'site_name' => '{{ project_hostname }}'
+    'site_name' => '{{ drush_hostname }}'
   ),
 );

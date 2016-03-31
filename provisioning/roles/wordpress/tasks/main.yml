@@ -24,9 +24,9 @@
 - name: Configuring Wordpress
   shell: >
     wp core config
-    --dbname={{ project_name }}
-    --dbuser=vagrant
-    --dbpass=vagrant
+    --dbname={{ wordpress_db_name }}
+    --dbuser={{ wordpress_db_user }}
+    --dbpass={{ wordpress_db_password }}
     --path={{ wordpress_docroot }}
   when: not wordpress_present.stat.exists
   become: no
@@ -41,7 +41,7 @@
 - name: Installing Wordpress
   shell: >
     wp core install
-    --url="http://{{ project_hostname }}"
+    --url="http://{{ wordpress_hostname }}"
     --title="{{ wordpress_sitename }}"
     --admin_user="{{ wordpress_admin_user }}"
     --admin_password="{{ wordpress_admin_pass }}"

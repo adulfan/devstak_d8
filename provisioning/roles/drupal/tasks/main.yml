@@ -1,5 +1,4 @@
 ---
-# This will default to not ovrewrite (-n) so that it is idempotent.
 - name: Test whether Drupal is present.
   stat: path="{{ drupal_docroot }}/update.php"
   register: drupal_present
@@ -20,7 +19,7 @@
   command: >
     drush @{{ project_hostname }}
     -y site-install standard
-    --db-url=mysql://root:@localhost/{{ drupal_project_name }}
+    --db-url=mysql://{{ drupal_db_user }}:{{ drupal_db_password }}@localhost/{{ drupal_db_name }}
     --site-name={{ drupal_project_name }}
     --account-name=admin
     --account-pass=admin

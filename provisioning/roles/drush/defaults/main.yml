@@ -1,1 +1,6 @@
 ---
+drush_hostname: "{{ project_hostname }}"
+drush_docroot: "{{ project_docroot }}"
+
+drush_site_audit_version: 7.x-1.15
+drush_security_review_version: f23529937f6827fd18539c84d36a0b7053a2ffaa

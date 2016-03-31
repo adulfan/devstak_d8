@@ -1,3 +1,0 @@
----
-- name: Restart Percona MySQL
-  service: name=mysql state=restarted

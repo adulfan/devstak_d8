@@ -5,3 +5,15 @@ wordpress_sitename: 'Just Another Wordpress Site'
 wordpress_admin_user: 'wordpress'
 wordpress_admin_pass: 'n0rthp01ntd1g1t@l'
 wordpress_admin_email: 'rahmin.pavlovic@ey.com'
+
+# Apache parameters
+wordpress_hostname: "{{ project_hostname }}"
+wordpress_docroot: "{{ project_docroot }}"
+wordpress_port: "80"
+wordpress_ssl_port: "443"
+
+# Database parameters
+wordpress_db_name: wordpress
+wordpress_db_user: vagrant
+wordpress_db_password: vagrant
+wordpress_db_dump: false

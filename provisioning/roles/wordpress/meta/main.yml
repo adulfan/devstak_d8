@@ -9,3 +9,14 @@ dependencies:
 #   - { role: nodejs }
 #   - { role: git }
 #   - { role: common }
+  - role: apache-config
+    apache_name: "wordpress"
+    apache_hostname: "{{ wordpress_hostname }}"
+    apache_docroot: "{{ wordpress_docroot }}"
+    apache_port: "{{ wordpress_port }}"
+    apache_ssl_port: "{{ wordpress_ssl_port }}"
+  - role: database-config
+    database_name: "{{ wordpress_db_name }}"
+    database_user: "{{ wordpress_db_user }}"
+    database_password: "{{ wordpress_db_password }}"
+    database_dump: "{{ wordpress_db_dump }}"

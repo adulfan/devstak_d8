@@ -5,13 +5,6 @@
     dest: /usr/bin/wp
     mode: 0755
 
-# Create empty wordpress database (wp-cli gives you more options with the DB there)
-- mysql_db:
-    name: "{{ project_name }}"
-    state: present
-    login_user: vagrant
-    login_password: vagrant
-
 - name: Test whether Wordpress is present.
   stat: path="{{ wordpress_docroot }}/wp-config.php"
   register: wordpress_present

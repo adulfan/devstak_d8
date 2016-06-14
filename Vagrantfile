@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 # PROJECT VARIABLES
-project_name = "devstack"
+project_name = "d8"
 # OS X uses .local for Bonjour and can cause slowness in some tools
 project_hostname = project_name + ".vm"
 ip_address = "172.22.22.20"

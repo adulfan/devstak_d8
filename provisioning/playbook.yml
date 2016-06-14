@@ -8,7 +8,7 @@
 # To install a starter site and the dependant stack, simply enable your
 # desired tool such as "drupal", "wordpress", "laravel", "symfony", etc...
 
-- hosts: devstack
+- hosts: d8
   sudo: yes
   roles:
     ## apt-get update and some basic tools required elsewhere

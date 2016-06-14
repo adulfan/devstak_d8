@@ -1,0 +1,40 @@
+// Add layout styles below or import layout partials if you are working on a larger project.
+.layout-container  {
+  #block-blankslate-page-title
+  #block-blankslate-local-tasks,
+  header,
+  nav,
+  .breadcrumbs {
+    @include grid-column-row;
+    background-color: map-get($foundation-palette, success);
+  }
+}
+
+main {
+  @include grid-row;
+  .layout-content {
+    @include grid-column(8);
+  }
+}
+
+#block-blankslate-content {
+   .contextual-region {
+      background-color: map-get($foundation-palette, primary);
+    }
+}
+.layout-sidebar-first {
+  @include grid-column(4);
+  background-color: map-get($foundation-palette, secondary);
+}
+
+#block-blankslate-local-tasks ul {
+  @include grid-row;
+  li {
+    list-style-type: none;
+    @include grid-column(4, rem-calc(5));
+    a {
+      @include button(true, $red, $light-gray, blue, solid);
+      float: left;
+    }
+  }
+}

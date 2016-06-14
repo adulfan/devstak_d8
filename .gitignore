@@ -5,7 +5,7 @@
 .vagrant
 
 # Ignore the document root. Various roles install files there.
-/docroot
+#/docroot
 
 # Ignore mkdocs build built docs artifacts
 documentation/site

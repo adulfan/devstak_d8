@@ -1,0 +1,19 @@
+@import 'vendor/sanitize';
+@import 'settings';
+// @import 'foundation';
+// // Sass utilities
+@import 'util/util';
+
+//Global variables and styles from foundation.
+@import 'global';
+//foundation grid system.
+@import 'grid/grid';
+//foundation components.
+@import 'components/button';
+@import 'components/dropdown-menu';
+@import 'components/dropdown';
+@import 'components/reveal';
+
+//Custom styles for the site
+@import 'layout/**/*';
+

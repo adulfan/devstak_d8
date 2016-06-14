@@ -7,6 +7,10 @@
 # Ignore the document root. Various roles install files there.
 #/docroot
 
+# Ignore the document root. Various roles install files there.
+/docroot/sites/default/files
+
+
 # Ignore mkdocs build built docs artifacts
 documentation/site
 
@@ -22,3 +26,4 @@ npm-debug.log
 
 # Ignore docroot if your project uses a different hosted document root path
 # docroot
+docroot/drupal/sites/default/files

@@ -2,8 +2,10 @@
 name: blankslate
 description: A starter theme for Drupal 8.
 type: theme
+package: Core
 core: 8.x
 base theme: false
+hidden: true
 # Add libraries.
 libraries:
   - blankslate/global-css
@@ -14,5 +16,6 @@ stylesheets-remove:
   - core/modules/system/css/system.module.css
   - core/modules/system/css/system.theme.css
   - core/modules/views/css/views.module.css
-  - core/themes/stable/css/contextual/contextual.module.css
+  # - core/modules/contextual/css/contextual.module.css
+  # - '@stable/css/contextual/contextual.module.css' //In cases where the file is part of a library that belongs to a module or theme, a token can be used
 # Add your regions below. Defaults to those defined in Drupal core.

@@ -1,0 +1,47 @@
+blankslate.group1.mobile:
+  label: narrow
+  mediaQuery: ''
+  weight: 0
+  multipliers:
+    - 1x
+  group: blankslate.group1
+blankslate.group1.narrow:
+  label: narrow
+  mediaQuery: '(min-width: 560px)'
+  weight: 0
+  multipliers:
+    - 1x
+    - 2x
+  group: blankslate.group1
+blankslate.group1.wide:
+  label: wide
+  mediaQuery: '(min-width: 851px)'
+  weight: 1
+  multipliers:
+    - 1x
+    - 2x
+  group: blankslate.group1
+
+blankslate.group2.mobile:
+  label: narrow
+  mediaQuery: ''
+  weight: 0
+  multipliers:
+    - 1x
+  group: blankslate.group2
+blankslate.group2.narrower:
+  label: narrow
+  mediaQuery: '(min-width: 400px)'
+  weight: 0
+  multipliers:
+    - 1x
+    - 2x
+  group: blankslate.group2
+blankslate.group2.wider:
+  label: wide
+  mediaQuery: '(min-width: 1001px)'
+  weight: 1
+  multipliers:
+    - 1x
+    - 2x
+  group: blankslate.group2

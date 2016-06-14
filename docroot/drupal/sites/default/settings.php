@@ -519,7 +519,7 @@ if ($settings['hash_salt']) {
  * See https://www.drupal.org/documentation/modules/file for more information
  * about securing private files.
  */
-$settings['file_private_path'] = 'files/';
+$settings['file_private_path'] = 'sites/default/files';
 
 /**
  * Session write interval:
